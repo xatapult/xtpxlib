@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document-container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.xtpxlib.nl/ns/contianer ../../../xsd/container.xsd" xmlns="http://www.xtpxlib.nl/ns/container"
+  timestamp="2014-08-21T12:00:00" dref-target-path="container-to-disk-target" dref-source-zip="zip.zip" dref-target-zip="ZIPPEDIEZIP.zip">
+
+  <document dref-target="data/a.xml">
+    <Dummy/>
+  </document>
+
+  <!-- From zip mentioned on root: -->
+  <external-document dref-source="x/test-in-zip.png" dref-target="assets/test-from-zip-1.png"/>
+  <external-document dref-source="x/test-in-zip.png" dref-target="assets/test-from-zip-2.png"/>
+
+  <!-- From specific zip: -->
+  <external-document dref-source-zip="zip2.zip" dref-source="test-in-zip-2.png" dref-target="assets///test-from-specific-zip.png"/>
+
+  <!-- Not from zip: -->
+  <external-document dref-source="test.png" not-in-global-source-zip="true" dref-target="assets/test.png"/>
+
+  <!-- Unwritten external: -->
+  <external-document dref-source-zip="zip2.zip" dref-source="test-in-zip-2.png"/>
+
+  <!-- XSL-FO document: -->
+  <document dref-target="pdf/test-pdf.pdf" mime-type="application/pdf">
+    <root xmlns="http://www.w3.org/1999/XSL/Format">
+      <layout-master-set>
+        <simple-page-master master-name="spm-main" page-height="29.7cm" page-width="21cm" margin-top="2cm" margin-bottom="2cm" margin-left="2.5cm"
+          margin-right="2.5cm">
+          <region-body margin-top="0cm"/>
+        </simple-page-master>
+      </layout-master-set>
+      <page-sequence master-reference="spm-main">
+        <flow flow-name="xsl-region-body">
+          <block-container absolute-position="fixed" top="0cm" left="14.3cm">
+            <block>
+              <external-graphic src="url(file:///C:/Data/Erik/xmldev/Xatapult/xdocument/media/hdr.jpg)" content-height="21%"/>
+            </block>
+          </block-container>
+          <block-container text-align="right" absolute-position="fixed" top="4.3cm" right="1.2cm" font-family="'Futura (Light)', sans-serif"
+            font-size="7pt" color="rgb(146,6,41)" text-transform="uppercase" letter-spacing="1pt" white-space-treatment="preserve">
+            <block space-after="15pt">www.xatapult.nl</block>
+            <block space-after="2pt">info@xatapult.nl</block>
+            <block space-after="2pt">06 - 53.26.07.92</block>
+            <block space-after="2pt">Speenkruidstraat 100</block>
+            <block space-after="2pt">9731 GX Groningen</block>
+          </block-container>
+          <fo:block-container xmlns:fo="http://www.w3.org/1999/XSL/Format" absolute-position="fixed" top="4.5cm" left="2cm" width="9.5cm"
+            height="3.5cm" font-family="Verdana, sans-serif" font-size="10pt" font-weight="bold">
+            <fo:block space-after="1pt">Test Customer 1</fo:block>
+            <fo:block space-after="1pt">Teststreet 1</fo:block>
+            <fo:block space-after="1pt">12345 Test City</fo:block>
+          </fo:block-container>
+          <fo:block-container xmlns:fo="http://www.w3.org/1999/XSL/Format" text-align="right" absolute-position="fixed" top="28.2cm" right="21"
+            font-size="7pt">
+            <fo:block space-after="1pt">KvK Noord Nederland: 02072375</fo:block>
+            <fo:block space-after="1pt">BTW nummer: NL137788186B01</fo:block>
+            <fo:block>IBAN: NL16 ASNB 0707 2231 21 t.n.v. R.E. Siegel, Groningen</fo:block>
+          </fo:block-container>
+          <block-container margin-top="8cm" font-family="Verdana, sans-serif" font-size="9pt">
+            <fo:table xmlns:fo="http://www.w3.org/1999/XSL/Format">
+              <fo:table-column column-number="1" column-width="3.5cm"/>
+              <fo:table-column column-number="2"/>
+              <fo:table-body>
+                <fo:table-row height="0.5cm">
+                  <fo:table-cell>
+                    <fo:block>Datum:</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                    <fo:block>1 januari 2014</fo:block>
+                  </fo:table-cell>
+                </fo:table-row>
+                <fo:table-row height="0.5cm">
+                  <fo:table-cell>
+                    <fo:block>Factuurnummer:</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                    <fo:block font-weight="bold">TC201401</fo:block>
+                  </fo:table-cell>
+                </fo:table-row>
+                <fo:table-row height="0.5cm">
+                  <fo:table-cell>
+                    <fo:block>Periode:</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                    <fo:block>December 2013</fo:block>
+                  </fo:table-cell>
+                </fo:table-row>
+              </fo:table-body>
+            </fo:table>
+            <block>
+              <leader/>
+            </block>
+            <block>
+              <leader/>
+            </block>
+            <fo:table xmlns:fo="http://www.w3.org/1999/XSL/Format">
+              <fo:table-column column-number="1" column-width="1cm"/>
+              <fo:table-column column-number="2" column-width="7cm"/>
+              <fo:table-column column-number="3" column-width="1.5cm"/>
+              <fo:table-column column-number="4" column-width="2.5cm"/>
+              <fo:table-column column-number="5" column-width="2.5cm"/>
+              <fo:table-column column-number="6" column-width="2.5cm"/>
+              <fo:table-body>
+                <fo:table-row background-color="rgb(146,6,41)" color="white">
+                  <fo:table-cell>
+                    <fo:block>Aant.</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                    <fo:block>Omschrijving</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                    <fo:block>BTW%</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell text-align="right">
+                    <fo:block>Tarief</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell text-align="right">
+                    <fo:block>Bedrag</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell text-align="right" padding-right="0.2cm">
+                    <fo:block>BTW</fo:block>
+                  </fo:table-cell>
+                </fo:table-row>
+                <fo:table-row height="0.15cm">
+                  <fo:table-cell>
+                    <fo:block/>
+                  </fo:table-cell>
+                </fo:table-row>
+                <fo:table-row height="0.5cm">
+                  <fo:table-cell>
+                    <fo:block>-2</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                    <fo:block>Project XYZ</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                    <fo:block>21%</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell text-align="right">
+                    <fo:block>€ 110,00</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell text-align="right">
+                    <fo:block>-€ 220,00</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell text-align="right" padding-right="0.2cm">
+                    <fo:block>-€ 46,20</fo:block>
+                  </fo:table-cell>
+                </fo:table-row>
+                <fo:table-row height="0.5cm">
+                  <fo:table-cell>
+                    <fo:block>10</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                    <fo:block>Project ABC</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                    <fo:block>21%</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell text-align="right">
+                    <fo:block>€ 75,00</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell text-align="right">
+                    <fo:block>€ 750,00</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell text-align="right" padding-right="0.2cm">
+                    <fo:block>€ 157,50</fo:block>
+                  </fo:table-cell>
+                </fo:table-row>
+                <fo:table-row background-color="rgb(146,6,41)" color="white">
+                  <fo:table-cell>
+                    <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                    <fo:block>Totalen:</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                    <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                    <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell text-align="right">
+                    <fo:block>€ 530,00</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell text-align="right" padding-right="0.2cm">
+                    <fo:block>€ 111,30</fo:block>
+                  </fo:table-cell>
+                </fo:table-row>
+              </fo:table-body>
+            </fo:table>
+            <block>
+              <leader/>
+            </block>
+            <block>
+              <leader/>
+            </block>
+            <fo:table xmlns:fo="http://www.w3.org/1999/XSL/Format">
+              <fo:table-column column-number="1" column-width="8cm"/>
+              <fo:table-column column-number="2" column-width="6.5cm"/>
+              <fo:table-column column-number="3" column-width="2.5cm"/>
+              <fo:table-body>
+                <fo:table-row height="0.2cm">
+                  <fo:table-cell>
+                    <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell background-color="rgb(146,6,41)" color="white">
+                    <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell background-color="rgb(146,6,41)" color="white">
+                    <fo:block/>
+                  </fo:table-cell>
+                </fo:table-row>
+                <fo:table-row height="0.15cm">
+                  <fo:table-cell>
+                    <fo:block/>
+                  </fo:table-cell>
+                </fo:table-row>
+                <fo:table-row height="0.4cm">
+                  <fo:table-cell>
+                    <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell text-align="right" padding-right="0.2cm">
+                    <fo:block>Totaal (excl. BTW):</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell text-align="right" padding-right="0.2cm">
+                    <fo:block>€ 530,00</fo:block>
+                  </fo:table-cell>
+                </fo:table-row>
+                <fo:table-row height="0.4cm">
+                  <fo:table-cell>
+                    <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell text-align="right" padding-right="0.2cm">
+                    <fo:block>Totaal BTW:</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell text-align="right" padding-right="0.2cm">
+                    <fo:block>€ 111,30</fo:block>
+                  </fo:table-cell>
+                </fo:table-row>
+                <fo:table-row height="0.4cm" font-weight="bold">
+                  <fo:table-cell>
+                    <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell text-align="right" padding-right="0.2cm" border-top="1pt solid black" padding-top="0.1cm">
+                    <fo:block>Factuurbedrag:</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell text-align="right" border-top="1pt solid black" padding-top="0.1cm" padding-right="0.2cm">
+                    <fo:block>€ 641,30</fo:block>
+                  </fo:table-cell>
+                </fo:table-row>
+                <fo:table-row height="0.2cm">
+                  <fo:table-cell>
+                    <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell background-color="rgb(146,6,41)" color="white">
+                    <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell background-color="rgb(146,6,41)" color="white">
+                    <fo:block/>
+                  </fo:table-cell>
+                </fo:table-row>
+              </fo:table-body>
+            </fo:table>
+            <block>
+              <leader/>
+            </block>
+            <block>
+              <leader/>
+            </block>
+            <fo:block xmlns:fo="http://www.w3.org/1999/XSL/Format" space-after="1pt">Ik verzoek u het factuurbedrag onder vermelding van het
+              factuurnummer binnen 30 dagen over te maken op rekening IBAN: NL16 ASNB 0707 2231 21 t.n.v. R.E. Siegel, Groningen.</fo:block>
+            <fo:block xmlns:fo="http://www.w3.org/1999/XSL/Format" space-after="1pt"> Bij overschrijding van deze termijn zullen rente en kosten in
+              rekening worden gebracht. </fo:block>
+          </block-container>
+        </flow>
+      </page-sequence>
+    </root>
+  </document>
+
+</document-container>

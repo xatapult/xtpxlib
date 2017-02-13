@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<docgen-types>
+  <!--*
+      Helper file for the xml doc conversion process:
+  -->
+  <docgen-type type-id="variable" priority="100">Variable</docgen-type>
+  <docgen-type type-id="function" priority="90">Function</docgen-type>
+  <docgen-type type-id="template" priority="80">Named template</docgen-type>
+  <docgen-type type-id="xplstep" priority="100">XProc step</docgen-type>
+  <docgen-type type-id="element" priority="100">Global element</docgen-type>
+</docgen-types>

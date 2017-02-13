@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE catalog PUBLIC "-//OASIS//DTD XML Catalogs V1.1//EN" "http://www.oasis-open.org/committees/entity/release/1.1/catalog.dtd">
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+  <!-- ================================================================== -->
+  <!--*
+    This is the XML catalog file for (de)referencing xtpxlib resources. Simply prefix the necessary resource's relative path
+    with urn:x-xtpxlib.nl://, e.g. urn:x-xtpxlib.nl://common/xslmod/common.mod.xsl 
+  -->
+  <!-- ================================================================== -->
+
+  <rewriteURI uriStartString="urn:x-xtpxlib.nl://" rewritePrefix=".."/>
+
+</catalog>

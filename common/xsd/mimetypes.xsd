@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+  targetNamespace="http://www.xtpxlib.nl/ns/mimetypes" xmlns="http://www.xtpxlib.nl/ns/mimetypes">
+  <xs:annotation>
+    <xs:documentation>Schema for the mimetype association datafile. This list is in common/data/mimetypes-table.xml and is used by common/xslmod/mimetypes.mod.xsl.</xs:documentation>
+  </xs:annotation>
+  <xs:element name="mimetypes">
+    <xs:annotation>
+      <xs:documentation>Root element of the MIME types associaton list.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="mimetype">
+          <xs:annotation>
+            <xs:documentation>The mimetype-extension association. This does not have to be unique. The first occurence in document order is the default one.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:attribute name="type">
+              <xs:annotation>
+                <xs:documentation>The mimetype (e.g. image/jpeg)</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                  <xs:whiteSpace value="collapse"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="extension">
+              <xs:annotation>
+                <xs:documentation>The file extension in lowercase (no leading dot, e.g. jpg)</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="[a-z0-9]+"/>
+                  <xs:minLength value="1"/>
+                  <xs:whiteSpace value="collapse"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

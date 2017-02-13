@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xtpxlib-public?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+  targetNamespace="http://www.xtpxlib.nl/ns/container" vc:minVersion="1.1" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+  xmlns:xtlcon="http://www.xtpxlib.nl/ns/container">
+  <xs:annotation>
+    <xs:documentation>Common constructs used by xtpxlib.</xs:documentation>
+  </xs:annotation>
+  <xs:element name="document-container">
+    <xs:annotation>
+      <xs:documentation>Root element for a document container.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:element name="document">
+          <xs:annotation>
+            <xs:documentation>A single XML document in the container</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:any namespace="##any" processContents="skip">
+                <xs:annotation>
+                  <xs:documentation>Root element of the embedded document.</xs:documentation>
+                </xs:annotation>
+              </xs:any>
+            </xs:sequence>
+            <xs:attributeGroup ref="xtlcon:ag-document-base-attributes"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="external-document">
+          <xs:annotation>
+            <xs:documentation>Reference to an external document from this container.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence minOccurs="0">
+              <xs:any namespace="##any" processContents="skip" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation>Additional data for the external document. Application and usage specific.</xs:documentation>
+                </xs:annotation>
+              </xs:any>
+            </xs:sequence>
+            <xs:attributeGroup ref="xtlcon:ag-document-base-attributes"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:any namespace="##any" processContents="skip"/>
+      </xs:choice>
+      <xs:attributeGroup ref="xtlcon:ag-timestamp">
+        <xs:annotation>
+          <xs:documentation>The date/time this container was generated</xs:documentation>
+        </xs:annotation>
+      </xs:attributeGroup>
+      <xs:attribute name="dref-source-zip" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Reference to the default zip file that was the source for this container.
+Used when resolving references to external documents. 
+An external document reference (element: external-document) can also  override this setting with its own @dref-source-zip attribute.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="dref-target-path" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Path that serves as a base for file write operations from this container. </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="dref-target-result-path" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Holds the full path that was used to write this container to. Will be filled after the container is written.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="dref-source-path" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Reference to the root source directory where this content came from. </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="dref-target-zip" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Reference to the zip file to write this container to.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="dref-target-zip-result" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Full expanded reference to the zip file for this container. Is filled when the container is written to a zip file.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="dref-target-zip-tmpdir" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Name of the temporary directory the container is written to before zipping. Is filled when the container is zipped.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:anyAttribute namespace="##any" processContents="skip">
+        <xs:annotation>
+          <xs:documentation>Additional attributes. Application and usage specific.</xs:documentation>
+        </xs:annotation>
+      </xs:anyAttribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="ag-timestamp">
+    <xs:attribute name="timestamp" type="xs:dateTime" use="required"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="ag-document-base-attributes">
+    <xs:attribute name="dref-source-zip" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>Reference to the zip file that was the source for this file.
+Can be used to override the value of /*/@dref-source-zip.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="dref-source-zip-result" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>Full reference to the zip file. Will be filled when writing the files.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="dref-source" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>Reference to the source document. 
+When this file is from a zip file, this holds the path inside the zip.
+A relative path is relative to /*/@dref-source-path</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute default="false" name="not-in-global-source-zip" type="xs:boolean">
+      <xs:annotation>
+        <xs:documentation>When true any global zip file information will not be used. This is necessary to allow references to files not in a zip and specify a global zip file at the same time.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="dref-source-result" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>Absolute reference to the source document. Will be filled and used when we need to read this file from disk or zip.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="dref-target" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>Reference to the location where this document must be written.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="dref-target-result" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>Holds the full path that was used to write this document to. Will be filled after the container is written to disk.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="document-type" type="xtlcon:t-identifier">
+      <xs:annotation>
+        <xs:documentation>Some type designation for this document. Application/usage specific.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="mime-type" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>Optional document MIME type. This is sometimes used to decide on special processing when a document is written to disk.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:anyAttribute namespace="##any" processContents="skip">
+      <xs:annotation>
+        <xs:documentation>Additional attributes. Application and usage specific.</xs:documentation>
+      </xs:annotation>
+    </xs:anyAttribute>
+  </xs:attributeGroup>
+  <xs:simpleType name="t-identifier">
+    <xs:restriction base="xs:NCName"/>
+  </xs:simpleType>
+</xs:schema>
