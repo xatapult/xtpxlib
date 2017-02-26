@@ -103,9 +103,11 @@
       <!-- Get the contents: -->
       <p:filter select="/*/*[1]"/>
       
-      <!-- Store: -->
-      <!-- When the mime-type of a document is application/pdf *and* it has a fo:root element, it is assumed to contain XSL-FO and will 
-        be processed by FOP into a PDF. -->
+      <!-- Store:
+           - When the mime-type of a document is application/pdf *and* it has a fo:root element, it is assumed to contain XSL-FO and will 
+             be processed by FOP into a PDF. 
+           - When the mime-type is text/plain it will be written as text (string(/*)) 
+      -->
       <p:choose>
         
         <!-- PDF generation: -->
@@ -114,6 +116,13 @@
             <p:with-option name="href" select="$dref-target-result"/>
             <p:with-param name="UserConfig" select="$dref-fop-config-to-use"/>
           </p:xsl-formatter>
+        </p:when>
+        
+        <!-- Text: -->
+        <p:when test="$mime-type eq 'text/plain'">
+          <p:store method="text" encoding="UTF-8">
+            <p:with-option name="href" select="$dref-target-result"/>
+          </p:store>
         </p:when>
         
         <!-- Normal XML: -->
