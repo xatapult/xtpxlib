@@ -32,9 +32,10 @@ Most subdirectories contain a `readme.md` file that details its contents.
 | --------- | ----------- |
 | `common` | Sub-library with common code for processing strings, filenames, etc. |
 | `container` | Sub-library for working with document containers. | 
-| `devenv` | Development environment related files, like templates. xtpxlib can be used in any XML processing environment but specifically supports oXygen as its main IDE.
-| `xmlcatalog`| Contains the XML catalog file(s) for easy access to the library  from code. |
-| `xmldoc`| Sub-library with code for generating documentation. A bit like Javadoc. |
+| `devenv` | Development environment related files, like templates. xtpxlib can be used in any XML processing environment but specifically supports oXygen as its main IDE. |
+| `ms-office` | Sub-library for handling and working with some Microsoft Office formats (Office version > 2003) | 
+| `xmlcatalog` | Contains the XML catalog file(s) for easy access to the library  from code. |
+| `xmldoc` | Sub-library with code for generating documentation. A bit like Javadoc. |
 
 ## Main conventions used
 

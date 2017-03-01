@@ -16,6 +16,8 @@
   <xsl:include href="../../common/xslmod/uuid.mod.xsl"/>    
   <xsl:include href="../../common/xslmod/parameters.mod.xsl"/>
   
+  <xsl:include href="../../ms-office/xslmod/ms-office.mod.xsl"/>
+  
 </xsl:stylesheet>
 
 
