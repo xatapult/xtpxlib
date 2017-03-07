@@ -52,6 +52,28 @@
   <!-- ================================================================== -->
   <!-- VARIOUS: -->
 
+  <xsl:function name="xtlc:char-repeat" as="xs:string">
+    <!-- Returns a string with a character repeated a given number of times. -->
+    <xsl:param name="char" as="xs:string">
+      <!--* The first character of this string is the character to repeat.  -->
+    </xsl:param>
+    <xsl:param name="repeat" as="xs:integer">
+      <!--* The number of repeats  -->
+    </xsl:param>
+
+    <xsl:choose>
+      <xsl:when test="$repeat le 0">
+        <xsl:sequence select="''"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="char-to-use" as="xs:string" select="substring($char, 1, 1)"/>
+        <xsl:sequence select="string-join(for $c in 1 to $repeat return $char-to-use, '')"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
   <xsl:function name="xtlc:q" as="xs:string">
     <!--* Returns the input string quoted ("$in") -->
     <xsl:param name="in" as="xs:string?">
@@ -61,9 +83,9 @@
     <xsl:sequence select="concat('&quot;', $in, '&quot;')"/>
 
   </xsl:function>
-  
+
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  
+
   <xsl:function name="xtlc:item2element" as="element()?">
     <!--* 
       Tries to find the element belonging to a given item:
@@ -79,10 +101,10 @@
     <xsl:param name="error-on-non-resolve" as="xs:boolean">
       <!--* Whether to generate an error when $item could not be resolved. Otherwise, the function will return (). -->
     </xsl:param>
-    
+
     <xsl:variable name="function-name-prompt" as="xs:string" select="'item2element: '"/>
     <xsl:choose>
-      
+
       <!-- String or URI: -->
       <xsl:when test="($item instance of xs:string) or ($item instance of xs:anyURI)">
         <xsl:choose>
@@ -99,17 +121,17 @@
           </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
-      
+
       <!-- Document: -->
       <xsl:when test="$item instance of document-node()">
         <xsl:sequence select="$item/*"/>
       </xsl:when>
-      
+
       <!-- Element: -->
       <xsl:when test="$item instance of element()">
         <xsl:sequence select="$item"/>
       </xsl:when>
-      
+
       <!-- Nothing recognizable... -->
       <xsl:when test="$error-on-non-resolve">
         <xsl:call-template name="xtlc:raise-error">
@@ -119,10 +141,10 @@
       <xsl:otherwise>
         <xsl:sequence select="()"/>
       </xsl:otherwise>
-      
+
     </xsl:choose>
   </xsl:function>
-  
+
   <!-- ================================================================== -->
   <!-- STRING CONVERSIONS: -->
 
@@ -297,8 +319,7 @@
         <xsl:sequence select="$in"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:variable name="prefix-string" as="xs:string"
-          select="string-join(for $c in (1 to ($length - string-length($in))) return $prefix-char-to-use, '')"/>
+        <xsl:variable name="prefix-string" as="xs:string" select="xtlc:char-repeat($prefix-char-to-use, $length - string-length($in))"/>
         <xsl:sequence select="concat($prefix-string, $in)"/>
       </xsl:otherwise>
     </xsl:choose>
