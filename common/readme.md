@@ -12,6 +12,7 @@ Subdirectory: `xslmod`
 | Library | Description |
 |--|--|
 | `common.mod.xsl` | Very generic XSLT functions and named templates for, for instance, converting stuff, presenting stuff, etc. |
+| `compare.mod.xsl` | Module for comparing XML documents/elements | 
 | `dref.mod.xsl` | XSLT functions for working with "document references", which is the xtpxlib term for things like filenames, directory names, etc. Get names and extensions, canonicalize a path, find relative paths, etc.|
 | `message.mod.xsl` | xtpxlib defines a standard message construct for leaving messages in XML documents. This small library supports this. |
 | `mimetypes.mod.xsl` | Library functions for working with MIME types and converting them in/from file extensions. |
