@@ -47,7 +47,15 @@
       </p:input>
       <p:with-param name="debug" select="$debug"/>
     </p:xslt>
-
+    
+    <!-- Remove any empty rows and cells: -->
+    <p:xslt>
+      <p:input port="stylesheet">
+        <p:document href="xsl/extract-xlsx-2.xsl"/>
+      </p:input>
+      <p:with-param name="debug" select="$debug"/>
+    </p:xslt>
+    
   </p:declare-step>
 
 </p:library>

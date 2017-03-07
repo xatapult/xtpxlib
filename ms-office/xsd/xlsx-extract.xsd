@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0"
+  targetNamespace="http://www.xtpxlib.nl/ns/ms-office" xmlns="http://www.xtpxlib.nl/ns/ms-office">
+  <xs:annotation>
+    <xs:documentation>Schema for the result of an xlsx file extraction to XML (by the extract-xlsx pipeline in the XProc module xplmod/excel.mod)</xs:documentation>
+  </xs:annotation>
+  <xs:element name="workbook">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="properties">
+          <xs:annotation>
+            <xs:documentation>The properties found in the Excel file</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="property">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="value" type="xs:string"/>
+                  </xs:sequence>
+                  <xs:attribute name="name" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation>Name of the property</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="type" use="required">
+                    <xs:annotation>
+                      <xs:documentation>The set this property came from</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:enumeration value="core"/>
+                        <xs:enumeration value="extended"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element maxOccurs="unbounded" minOccurs="0" name="worksheet">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="row">
+                <xs:annotation>
+                  <xs:documentation>A row in the spreadsheet (only present if there is any data in the row)</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="cell">
+                      <xs:annotation>
+                        <xs:documentation>A cell in the spreadsheet (only present if there is any data in the cell)</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="value" type="ct-mixed-inline">
+                            <xs:annotation>
+                              <xs:documentation>The value of the cell</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element minOccurs="0" name="formula" type="xs:string">
+                            <xs:annotation>
+                              <xs:documentation>Formula of the cell (if any). Always in English.</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element minOccurs="0" name="comment" type="ct-mixed-inline">
+                            <xs:annotation>
+                              <xs:documentation>Any comment attached to the cell</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="index" type="xs:integer" use="required">
+                          <xs:annotation>
+                            <xs:documentation>The column number (starting with 1)</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="ref" type="xs:string" use="required">
+                          <xs:annotation>
+                            <xs:documentation>The Excel cell reference (e.g. A1)</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="name" type="xs:string">
+                          <xs:annotation>
+                            <xs:documentation>If this cell is the first cell of a named range, the name of that range</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="index" type="xs:integer" use="required">
+                    <xs:annotation>
+                      <xs:documentation>The row number (starting with 1)</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="name" type="xs:string" use="required">
+              <xs:annotation>
+                <xs:documentation>The name of the worksheet (as on the tab)</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="dref" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation>Full document reference (including a file:// prefix) of the Excel file</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="timestamp" type="xs:dateTime" use="required">
+        <xs:annotation>
+          <xs:documentation>Date/time the conversion from Excel to this format took place</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType mixed="true" name="ct-mixed-inline">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element name="span">
+        <xs:annotation>
+          <xs:documentation>A specific markup in the text (e.g. bold, underline, etc.)</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="ct-mixed-inline">
+              <xs:attribute name="class" type="xs:string">
+                <xs:annotation>
+                  <xs:documentation>Indicator for the type of markup</xs:documentation>
+                </xs:annotation>
+              </xs:attribute>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+</xs:schema>
