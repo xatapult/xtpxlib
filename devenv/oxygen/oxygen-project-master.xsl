@@ -16,6 +16,8 @@
   <xsl:include href="../../common/xslmod/uuid.mod.xsl"/>    
   <xsl:include href="../../common/xslmod/parameters.mod.xsl"/>
   <xsl:include href="../../common/xslmod/compare.mod.xsl"/>
+  <xsl:include href="../../common/xslmod/format-output.mod.xsl"/>
+  <xsl:include href="../../common/xslmod/date-time.mod.xsl"/>
   
   <xsl:include href="../../ms-office/xslmod/ms-office.mod.xsl"/>
   
