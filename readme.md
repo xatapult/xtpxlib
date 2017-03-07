@@ -1,6 +1,6 @@
 # xtpxlib: Xatapult XML Library
 
-**V2.0.0 - Februari 13, 2017** 
+**V2.1.0 - March 7, 2017** 
 
 Xatapult Content Engineering - http://www.xatapult.nl
 
