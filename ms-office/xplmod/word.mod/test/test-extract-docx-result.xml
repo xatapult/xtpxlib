@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.xtpxlib.nl/ns/ms-office"
+          dref="file:///C:/Data/Erik/xmldev/xtpxlib2/ms-office/xplmod/word.mod/test/test.docx"
+          timestamp="2017-03-07T15:15:34.755+01:00">
+   <properties>
+      <property name="title" type="core">
+         <value>TITEL</value>
+      </property>
+      <property name="subject" type="core">
+         <value>(subtitel)</value>
+      </property>
+      <property name="creator" type="core">
+         <value>AUTEURSNAAM</value>
+      </property>
+      <property name="lastModifiedBy" type="core">
+         <value>Erik Siegel</value>
+      </property>
+      <property name="revision" type="core">
+         <value>11</value>
+      </property>
+      <property name="lastPrinted" type="core">
+         <value>2009-03-23T12:26:00Z</value>
+      </property>
+      <property name="created" type="core">
+         <value>2014-08-26T11:25:00Z</value>
+      </property>
+      <property name="modified" type="core">
+         <value>2014-10-23T13:16:00Z</value>
+      </property>
+      <property name="DocumentType" type="custom">
+         <value>(type)</value>
+      </property>
+      <property name="Language" type="custom">
+         <value>Nederlands</value>
+      </property>
+      <property name="VersionAuto" type="custom">
+         <value>1</value>
+      </property>
+      <property name="VersionInfo" type="custom">
+         <value>V1.0</value>
+      </property>
+      <property name="FileNameShow" type="custom">
+         <value>0</value>
+      </property>
+      <property name="TextPage" type="custom">
+         <value>Pagina</value>
+      </property>
+      <property name="TextOf" type="custom">
+         <value>van</value>
+      </property>
+      <property name="TextTOC" type="custom">
+         <value>Inhoudsopgave</value>
+      </property>
+      <property name="OfficialPaper" type="custom">
+         <value>0</value>
+      </property>
+      <property name="VersionNumber" type="custom">
+         <value>0</value>
+      </property>
+      <property name="DocumentCode" type="custom">
+         <value>CODE</value>
+      </property>
+      <property name="Template" type="extended">
+         <value>Memo.dotm</value>
+      </property>
+      <property name="TotalTime" type="extended">
+         <value>26</value>
+      </property>
+      <property name="Pages" type="extended">
+         <value>1</value>
+      </property>
+      <property name="Words" type="extended">
+         <value>64</value>
+      </property>
+      <property name="Characters" type="extended">
+         <value>352</value>
+      </property>
+      <property name="Application" type="extended">
+         <value>Microsoft Office Word</value>
+      </property>
+      <property name="DocSecurity" type="extended">
+         <value>0</value>
+      </property>
+      <property name="Lines" type="extended">
+         <value>2</value>
+      </property>
+      <property name="Paragraphs" type="extended">
+         <value>1</value>
+      </property>
+      <property name="ScaleCrop" type="extended">
+         <value>false</value>
+      </property>
+      <property name="HeadingPairs" type="extended">
+         <value>Titel</value>
+         <value>1</value>
+      </property>
+      <property name="TitlesOfParts" type="extended">
+         <value>TITEL</value>
+      </property>
+      <property name="Company" type="extended">
+         <value>Erik Siegel ICT</value>
+      </property>
+      <property name="LinksUpToDate" type="extended">
+         <value>false</value>
+      </property>
+      <property name="CharactersWithSpaces" type="extended">
+         <value>415</value>
+      </property>
+      <property name="SharedDoc" type="extended">
+         <value>false</value>
+      </property>
+      <property name="HyperlinksChanged" type="extended">
+         <value>false</value>
+      </property>
+      <property name="AppVersion" type="extended">
+         <value>14.0000</value>
+      </property>
+   </properties>
+   <p class="Huisstijl" xml:space="preserve"/>
+   <p xml:space="preserve">Dit is een test document voor de omzetting van Word docx bestanden naar XML.</p>
+   <p xml:space="preserve">Stukje <span class="b">bold</span> en <span class="i">italic</span> en <span class="u">onderstreept</span> en <span class="b i u">alles</span>.</p>
+   <p xml:space="preserve">Stukje in <span class="CodeTekst">codetekst</span> en <span class="b CodeTekst">codetekst bold</span><span class="CodeTekst"> …</span></p>
+   <p class="Kop1" xml:space="preserve">Eerste header</p>
+   <p xml:space="preserve">Tekst na eerste header.</p>
+   <p xml:space="preserve"/>
+   <p class="LijstAlinea" xml:space="preserve">Dit is een lijst met “ES” stijl bullets</p>
+   <p class="LijstAlinea" xml:space="preserve">Nog één</p>
+   <p class="LijstAlinea" indent-left="567" xml:space="preserve">Indent 1</p>
+   <p class="LijstAlinea" indent-left="850" xml:space="preserve">Indent 2</p>
+   <p class="LijstAlinea" indent-left="1133" xml:space="preserve">Indent 3</p>
+   <p xml:space="preserve"/>
+   <p class="Lijstalinea0" indent-level="0" xml:space="preserve">Bullet word stijl</p>
+   <p class="Lijstalinea0" indent-level="0" xml:space="preserve">Nog één</p>
+   <p class="Lijstalinea0" indent-level="1" xml:space="preserve">Indent 1</p>
+   <p class="Lijstalinea0" indent-level="2" xml:space="preserve">Indent 2</p>
+   <p xml:space="preserve"/>
+   <p class="Kop1" xml:space="preserve">Tabellen:</p>
+   <table>
+      <tr>
+         <td>
+            <p class="StandaardAlt" xml:space="preserve">Hdr 1</p>
+         </td>
+         <td>
+            <p class="StandaardAlt" xml:space="preserve">Hdr 2</p>
+         </td>
+         <td>
+            <p class="StandaardAlt" xml:space="preserve">Hdr 3</p>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <p class="StandaardAlt" xml:space="preserve">Bla</p>
+         </td>
+         <td>
+            <p class="StandaardAlt" xml:space="preserve">Bla</p>
+         </td>
+         <td>
+            <p class="StandaardAlt" xml:space="preserve">Bla</p>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <p class="StandaardAlt" xml:space="preserve">Bloeb</p>
+         </td>
+         <td>
+            <p class="StandaardAlt" xml:space="preserve">Bloeb</p>
+         </td>
+         <td>
+            <p class="StandaardAlt" xml:space="preserve">Bloeb <span class="b">bold</span><span class="b"> en </span><span class="b i">italic</span> en nog wat</p>
+         </td>
+      </tr>
+   </table>
+   <p xml:space="preserve"/>
+   <p xml:space="preserve"/>
+</document>
