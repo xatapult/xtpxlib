@@ -26,16 +26,18 @@ xtpxlib is a library containing software, both libraries and ready-to-run stuff,
 
 ### Directories at root level
 
+The root directories separate the library into subject areas. You will usually not need them all. The table below lists their dependencies. 
+
 Most subdirectories contain a `readme.md` file that details its contents.
 
-| Directory | Description |
-| --------- | ----------- |
-| `common` | Sub-library with common code for processing strings, filenames, etc. |
-| `container` | Sub-library for working with document containers. | 
-| `devenv` | Development environment related files, like templates. xtpxlib can be used in any XML processing environment but specifically supports oXygen as its main IDE. |
-| `ms-office` | Sub-library for handling and working with some Microsoft Office formats (Office version > 2003) | 
-| `xmlcatalog` | Contains the XML catalog file(s) for easy access to the library  from code. |
-| `xmldoc` | Sub-library with code for generating documentation. A bit like Javadoc. |
+| Directory | Description | Dependencies |
+| --------- | ----------- | ----------- |
+| `common` | Sub-library with common code for processing strings, filenames, etc. | Always needed |
+| `container` | Sub-library for working with document containers. | Depends on: `common` | 
+| `devenv` | Development environment related files, like templates. xtpxlib can be used in any XML processing environment but specifically supports oXygen as its main IDE. | Only necessary when you use xtpxlib in development situations |
+| `ms-office` | Sub-library for handling and working with some Microsoft Office formats (Office version > 2003) | Depends on: `common`, `container` |
+| `xmlcatalog` | Contains the XML catalog file(s) for easy access to the library  from code. | Only necessary when you use the XML catalog system
+| `xmldoc` | Sub-library with code for generating documentation. A bit like Javadoc. | Depends on: `common` |
 
 ## Main conventions used
 
