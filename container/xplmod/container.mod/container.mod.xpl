@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xtpxlib-public?>
 <p:library xmlns:p="http://www.w3.org/ns/xproc" xmlns:c="http://www.w3.org/ns/xproc-step" xmlns:xtlc="http://www.xtpxlib.nl/ns/common"
   xmlns:xtlcon="http://www.xtpxlib.nl/ns/container" xmlns:pxp="http://exproc.org/proposed/steps" xmlns:fo="http://www.w3.org/1999/XSL/Format"
   xmlns:cx="http://xmlcalabash.com/ns/extensions" version="1.0" xpath-version="2.0" exclude-inline-prefixes="#all">

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xtpxlib-public?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
   targetNamespace="http://www.xtpxlib.nl/ns/container" vc:minVersion="1.1" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
   xmlns:xtlcon="http://www.xtpxlib.nl/ns/container">

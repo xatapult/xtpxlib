@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xtpxlib-public?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns:local="#local.parameters.mod.xsl" xmlns:fn="http://www.w3.org/2005/xpath-functions"
   xmlns:xtlc="http://www.xtpxlib.nl/ns/common" version="2.0" exclude-result-prefixes="#all">
