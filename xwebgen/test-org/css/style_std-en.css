@@ -1,0 +1,406 @@
+/* standaardstylesheet voor website Xatapult XML ondersteuning */
+/* copyright 2009 Strik Design */
+/* www.strikdesign.nl */
+/* office@strikdesign.nl */
+
+/* html selectors */
+html, body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset {
+	padding: 0;
+	border: 0;
+}
+html, body, p, h1, h2, h3, h4, h5, h6, form, fieldset {
+	margin: 0;
+}
+html, body {
+	font: 100% Verdana, Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	color: #FFF;
+	background-color: #bd3f2c;
+	background-image: url(../images/background_page.jpg);
+	background-repeat: repeat-x;
+	height: 100%;
+}
+
+
+/* basiselementen */
+.top {
+	position: absolute;
+}
+#container {
+	width: 976px;
+	text-align: left;
+	position: relative;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 0px;
+	min-height: 100%;
+	height:auto; /* voor moderne browsers */
+	height:100%; /* voor IE */
+}
+
+/* header */
+#header {
+	height: 167px;
+	background-color: #C60000;
+	background-image: url(../images/background_header_en.jpg);
+}
+
+#header_en {
+	height: 167px;
+	background-color: #C60000;
+	background-image: url(../images/background_header_en.jpg);
+}
+
+/* content */
+#mainContent {
+	position: relative;
+	left: 0px;
+	top: 0px;
+	height: 100%;
+}
+#mainContent .contentwrapper {
+	display: block;
+	position: relative;
+	width: 720px;
+	left: 20px;
+	top: 34px;
+	float: left;
+	margin-bottom: 50px;
+}
+#mainContent h1 {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 30px;
+	line-height: 38px;
+	color: #FFF;
+	display: block;
+	margin-bottom: 15px;
+	letter-spacing: 0.03em;
+}
+#mainContent .subkop {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 16px;
+	line-height: 20px;
+	font-weight: bold;
+
+}
+#mainContent .subsubkop {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 20px;
+	font-weight: bold;
+	color: #ffb18c;
+}
+#mainContent .bijschrift {
+	font-size: 12px;
+	color: #EDB9B1;
+	font-family: "Courier New", Courier, monospace;
+	letter-spacing: 0em;
+}
+#mainContent .intro {
+	font-weight: bold;
+	display: block;
+	margin-bottom: 10px;
+}
+
+#mainContent p, #mainContent li {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 20px;
+	color: #FFF;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+#mainContent .foutmelding {
+	background-image: url(../images/bullet_foutmelding.gif);
+	background-repeat: no-repeat;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	padding-left: 15px;
+	border-top-width: 2px;
+	border-bottom-width: 2px;
+	border-top-color: #000;
+	border-bottom-color: #000;
+	background-position: 5px 5px;
+	padding-bottom: 5px;
+	padding-right: 10px;
+}
+
+#mainContent .goedmelding {
+	background-image: url(../images/bullet_goedmelding.gif);
+	background-repeat: no-repeat;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	padding-left: 25px;
+	border-top-width: 2px;
+	border-bottom-width: 2px;
+	border-top-color: #000;
+	border-bottom-color: #000;
+	background-position: 5px 5px;
+	padding-bottom: 5px;
+	padding-right: 10px;
+}
+
+#mainContent a:link, a:visited {
+	font-weight: bold;
+	text-decoration: none;
+	color: #FFF;
+}
+#mainContent a:hover, a:active {
+	text-decoration: underline;
+	color: #000;
+}
+#mainContent ul {
+	list-style-type: square;
+	display: block;
+	position: relative;
+	left: 15px;
+	list-style-position: outside;
+	margin-right: 25px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+#mainContent li {
+	list-style-type: square;
+	list-style-image: url(../images/bullet.gif);
+}
+#mainContent table {
+	font-size: 12px;
+	line-height: 20px;
+	border: 2px solid #ce8383;
+}
+#mainContent th, td {
+	padding-left: 3px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #be5958;
+}
+#mainContent table tr .tabeltitel {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 24px;
+	font-weight: bold;
+	background-color: #CE8383;
+	padding-top: 2px;
+	padding-bottom: 4px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+}
+#mainContent table tr .rowuneven {
+	background-color: #b44141;
+}
+#mainContent th {
+	text-align: left;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #FFF;
+}
+
+#mainContent .noborder {
+	padding: 0px;
+	margin: 0px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+}
+#mainContent table img {
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+/* rechter kolom */
+#kolomrechts {
+	position: relative;
+	width: 223px;
+	top: 0px;
+	right: 7px;
+	float: right;
+	min-height: 100%;
+	height: auto; /* voor moderne browsers */
+	height: 100%; /* voor IE */
+}
+#nieuws {
+	display: block;
+	position: relative;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	line-height: 18px;
+	color: #323232;
+	text-align: left;
+	margin-bottom: 0px;
+	width: 223px;
+	background-image: url(../images/background_kolom.png);
+	background-repeat: repeat-y;
+	min-height: 300%;
+	height: auto; /* voor moderne browsers */
+	height: 300%;
+	padding-left: 18px;
+	padding-top: 40px;
+}
+#nieuws H2 {
+	font-size: 20px;
+	color: #bd3e2c;
+	display: block;
+	letter-spacing: 0.03em;
+	font-family: "Courier New", Courier, monospace;
+	font-weight: bold;
+	margin-bottom: 9px;
+	padding-top: 6px;
+}
+#nieuws .subkop {
+	background-image: url(../images/ico_nieuws.gif);
+	background-repeat: no-repeat;
+	display: block;
+	padding-left: 17px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	line-height: 18px;
+	margin-bottom: 2px;
+	width: 170px;
+}
+#nieuws .subkop a:link, #nieuws .subkop a:visited {
+	font-size: 12px;
+	font-weight: normal;
+	color: #FFF;
+}
+#nieuws .subkop a:hover, #nieuws .subkop a:active {
+	font-size: 12px;
+	font-weight: normal;
+	color: #e9684c;
+}
+#nieuws .datum {
+	display: block;
+	color: #000000;
+	font-size: 10px;
+	margin-bottom: 11px;
+}
+#nieuws p {
+	display: block;
+	font-size: 10px;
+	line-height: 15px;
+	color: #999;
+	font-weight: normal;
+	text-align: right;
+	margin-right: 35px;
+}
+
+
+
+#nieuws #foto {
+	background-image: url(../images/kolomfoto_1.jpg);
+	position: relative;
+	height: 127px;
+	width: 216px;
+	left: -7px;
+}
+
+/* formulieren */
+textarea.xml, textarea.xml_actief {
+	font-family: "Courier New", Courier, monospace;
+	color: #FFF;
+	font-size: 14px;
+	padding-top: 5px;
+	border: 1px solid #671211;
+	width: 95%;
+	line-height: 20px;
+	font-weight: bold;
+	padding-left: 12px;
+	padding-bottom: 5px;
+}
+textarea.xml  {
+	background-image: url(../images/background_input_xml.gif);
+	background-repeat: no-repeat;
+}
+
+fieldset {
+	border: 1px solid #ce8383;
+	padding-right: 5px;
+	padding-left: 5px;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+	padding-top: 5px;
+}
+fieldset legend {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 16px;
+	font-weight: bold;
+	color: #FFF;
+}
+.nummer {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 24px;
+	font-weight: bold;
+	color: #000;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	padding-top: 10px;
+	padding-right: 5px;
+}
+
+/* copyright */
+#copyright {
+	width: 228px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	text-align: right;
+	position: absolute;
+	display: block;
+	bottom: 10px;
+	right: 5px;
+	margin-right: 20px;
+}
+#copyright a:link, #copyright a:visited {
+	color: #999;
+	text-decoration: none;
+	font-weight: normal;
+}
+#copyright a:hover, #copyright a:active {
+	text-decoration: none;
+	color: #BD3E2C;
+	font-weight: normal;
+}
+
+
+/* naw blokje rechtsboven */
+#naw th, #naw td {
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	font-weight: bold;
+	color: #000;
+}
+#naw {
+	width: 228px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-align: center;
+	position: absolute;
+	display: block;
+	right: 5px;
+	top: 3px;
+	font-size: 11px;
+}
+#naw .tel{
+	font-weight: normal;
+	color: #FFF;
+}
+#naw a:link, #naw a:visited {
+	color: #FFF;
+	text-decoration: none;
+}
+#naw a:hover, #naw a:active {
+	text-decoration: none;
+	color: #000;
+}
+

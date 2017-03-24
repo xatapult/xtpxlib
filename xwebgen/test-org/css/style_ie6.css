@@ -1,0 +1,21 @@
+/* Internet Explorer 6 exceptions stylesheet for website Xatapult */
+/* copyright 2009 Strik Design */
+/* www.strikdesign.nl */
+/* office@strikdesign.nl */
+
+#mainContent .contentwrapper {
+	width: 682px;
+}
+#kolomrechts {
+	top: -3px;
+	right: -11px;
+}
+#nieuws {
+	background-image: url(../images/background_kolom.jpg);
+}
+textarea.xml  {
+	background-attachment: fixed;
+}
+#copyright {
+	right: 20px;
+}

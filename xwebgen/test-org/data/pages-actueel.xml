@@ -1,0 +1,147 @@
+<DataSections xmlns="http://www.xatapult.nl/website/data">
+  <!-- -->
+  <!-- ================================================================== -->
+  <!-- ACTUEEL -->
+  <!-- -->
+    <DataSection id="page_actueel">
+    <!-- -->
+        <Title lang="nl">Xatapult actueel</Title>
+        <Title lang="en">Xatapult actueel</Title>
+    <!-- -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!-- -->
+    <!-- Dutch: -->
+        <Content lang="nl">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+        <!-- -->
+                <p class="subkop">2015</p>
+                <p>2015 begint met een mooie nieuwe opdracht voor het <a href="http://www.hetcvte.nl">College voor Toetsen en Examens (CvTE)</a>: Het
+          documenteren van de Dutch Exam Profile, de standaard voor de uitwisseling van digitale examens in Nederland. Daarnaast lopen de 
+          opdrachten van <a href="http://www.malmberg.nl" target="_blank">Malmberg</a> en <a href="http://www.thiememeulenhoff.nl" target="_blank">ThiemeMeulenhoff</a> ook in 2015 door. Voor februari staat er wederom een <a href="http://www.xmlprague.cz" target="_blank">XML Prague</a>
+          op het programma.</p>
+                <br/>
+        <!-- -->
+                <p class="subkop">2014</p>
+                <p>2014 gaat goed van start met opdrachten van onder andere <a href="http://www.malmberg.nl" target="_blank">Malmberg</a> en <a href="http://www.thiememeulenhoff.nl" target="_blank">ThiemeMeulenhoff</a>. Ook staat er voor februari weer een <a href="http://www.xmlprague.cz" target="_blank">XML Prague</a> op het programma.</p>
+                <br/>
+        <!-- -->
+                <p class="subkop">2013: Content analist voor Malmberg</p>
+                <p>Voor de educatieve uitgeverij <a href="http://www.malmberg.nl" target="_blank">Malmberg</a> heb ik een content analyse uitgevoerd over een
+          aantal van hun productiestraten (zowel voor folio als voor web). Vevolgens is op basis hiervan een content model ontwikkeld dat nog
+          voortdurend evolueert. Voor diverse legacy data bronnen zijn converters geschreven (in XProc).</p>
+                <br/>
+        <!-- -->
+                <p class="subkop">2013: Standaarden expert voor Kennisnet/EduStandaard</p>
+                <p>Ook in 2013 ben ik betrokken gebleven bij de standaardenontwikkeling in het onderwijsveld. Oorspronkelijk vond dit plaats onder de vlag van
+            <a href="http://www.kennisnet.nl" target="_blank">Kennisnet</a>, maar dit jaar is het verdergegaan onder de <a href="http://www.edustandaard.nl" target="_blank">EduStandaard</a>.</p>
+                <br/>
+        <!-- -->
+                <p class="subkop">Mei-Juli 2013: Systeem audit voor Boom Uitgevers Amsterdam</p>
+                <p>Voor de educatieve uitgeverij <a href="http://www.boomamsterdam.nl" target="_blank">Boom Amsterdam</a> heb ik een audit uitgevoerd op een
+          educatief software systeem.</p>
+                <br/>
+        <!-- -->
+                <p class="subkop">Februari 2013: Bezoek en presentatie XML Prague 2013</p>
+                <p>Opnieuw de <a href="http://www.xmlprague.cz" target="_blank">XML Prague</a> bezocht. Zoals ieder jaar weer een groot succes, zeker omdat ik
+          steeds meer Nederlandse collega's heb kunnen overtuigen dat dit een goede tijdsbesteding is. Ook dit jaar hield ik een praatje voor de eXist
+          pre-conferentie (dit keer over webservices in eXist).</p>
+                <br/>
+        <!-- -->
+                <p class="subkop">Eind 2012/Begin 2013: Schrijven eXist boek</p>
+                <p> Samen met <a href="http://www.adamretter.org.uk/" target="_blank">Adam Retter</a> schrijven van een boek over het <a href="http://www.exist-db.org" target="_blank">eXist</a> XML applicatieplatform voor uitgeverij <a href="http://oreilly.com/" target="_blank">O'Reilly</a> (zo'n boek met zo'n beest voorop). Er is enige vertraging maar als alles goed gaat moet het boek begin 2014
+          uitkomen.</p>
+                <br/>
+        <!-- -->
+                <p class="subkop">Mei 2012: Realisatie van een Adobe Indesign conversie applicatie voor Assistiveware</p>
+                <p>
+                    <a href="http://www.assistiveware.com" target="_blank">Assistiveware</a> is een bedrijf dat zich richt op ondersteunende software voor
+          minder-validen op het iOS en Mac&#160;OS&#160;X platform. Voor een nieuw te bouwen iPad app moest er een conversiestraat komen die Adobe
+          Indesign (IDML) bestanden omzette naar een handiger XML formaat. Ik heb deze conversiestraat in korte tijd gebouwd op basis van het <a href="http://www.exist-db.org" target="_blank">eXist</a> XML applicatieplatform. Het werkt samen met een omringende PHP applicatie. </p>
+                <br/>
+        <!-- -->
+                <p class="subkop">Begin 2012: Realisatie van twee ondersteunende websites voor Kennisnet</p>
+                <p> In het kader van de standaardenontwikkeling voor <a href="http://www.kennisnet.nl" target="_blank">Kennisnet</a> (zie verderop) heb ik
+          twee ondersteunende websites ontwikkeld op basis van het <a href="http://www.exist-db.org" target="_blank">eXist</a> XML applicatieplatform:
+            <a href="http://www.uwlr.nl" target="_blank">Uitwisseling Leerresultaten</a> en <a href="http://www.nlqti.nl" target="_blank">Uitwisseling
+            toetsmateriaal</a>. Beide sites ondersteunen de standaarden actief: Je kunt validaties uitvoeren, webservices uitproberen, etc. </p>
+                <br/>
+        <!-- -->
+                <p class="subkop">Februari 2012: Bezoek en presentatie XML Prague 2012</p>
+                <p>
+                    <a href="http://www.xmlprague.cz" target="_blank">XML Prague</a> is de belangrijkste jaarlijkse XML conferentie in Europa. Ik probeer er
+          ieder jaar heen te gaan. <br/> Dit jaar hield ik een praatje op de eXist pre-conferentie over software management (versie beheer, deploys,
+          etc.) binnen en met eXist. Je kunt het <a href="http://youtu.be/m-VVM8JM_A0" target="_blank">hier</a> bekijken (de eerste anderhalve minuut
+          is onzin, die kun je overslaan). </p>
+                <br/>
+        <!-- -->
+                <p class="subkop">Eind 2011/Begin 2012: Publicatie van artikelen op IBM Developerworks</p>
+                <p>
+                    <a href="http://www.ibm.com/developerworks/" target="_blank">IBM Developerworks</a> is een belangrijkee website met technische informatie
+          voor en door ontwikkelaars. Er zijn van mijn hand twee artikelen op gepubliceerd: <a href="http://www.ibm.com/developerworks/library/x-safexslt/index.html" target="_blank">Safer XSLT Stylesheets</a> en <a href="http://www.ibm.com/developerworks/library/x-qti/index.html" target="_blank">QTI Results en Response Processing</a>. </p>
+                <br/>
+        <!-- -->
+                <p class="subkop">Mei 2011: Werk aan twee nieuwe standaarden voor het Nederlandse onderwijs bij Kennisnet</p>
+                <p>
+                    <a href="http://www.kennisnet.nl" target="_blank">Kennisnet</a> is hét expertisecentrum als het gaat om ict in het onderwijs. Eén van de
+          lopende programma's is <a href="http://contentketen.kennisnet.nl/programmaeck2" target="_blank">Educatieve Contentketen&#160;2 (ECK2)</a>.
+          Daarbinnen draaien twee projecten waarbinnen ik als consultant mijn expertise op het gebied van XML en standaarden inzet: <a href="http://contentketen.kennisnet.nl/programmaeck2/toetsmateriaal" target="_blank">Uitwisseling en ontsluiting toetsmateriaal</a> en <a href="http://contentketen.kennisnet.nl/programmaeck2/leerresultaten" target="_blank">Uitwisseling van leerresultaten</a>. </p>
+                <br/>
+        <!-- -->
+                <p class="subkop">April 2011: Refactoring van een grote XSL-FO transformatie bij Kenteq</p>
+                <p>
+                    <a href="http://www.kenteq.nl" target="_blank">Kenteq</a> geeft technische trainingen. De cursusboeken worden dynamisch samengesteld en met
+          behulp van een XSL-FO transformatie omgezet in PDF. Deze transformatie was erg onoverzichtelijk en daardoor zeer slecht onderhoudbaar. De
+          transformatie is door mij omgezet naar een consistent, overzichtelijk, en daarmee onderhoudbaar eindresultaat. </p>
+                <br/>
+        <!-- -->
+                <p class="subkop">Februari 2011: Opzetten Cocoon omgeving bij Line Up</p>
+                <p> Ondersteuning van Uitgeverij <a href="http://www.lineup.nl" target="_blank">Line Up boek en media</a> bij het opzetten van een
+          professionele Cocoon XML verwerkingsomgeving. Hiermee worden onder andere e-boeken geproduceerd. </p>
+                <br/>
+        <!-- -->
+                <p class="subkop">Februari 2011: Ondersteuning Stichting Vakbekwaamheid Horeca</p>
+                <p> Verdere ondersteuning van de <a href="http://www.svh.nl" target="_blank">Stichting Vakbekwaamheid Horeca (SVH)</a> in Zoetermeer. Men is
+          bezig met onder andere het opzetten van een nieuwe applicatie (Jobstream) en het vernieuwen van één van de kernapplicaties, het HCR. Voor
+          beide projecten help ik op het gebied van de systeem architectuur. </p>
+                <br/>
+        <!-- -->
+                <p class="subkop">Januari 2011: Continuering samenwerking ThiemeMeulenhoff</p>
+                <p> Wederom blijf ik in de eerste helft van 2011 voor <a href="http://www.thiememeulenhoff.nl" target="_blank">ThiemeMeulenhoff</a>
+          werkzaamheden verrichten. </p>
+                <br/>
+        <!-- -->
+                <p class="subkop">November 2010: Technisch ontwerp voor de Stichting Vakbekwaamheid Horeca</p>
+                <p> De <a href="http://www.svh.nl" target="_blank">Stichting Vakbekwaamheid Horeca (SVH)</a> in Zoetermeer heeft een applicatie genaamd het
+          Horeca Competentie Register (HCR). Deze applicatie moet om diverse redenen herbouwd worden. Men heeft mij gevraagd hiervoor het (globale)
+          technisch ontwerp te maken. </p>
+                <br/>
+        <!-- -->
+                <p class="subkop">Juni 2010: Continuering samenwerking ThiemeMeulenhoff</p>
+                <p> Ook in de tweede helft van 2010 blijf ik voor <a href="http://www.thiememeulenhoff.nl" target="_blank">ThiemeMeulenhoff</a> werken. Op de
+          rol staan onder andere een aantal uitbreidingen en upgrades van de, ondertussen erg omvangrijke, Cocoon applicatie die ik voor hun heb
+          gebouwd: het Assemblage Systeem. </p>
+                <br/>
+        <!-- -->
+                <p class="subkop">Juni 2010: NL DITA</p>
+                <p> DITA staat voor Darwin Information Typing Architecture en is een XML-toepassing, ontwikkeld voor het maken, beheren en publiceren van
+          modulair georganiseerde informatie. Het wordt veel gebruikt in de uitgevers wereld en ook ik heb er regelmatig mee te maken. </p>
+                <p> Op 9 juni was de <a href="http://www.nldita.nl" target="_blank">NL DITA</a> in Utrecht. Ik hield er een praatje over <i>DITA verwerking
+            zonder toolkit</i>: Het verhaal over een Cocoon applicatie die ik heb gebouwd om DITA content te verwerken tot Content Packages. Klik <a href="resources/NLDITA 2010.pdf">hier</a> om de sheets te bekijken. </p>
+                <br/>
+        <!-- -->
+                <p class="subkop">Maart 2010: XML Praag</p>
+                <p> Op 13 en 14 maart 2010 was de <a href="http://www.xmlprague.cz" target="_blank">XML Praag</a> conferentie en ik was er bij. Het was een
+          boeiende en door de kleinschalige opzet ook erg gezellige conferentie. In de Element, het blad van de Nederlandse XML gebruikersgroep,
+          verscheen hierover een <a href="resources/XML Praag.pdf" target="_blank">artikel van mijn hand</a>. </p>
+            </div>
+        </Content>
+    <!-- -->
+    <!-- English: -->
+        <Content lang="en">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <p>This page is not available in English.</p>
+            </div>
+        </Content>
+    </DataSection>
+  <!-- -->
+</DataSections>

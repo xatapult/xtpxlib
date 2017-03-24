@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0"
+  targetNamespace="http://www.xtpxlib.nl/ns/xwebgen" xmlns:xtlwg="http://www.xtpxlib.nl/ns/xwebgen">
+  <xs:annotation>
+    <xs:documentation>Container for sections to be processed by xwebgen</xs:documentation>
+  </xs:annotation>
+  <xs:element name="xwebgen-sections">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="section">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##any" processContents="skip"/>
+            </xs:sequence>
+            <xs:attribute name="id" type="xtlwg:t-identifier" use="required"/>
+            <xs:attribute name="dref-transformer" type="xtlwg:t-dref">
+              <xs:annotation>
+                <xs:documentation>Reference toan optional XSLT stylehseet for transforming this piece of contents. Relative to this document.</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="filter-attributes">
+    <xs:annotation>
+      <xs:documentation>Attributes in the xtlwg namespace are used for filtering the contents in this document</xs:documentation>
+    </xs:annotation>
+    <xs:anyAttribute namespace="http://www.xtpxlib.nl/ns/xwebgen" processContents="skip"/>
+  </xs:attributeGroup>
+  <xs:simpleType name="t-identifier">
+    <xs:restriction base="xs:NCName"/>
+  </xs:simpleType>
+  <xs:simpleType name="t-dref">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,159 @@
+<DataSections xmlns="http://www.xatapult.nl/website/data">
+  
+  <!-- ================================================================== -->
+  <!-- HOME PAGE: -->
+  
+  <DataSection id="page_home">
+    <Title>Xatapult: Content Engineering</Title>
+    
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    
+    <Content lang="nl">
+      <div xmlns="http://www.w3.org/1999/xhtml">
+        <br/>
+        
+        <p class="subkop">Xatapult?</p>
+        <p>Xatapult is het (eenmans) bedrijf van Erik&#160;Siegel. Xatapult specialiseert zich volledig in Content Engineering en XML verwerking.</p>
+        <br/>
+        
+        <p class="subkop">Content?</p>
+        <p>De <i>inhoud</i> van websites, apps, boeken, publicaties, kranten, tijdschriften. Het <i>wat</i>, niet het <i>hoe</i>.</p>
+        <br/>
+        
+        <p class="subkop">Content Engineering?</p>
+        <p>Het modelleren, produceren en verwerken van content binnen en voor geautomatiseerde omgevingen. De meest gebruikte taal hiervoor is
+            <i>XML</i>. Content Engineering is een <i>brugfunctie</i>.</p>
+        <br/>
+        
+        <p class="subkop">XML?</p>
+        <p>Een formele taal voor het representeren en structureren van content. Content Engineering betekent intensief gebruik van XML
+          technologie.</p>
+        <br/>
+        
+        <p class="subkop">Brugfunctie?</p>
+        <p>Content Engineering slaat een brug tussen productie en gebruik van content. Tussen auteurs en software ontwikkelaars. Tussen oude en nieuwe
+          content formaten.</p>
+        <br/>
+        
+        <p class="subkop">Nieuwsgierig?</p>
+        <ul>
+          <li>Over <a href="content-engineering">Content Engineering</a>? </li>
+          <li>Over <a href="xml">XML</a>? </li>
+          <li>Over <a href="over">Xatapult</a>? </li>
+          <li>Over <a href="erik">Erik Siegel</a>? </li>
+        </ul>
+        <br/>
+      </div>
+    </Content>
+    
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    
+    <Content lang="en">
+      <div xmlns="http://www.w3.org/1999/xhtml">
+        <br/>
+        
+        <p class="subkop">Xatapult?</p>
+        <p>Xatapult is the (one-man) company run by Erik&#160;Siegel. Xatapult specializes completely in Content Engineering and XML processing.</p>
+        <br/>
+        
+        <p class="subkop">Content?</p>
+        <p>The <i>content</i> of websites, apps, books, publications, newspapers, magazines. The <i>what</i>, not the <i>how</i>.</p>
+        <br/>
+        
+        <p class="subkop">Content Engineering?</p>
+        <p>Modelling, production and processing of content in computer-facilitated environments. Typically, this involves extensive use of <i>XML</i>.
+          Content Engineering has a <i>bridging function</i>.</p>
+        <br/>
+        
+        <p class="subkop">XML?</p>
+        <p>A formal language for storing and structuring of content. Content Engineering nowadays involves extensive use of XML and related
+          technologies.</p>
+        <br/>
+        
+        <p class="subkop">Bridging function?</p>
+        <p>Content Engineering bridges the gap between production and usage of content. Between authors and software developers. Between old and new
+          content formats.</p>
+        <br/>
+        
+        <p class="subkop">Curious?</p>
+        <ul>
+          <li>About <a href="content-engineering">Content Engineering</a>? </li>
+          <li>About <a href="xml">XML</a>? </li>
+          <li>About <a href="over">Xatapult</a>? </li>
+          <li>About <a href="erik">Erik Siegel</a>? </li>
+        </ul>
+        <br/>
+      </div>
+    </Content>
+  </DataSection>
+  
+  <!-- ================================================================== -->
+  <!-- CONTACT: -->
+  
+  <DataSection id="page_contact">
+    <Title lang="nl">Contactgegevens en informatie</Title>
+    <Title lang="en">Contact and information</Title>
+    
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    
+    <Content lang="nl">
+      <div xmlns="http://www.w3.org/1999/xhtml">
+        <p class="subkop">Xatapult</p>
+        <p>Speenkruidstraat 100</p>
+        <p>9731&#160;GX&#160;&#160;Groningen</p>
+        <br/>
+        <p>Tel: {phone}</p>
+        <br/>
+        <p>Web: <a href="http://www.xatapult.nl">www.xatapult.nl</a>
+        </p>
+        <p>Mail: <a href="mailto:{email}">{email}</a>
+        </p>
+        <br/>
+        <p>BTW Nummer: NL137788186B01</p>
+        <p>KvK Nummer: 02072375</p>
+        <br/>
+        <p>ASN Bank (IBAN): NL68 SNSB 0707 2231 21 (ten name van: R.E. Siegel, Groningen)</p>
+        <br/>
+        <p>
+          <a href="resources/Profile%2520Xatapult-Erik%2520Siegel.pdf" target="_blank">Bedrijfsprofiel/CV</a> (Engelstalig) </p>
+        <br/>
+        <p>
+          <a href="resources/Algemene voorwaarden 7-11-2005.pdf" target="_blank">Algemene voorwaarden</a>
+        </p>
+      </div>
+    </Content>
+    
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    
+    <Content lang="en">
+      <div xmlns="http://www.w3.org/1999/xhtml">
+        <p class="subkop">Xatapult: Content Engineering</p>
+        <p>Speenkruidstraat 100</p>
+        <p>9731&#160;GX&#160;&#160;Groningen</p>
+        <p>The Netherlands</p>
+        <br/>
+        <p>Phone: {phone}</p>
+        <br/>
+        <p>Web: <a href="http://www.xatapult.com">www.xatapult.com</a>
+        </p>
+        <p>Mail: <a href="mailto:{email}">{email}</a>
+        </p>
+        <br/>
+        <p>VAT code: NL137788186B01</p>
+        <p>Chamber of Commerce code: 02072375</p>
+        <br/>
+        <p>Bank account (IBAN): NL68 SNSB 0707 2231 21 (in the name of: R.E. Siegel, Groningen, The Netherlands)</p>
+        <p>BIC (ASN bank, The Netherlands): SNSBNL2A</p>
+        <br/>
+        <p>
+          <a href="resources/Profile%2520Xatapult-Erik%2520Siegel.pdf" target="_blank">Company profile/resume</a>
+        </p>
+        <br/>
+        <p>
+          <a href="/resources/Algemene voorwaarden 7-11-2005.pdf" target="_blank">Terms and Conditions (sorry, Dutch only)</a>
+        </p>
+      </div>
+    </Content>
+  </DataSection>
+  
+</DataSections>

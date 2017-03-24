@@ -1,0 +1,37 @@
+/* Printstylesheet for website Xatapult */
+/* copyright 2009 Strik Design */
+/* www.strikdesign.nl */
+/* office@strikdesign.nl */
+
+#container,
+#mainContent,
+#mainContent .mmhide_contentwrapper {
+	margin: 0px;
+	padding: 0px;
+	width: 17cm;
+	left: 0px;
+	top: 0px;
+	position: relative;
+}
+#mainContent {
+	top: -5cm;
+	overflow: visible;
+}
+
+#header #visie,
+div#mainMenu,
+#headerfoto,
+#kruimelpad,
+#kolomrechts,
+#mainContent .mmhide_naarboven,
+#naw,
+#copyright
+{
+	display: none;
+}
+textarea.xml, textarea.xml_actief,
+.intro,
+p
+{
+	width: 90%;
+}

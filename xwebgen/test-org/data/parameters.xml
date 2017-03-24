@@ -1,0 +1,54 @@
+<Parameters xmlns="http://www.xtpel.nl/namespaces/generic">
+  <Description>Parameter file for the Xatapult website application</Description>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <Parameter name="email">
+    <Description>E-mail address</Description>
+    <Value lang="en">info@xatapult.com</Value>
+    <Value lang="nl">info@xatapult.nl</Value>
+  </Parameter>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <Parameter name="phone">
+    <Description>Phone number</Description>
+    <Value lang="en">+31 6 53.26.07.92</Value>
+    <Value lang="nl">06 - 53.26.07.92</Value>
+  </Parameter>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <!-- WARNING TBD OVERLAP IN VALUES -->
+  <Parameter name="homelink">
+    <Description>Language and server dependent link to the home page of the application</Description>
+    <Value lang="nl" servertype="DEV">http://dev.xatapult.nl:8080/exist/home</Value>
+    <Value lang="en" servertype="DEV">http://dev.xatapult.com:8080/exist/home</Value>
+
+    <Value lang="nl" servertype="PRD">http://www.xatapult.nl/home</Value>
+    <Value lang="en" servertype="PRD">http://www.xatapult.com/home</Value>
+  </Parameter>
+
+  <Parameter name="homelink-en">
+    <Description>Server dependent link to the English home page of the application</Description>
+    <Value servertype="DEV">http://dev.xatapult.com:8080/exist/home</Value>
+
+    <Value servertype="PRD">http://www.xatapult.com/home</Value>
+  </Parameter>
+
+  <Parameter name="homelink-nl">
+    <Description>Server dependent link to the Dutch home page of the application</Description>
+    <Value servertype="DEV">http://dev.xatapult.nl:8080/exist/home</Value>
+
+    <Value servertype="PRD">http://www.xatapult.nl/home</Value>
+  </Parameter>
+
+  <!-- ================================================================== -->
+  <!-- MANAGEMENT RELATED PARAMETERS: -->
+
+  <Parameter name="prd-deploy-serverurl">
+    <Description>URL to the server to deploy to (format: name.server.nl:port/exist/</Description>
+    <Value servertype="DEV">www.xatapult.nl:8080/exist/</Value>
+  </Parameter>
+
+</Parameters>

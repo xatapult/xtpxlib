@@ -1,0 +1,109 @@
+<DataSections xmlns="http://www.xatapult.nl/website/data">
+  <!-- -->
+  <!-- ================================================================== -->
+  <!-- SERVICES PAGE -->
+  <!-- -->
+    <DataSection id="page_diensten">
+    <!-- -->
+        <Title lang="nl">Diensten</Title>
+        <Title lang="en">Services</Title>
+    <!-- -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!-- -->
+        <Content lang="nl">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <p class="subkop">Advisering over de toepassing en verwerking van XML</p>
+                <p> Xatapult adviseert u graag over de toepassing van XML binnen uw bedrijfsproces. Samen
+          wordt bijvoorbeeld bekeken hoe toepassingen eruit moeten zien, welke standaarden een rol
+          spelen en welke software het meest geschikt is. </p>
+                <br/>
+                <p class="subkop">Ontwerp van XML-structuren</p>
+                <p> Geen XML-bericht of document is gelijk. Eenduidige vastlegging van structuur en
+          betekenis is belangrijk zodat alle partijen (mensen én machines) weten waar ze aan toe
+          zijn. Technieken als DTD’s en schema’s vormen hiervoor de basis. Daarnaast is meestal
+          aanvullende documentatie nodig. </p>
+                <br/>
+                <p class="subkop">Ontwerp van XML-verwerkingsstraten</p>
+                <p> XML uit het ene systeem is vaak niet geschikt voor het andere. Vaak zijn conversies
+          nodig. Dat kan variëren van heel eenvoudige tot zeer complexe 'rits-en-splits'-operaties.
+          Allerlei variaties zijn mogelijk. Zo kunnen diverse XML- bestanden resulteren in één
+          uitvoerbestand. Ook kan van één invoerbestand meerdere uitvoerbestanden worden gemaakt.
+          Daarbij is het van belang rekening te houden met referenties naar bijbehorende bestanden
+          (als PDF's, plaatjes, geluiden en films). Een XML-verwerkingsstraat regelt dit. </p>
+                <br/>
+                <p class="subkop">Ontwerp van interfaces gebaseerd op XML</p>
+                <p> Twee systemen die met elkaar communiceren doen dat tegenwoordig vrijwel altijd met
+          XML-berichten die via een interface worden verzonden. Hiervoor is een onderliggend
+          protocol nodig, bijvoorbeeld SOAP of REST. De uitgewisselde berichten moeten zorgvuldig
+          ontworpen worden zodat beide partijen weten waar ze aan toe zijn. De vorm van zo’n ontwerp
+          is meestal een beschrijving, aangevuld met bijbehorende XML-schema’s en voorbeelden. </p>
+                <br/>
+                <p class="subkop">Hosting van XML-verwerking</p>
+                <p> Niet ieder bedrijf vindt het nodig de infrastructuur voor een XML-verwerkingsstraat zelf
+          op te tuigen. Bijvoorbeeld omdat het om een tijdelijke situatie gaat of vanwege het
+          onderhoud. Xatapult biedt de mogelijkheid aan de XML-verwerkingssoftware te hosten en de
+          dienst als service (SaaS, Software as a Service, model) af te nemen. </p>
+                <br/>
+                <p class="subkop">Bouw van XML-toepassingen</p>
+                <p> Als u weet wat u nodig heeft, moet de XML-software nog gerealiseerd worden. Soms gaat
+          het om enkele XSLT-transformaties, maar het kan ook zijn dat het nodig is om een geheel
+          nieuwe verwerkingsstraat te bouwen. Ook het bouwen van XML-toepassingen maakt deel uit van
+          de dienstenportfolio van Xatapult. Om goed te kunnen adviseren en ontwerpen is actuele
+          kennis van en ervaring met het bouwen van XML-toepassingen namelijk onmisbaar.</p>
+                <br/>
+                <p class="subkop">Training in XML gerelateerde onderwerpen</p>
+                <p> Bedrijven willen vaak zelf de juiste kennis in huis hebben. Xatapult biedt op XML-gebied
+          trainingen op maat aan. Bijvoorbeeld over XML in het algemeen, XSLT, XML Databases, XQuery
+          en Cocoon. </p>
+            </div>
+        </Content>
+    <!-- -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!-- -->
+        <Content lang="en">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <p class="subkop">Advice on the application and processing of XML</p>
+                <p>Xatapult can advise you on the application of XML within your business process. Together
+          we can assess what applications should look like, which standards play a role and which
+          software is the most suitable. </p>
+                <br/>
+                <p class="subkop">Design of XML structures</p>
+                <p>No XML message or document is the same. A clear definition of structure and meaning is
+          important for all parties (humans and machines). Basic techniques are DTDs and schemas. In
+          addition, extra documentation is usually necessary. </p>
+                <br/>
+                <p class="subkop">Design of XML processing applications</p>
+                <p>XML from one system is often not suitable for another. It often requires conversions.
+          This can vary from something very simple up to very complex 'split and merge' operations.
+          For example, several XML files can result in one output file. Or one input file can be
+          turned into several output files. At the same time, it is important to take into account
+          the references to accompanying files (such as PDFs, pictures, sounds and movies). An XML
+          processing application takes care of all this. </p>
+                <br/>
+                <p class="subkop">Interface design based on XML</p>
+                <p>Two systems that communicate with each other nowadays almost always do this by using XML
+          messages that are sent through an interface. This requires an underlying protocol like
+          SOAP or REST. The messages exchanged have to be designed with care so that both parties
+          know where they stand. The form of such a design is usually a description, completed by
+          accompanying XML schemas and examples. </p>
+                <br/>
+                <p class="subkop">Hosting of XML processing</p>
+                <p>Not every company sees the need to create their own infrastructure for an XML processing
+          application. This may be because it concerns a temporary situation or because of
+          maintenance issues. Xatapult offers the possibility to host XML processing software
+          through the SaaS model. </p>
+                <br/>
+                <p class="subkop">Building XML applications</p>
+                <p>Once you know what you need, the XML software still needs to be realised. Sometimes this
+          concerns single XSLT transformations, but it may also be necessary to build a whole new
+          processing application. Building XML applications also forms part of the services
+          portfolio of Xatapult.</p>
+                <br/>
+                <p class="subkop">Courses in XML related subjects</p>
+                <p>Companies often wish to have the know-how in-house. Xatapult offers customised training
+          courses in the field of XML. Examples: XML in general, XML Databases, XQuery, XSLT and
+          Cocoon. </p>
+            </div>
+        </Content>
+    </DataSection>
+</DataSections>

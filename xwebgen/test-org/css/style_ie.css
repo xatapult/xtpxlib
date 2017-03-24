@@ -1,0 +1,30 @@
+/* Internet Explorer exceptions stylesheet for website Xatapult */
+/* copyright 2009 Strik Design */
+/* www.strikdesign.nl */
+/* office@strikdesign.nl */
+
+input.mmhide_but_normal, input.mmhide_but_normal_over  {
+	padding-bottom: 0px;
+	margin-left: 0px;
+}
+input.mmhide_normal  {
+	margin-right: -8px;
+}
+#mainContent ul {
+	left: -24px;
+	margin-right: -8px;
+}
+/*
+form.transformation input {
+	width: 273px;
+}
+*/
+fieldset legend {
+	margin-left: -7px;
+}
+#mainContent li {
+	list-style-image: url(../images/bullet_ie.gif);
+}
+input.file, input.file_actief {
+	text-align: left;
+}

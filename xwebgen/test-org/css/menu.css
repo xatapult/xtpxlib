@@ -1,0 +1,98 @@
+/* Stylesheet voor het menu van de website van Xatapult XML ondersteuning */
+/* © 2008 Bas & Ferry (http://www.bas-ferry.nl/) in opdracht van Strik Design*/
+
+div#mainMenu{
+  z-index:100;
+  top:139px;
+  position:absolute;
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  left:10px;
+}
+
+/* Algemene stijlen voor gehele menu */
+div#mainMenu ul{
+  margin:0px;
+  padding:0px;
+}
+
+div#mainMenu li{
+  display:inline;
+  list-style:none;
+  margin:0px;
+  padding:0px;
+}
+div#mainMenu a{
+  font-weight:normal;
+  display:block;
+  text-decoration:none;
+}
+
+/* onderstaande stijlen bepalen het main-menu */
+div#mainMenu ul li a{
+  color:#000;
+  float:left;
+  font-size:12px;
+  line-height:25px;
+  font-weight:bold;
+  padding-left:10px;
+  padding-right:10px;
+}
+div#mainMenu ul li.hover a{
+  color:#000;
+  background-image:url(../images/menu/but_menu_main_over.gif);
+  background-repeat:repeat-x;
+}
+div#mainMenu ul li.active a{
+  color:#000;
+  background-image:url(../images/menu/but_menu_main_active.gif);
+  background-repeat:no-repeat;
+  background-position:center 0px;
+}
+/* hiermee bepaal je de hoogte van het eerste submenu-item */
+div#mainMenu ul li.active a.starter{
+  height:25px;
+}
+
+/* onderstaande stijlen bepalen het sub-menu */
+div#mainMenu ul.menu_level_1{
+  position:absolute;
+  width:140px;
+  visibility:hidden;
+  background-image:none;
+  margin-top:6px;
+  margin-left:5px;
+}
+div#mainMenu ul.menu_level_1 li a{
+  float:none;
+  color:#FFF;
+  font-weight:normal;
+  font-size:11px;
+  line-height:16px;
+  background-image:none;
+  background-color: black;
+  /*background-image:url(../images/menu/but_menu_sub.png);*/
+  padding-top:0px;
+  padding-right:9px;
+  padding-bottom:5px;
+  padding-left:10px;
+}
+div#mainMenu ul.menu_level_1 li a:hover{
+  color:#FFF;
+  background-image: none;
+  background-color: grey;
+/*  background-image:url(../images/menu/but_menu_sub_over.png);*/
+}
+div#mainMenu ul.menu_level_1 li a:active{
+  color:#FFF;
+}
+
+/*	hier kun je de stijlen voor de laatste submenu opzetten, zoals extra padding, andere achtergrond etc */
+div#mainMenu ul.menu_level_1 li a.last,
+div#mainMenu ul.menu_level_1 li a.last:hover{
+  background-image:url(../images/menu/but_menu_sub_last.png);
+  padding-bottom:9px;
+  background-position:bottom;
+}
+div#mainMenu ul.menu_level_1 li a.last:hover{
+  background-image:url(../images/menu/but_menu_sub_last_over.png);
+}
