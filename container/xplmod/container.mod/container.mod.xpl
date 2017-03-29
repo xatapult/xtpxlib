@@ -22,7 +22,7 @@
       </p:documentation>
     </p:input>
     
-    <p:option name="dref-target" required="false">
+    <p:option name="dref-target" required="false" select="''">
       <p:documentation>
         Base path where to write the container. When you specify this it will have precedence over /*/@dref-target-path.
       </p:documentation>

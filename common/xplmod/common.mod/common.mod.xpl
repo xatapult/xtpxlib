@@ -547,6 +547,91 @@
   </p:declare-step>
 
   <!-- ================================================================== -->
+  <!-- COPY DIRECTORY: -->
+
+  <p:declare-step type="xtlc:copy-directory">
+    <p:documentation>
+      Copies a full directory structure. 
+    </p:documentation>
+
+    <p:input port="source" primary="true" sequence="false">
+      <p:documentation>
+        Input, will be passed unchanged.
+      </p:documentation>
+    </p:input>
+
+    <p:option name="dref-source-dir" required="true">
+      <p:documentation>
+        Reference to the directory to copy from.
+      </p:documentation>
+    </p:option>
+
+    <p:option name="dref-target-dir" required="true">
+      <p:documentation>
+        Reference to the directory to copy to.
+      </p:documentation>
+    </p:option>
+
+    <p:output port="result" primary="true" sequence="false">
+      <p:documentation>
+        The input unchanged.
+      </p:documentation>
+    </p:output>
+
+    <p:import href="http://xmlcalabash.com/extension/steps/library-1.0.xpl"/>
+
+    <p:variable name="debug" select="false()"/>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <p:identity name="copy-dir-input"/>
+    <p:sink/>
+
+    <!-- Since we don't know how big the input is and we don't want our copying stuff burdened with too much input, 
+          which it won't use anyway, switch to some dummy XML:-->
+    <p:identity>
+      <p:input port="source">
+        <p:inline>
+          <dummy/>
+        </p:inline>
+      </p:input>
+    </p:identity>
+
+    <!-- Get a directory listing: -->
+    <xtlc:recursive-directory-list>
+      <p:with-option name="path" select="$dref-source-dir"/>
+    </xtlc:recursive-directory-list>
+
+    <!-- Create a list fo files to copy: -->
+    <p:xslt>
+      <p:input port="stylesheet">
+        <p:document href="xsl/create-copy-dir-list.xsl"/>
+      </p:input>
+      <p:with-param name="dref-source-dir" select="$dref-source-dir"/>
+      <p:with-param name="dref-target-dir" select="$dref-target-dir"/>
+    </p:xslt>
+    
+    <!-- Do the copying: -->
+    <p:for-each>
+      <p:iteration-source select="/*/copy-file"/>
+      <pxf:copy>
+        <p:with-option name="href" select="/*/@source"/>
+        <p:with-option name="target" select="/*/@target"/>
+        <p:with-option name="fail-on-error" select="true()"/>
+      </pxf:copy>
+    </p:for-each>
+    
+
+    <!-- Revert back to original input: -->
+    <p:identity>
+      <p:input port="source">
+        <p:pipe port="result" step="copy-dir-input"/>
+      </p:input>
+    </p:identity>
+
+  </p:declare-step>
+
+  <!-- ================================================================== -->
   <!-- REMOVE A DIRECTORY: -->
 
   <p:declare-step type="xtlc:remove-dir">
