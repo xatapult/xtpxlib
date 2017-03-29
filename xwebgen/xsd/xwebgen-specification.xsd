@@ -7,60 +7,25 @@
   <xs:element name="xwebgen-specification">
     <xs:complexType>
       <xs:sequence>
-        <xs:element maxOccurs="unbounded" name="base-input-dir">
-          <xs:annotation>
-            <xs:documentation>The base input directory where the source contents resides.</xs:documentation>
-          </xs:annotation>
-          <xs:complexType>
-            <xs:complexContent>
-              <xs:extension base="xtlwg:ct-empty">
-                <xs:attribute name="dref-source-dir" type="xtlwg:t-dref" use="required">
-                  <xs:annotation>
-                    <xs:documentation>Reference to the base input directory. Relative to the location of the specification file.</xs:documentation>
-                  </xs:annotation>
-                </xs:attribute>
-                <xs:attributeGroup ref="xtlwg:filter-attributes"/>
-              </xs:extension>
-            </xs:complexContent>
-          </xs:complexType>
-        </xs:element>
-        <xs:element maxOccurs="unbounded" name="base-output-dir">
-          <xs:annotation>
-            <xs:documentation>The base output directory where the results will be written. Will be cleaned beforehand!</xs:documentation>
-          </xs:annotation>
-          <xs:complexType>
-            <xs:complexContent>
-              <xs:extension base="xtlwg:ct-empty">
-                <xs:attribute name="dref-target-dir" type="xtlwg:t-dref" use="required">
-                  <xs:annotation>
-                    <xs:documentation>Reference to the base output directory. Relative to the location of the specification file.</xs:documentation>
-                  </xs:annotation>
-                </xs:attribute>
-                <xs:attributeGroup ref="xtlwg:filter-attributes"/>
-              </xs:extension>
-            </xs:complexContent>
-          </xs:complexType>
-        </xs:element>
         <xs:element maxOccurs="unbounded" name="template">
           <xs:annotation>
             <xs:documentation>Specification of a template for the generation of the web pages.</xs:documentation>
           </xs:annotation>
           <xs:complexType>
-            <xs:complexContent>
-              <xs:extension base="xtlwg:ct-empty">
-                <xs:attribute name="id" type="xtlwg:t-identifier" use="required">
-                  <xs:annotation>
-                    <xs:documentation>Identifier of this template</xs:documentation>
-                  </xs:annotation>
-                </xs:attribute>
-                <xs:attribute name="dref-source" type="xtlwg:t-dref" use="required">
-                  <xs:annotation>
-                    <xs:documentation>Document reference to the template XML document. Relative to the location of the base input directory.</xs:documentation>
-                  </xs:annotation>
-                </xs:attribute>
-                <xs:attributeGroup ref="xtlwg:filter-attributes"/>
-              </xs:extension>
-            </xs:complexContent>
+            <xs:sequence>
+              <xs:group minOccurs="0" ref="xtlwg:g-properties"/>
+            </xs:sequence>
+            <xs:attribute name="id" type="xtlwg:t-identifier" use="required">
+              <xs:annotation>
+                <xs:documentation>Identifier of this template</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="dref-source" type="xtlwg:t-dref" use="required">
+              <xs:annotation>
+                <xs:documentation>Document reference to the template XML document. Relative to the location of the base input directory.</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attributeGroup ref="xtlwg:filter-attributes"/>
           </xs:complexType>
         </xs:element>
         <xs:element maxOccurs="unbounded" name="page">
@@ -78,7 +43,7 @@
             </xs:attribute>
             <xs:attribute name="dref-section-document" type="xtlwg:t-dref" use="required">
               <xs:annotation>
-                <xs:documentation>Reference to the xwebgen-sections document that holds the section to process for this page. Relative to the base input directory.</xs:documentation>
+                <xs:documentation>Reference to the xwebgen-sections document that holds the section to process for this page. </xs:documentation>
               </xs:annotation>
             </xs:attribute>
             <xs:attribute name="section-idref" type="xtlwg:t-identifier">
@@ -91,9 +56,10 @@
                 <xs:documentation>Document reference to result file. Relative to the location of the base output directory.</xs:documentation>
               </xs:annotation>
             </xs:attribute>
+            <xs:attributeGroup ref="xtlwg:filter-attributes"/>
           </xs:complexType>
         </xs:element>
-        <xs:element minOccurs="0" name="copy-dir">
+        <xs:element minOccurs="0" name="copy-dir" maxOccurs="unbounded">
           <xs:annotation>
             <xs:documentation>Directories to copy verbatim (e.g. for images and javascript)</xs:documentation>
           </xs:annotation>
@@ -102,21 +68,35 @@
               <xs:extension base="xtlwg:ct-empty">
                 <xs:attribute name="dref-source-dir" type="xtlwg:t-dref" use="required">
                   <xs:annotation>
-                    <xs:documentation>Reference to directory to copy. Relative to the base input directory.</xs:documentation>
+                    <xs:documentation>Reference to directory to copy. </xs:documentation>
                   </xs:annotation>
                 </xs:attribute>
                 <xs:attribute name="dref-target-dir" type="xtlwg:t-dref">
                   <xs:annotation>
-                    <xs:documentation>Reference to the output directory. Relative to the base output directory. When absent it is the same value as @dref-source-dir</xs:documentation>
+                    <xs:documentation>Reference to the output directory. Relative to the base output directory. If absent, its value is the same as @dref-source-dir.</xs:documentation>
                   </xs:annotation>
                 </xs:attribute>
+                <xs:attributeGroup ref="xtlwg:filter-attributes"/>
               </xs:extension>
             </xs:complexContent>
           </xs:complexType>
         </xs:element>
         <xs:group minOccurs="0" ref="xtlwg:g-properties"/>
       </xs:sequence>
+      <xs:attribute name="dref-base-output-dir" type="xtlwg:t-dref" use="required">
+        <xs:annotation>
+          <xs:documentation>Reference to the base output directory.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
     </xs:complexType>
+    <xs:key name="key-template-id">
+      <xs:selector xpath="./xtlwg:template"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+    <xs:keyref name="keyref-template-id" refer="xtlwg:key-template-id">
+      <xs:selector xpath="./xtlwg:page"/>
+      <xs:field xpath="@template-idref"/>
+    </xs:keyref>
   </xs:element>
   <xs:group name="g-properties">
     <xs:annotation>
@@ -151,7 +131,9 @@
     <xs:restriction base="xs:NCName"/>
   </xs:simpleType>
   <xs:simpleType name="t-dref">
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="ct-empty"/>
 </xs:schema>

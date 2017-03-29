@@ -3,7 +3,7 @@
   xmlns:xtlwg="http://www.xtpxlib.nl/ns/xwebgen" version="1.0" xpath-version="2.0" exclude-inline-prefixes="#all">
 
   <p:documentation>
-    Test driver for the xtlwg:crtea-site step
+    Test driver for the xtlwg:create-site step
   </p:documentation>
 
   <!-- ================================================================== -->

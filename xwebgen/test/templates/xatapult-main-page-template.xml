@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- TBD: ALL BELOW THIS FLEXIBLE/LANG DEPENDENT? -->
+    <title>Xatapult: Content Engineering</title>
+    <meta name="Description" content="Xatapult XML ondersteuning" />
+    <meta name="Keywords" content="Xatapult, XML, XML ondersteuning" />
+    <meta name="msnbot" content="NOODP" />
+    <meta name="googlebot" content="NOODP" />
+    <meta name="robots" content="noodp,noydir" />
+    <script type="text/javascript" language="JavaScript1.2" src="js/menu.js"><!--
+        NO CONTENT//--></script>
+    <script type="text/javascript" language="JavaScript1.2" src="js/scripts.js"><!--
+        NO CONTENT//--></script>
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <link href="css/menu.css" rel="stylesheet" type="text/css" />
+    <link href="css/style_std-nl.css" rel="stylesheet" type="text/css" />
+    <link href="css/print.css" rel="stylesheet" type="text/css" media="print" />
+    <!--[if lt IE 6]>
+          <link href="css/style_ie.css" rel="stylesheet" type="text/css"  />
+          <![endif]-->
+    <!--[if IE 6]>
+          <link href="css/style_ie.css" rel="stylesheet" type="text/css"  />
+          <link href="css/style_ie6.css" rel="stylesheet" type="text/css" />
+          <![endif]-->
+    <!--[if IE 7]>
+          <link href="css/style_ie.css" rel="stylesheet" type="text/css"  />
+          <link href="css/style_ie7.css" rel="stylesheet" type="text/css" />
+          <![endif]-->
+  </head>
+  <body>
+    <a name="top" class="top">&#160;</a>
+    <div id="container">
+      <div id="header">
+        <img src="images/spacer.gif" alt="Xatapult home" width="349" height="102" border="0" usemap="#LinkHomepage" />
+        <map name="LinkHomepage" id="LinkHomepage"><area shape="rect" coords="18,48,345,83" href="http://www.xatapult.nl/home" alt="Xatapult home"
+           /></map>
+      </div>
+      <div id="mainContent">
+        
+        <div class="contentwrapper">
+          <!-- MAIN CONTENTS: -->
+          <page-contents-expand dref-section-document="../data/sections-home.xml" xmlns="http://www.xtpxlib.nl/ns/xwebgen"/>
+        </div>
+
+        <!-- RIGHT INFO COLUMN: -->
+        <section-expand dref-section-document="../data/main-ui-settings.xml" section-idref="info-column" xmlns="http://www.xtpxlib.nl/ns/xwebgen"/>
+        
+      </div>
+      <div id="copyright">
+        <a href="http://www.strikdesign.nl" target="_blank">Webdesign (c) 2009 Strik Design</a>
+      </div>
+      <div id="naw">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td align="right" style="font-size: 8pt">&#160;e-mail:&#160;</td>
+            <td align="left" style="font-size: 8pt"><a href="mailto:${email}">${email}</a></td>
+          </tr>
+          <tr>
+            <td align="right" style="font-size: 8pt">&#160;tel:&#160;</td>
+            <td align="left" class="tel" style="font-size: 8pt">${phonenumber}</td>
+          </tr>
+        </table>
+      </div>
+      <section-expand dref-section-document="../data/main-ui-settings.xml" section-idref="main-menu" xmlns="http://www.xtpxlib.nl/ns/xwebgen"/>
+    </div>
+  </body>
+</html>

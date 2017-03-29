@@ -1,0 +1,131 @@
+<xwebgen-sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.xtpxlib.nl/ns/xwebgen ../../xsd/xwebgen-sections.xsd" xmlns="http://www.xtpxlib.nl/ns/xwebgen"
+  xmlns:xtlwg="http://www.xtpxlib.nl/ns/xwebgen">
+  
+  <!-- ================================================================== -->
+  <!-- MAIN MENU: -->
+  
+  <section id="main-menu" dref-transformer="xsl/convert-menu-structure.xsl" >
+    <mainmenu xmlns="">
+      
+      <!-- Home links: -->
+      <menu href="http://www.xatapult.nl" caption="home" xtlwg:lang="nl">
+        <submenu href="http://www.xatapult.com" caption="English version"/>
+      </menu>
+      <menu href="http://www.xatapult.com" caption="home" xtlwg:lang="en">
+        <submenu href="http://www.xatapult.nl" caption="Dutch version"/>
+      </menu>
+      
+      <!-- Profiel -->
+      <menu href="over" caption="profiel" xtlwg:lang="nl">
+        <submenu href="about.html" caption="over Xatapult"/>
+        <submenu href="customer.html" caption="klanten"/>
+        <submenu href="diensten" caption="diensten"/>
+        <submenu href="erik" caption="over Erik Siegel"/>
+      </menu>
+      <menu href="over"  caption="profile" xtlwg:lang="en">
+        <submenu href="over" caption="about Xatapult"/>
+        <submenu href="klanten" caption="customers"/>
+        <submenu href="diensten" caption="services"/>
+        <submenu href="erik" caption="about Erik Siegel"/>
+      </menu>
+      
+      <!-- Achtergronden -->
+      <menu href="content-engineering" caption="achtergrond informatie" xtlwg:lang="nl" >
+        <submenu href="content-engineering" caption="content engineering"/>
+        <submenu href="xml" caption="xml"/>
+      </menu>
+      <menu href="content-engineering" caption="background information" xtlwg:lang="en" >
+        <submenu href="content-engineering" caption="content engineering"/>
+        <submenu href="xml" caption="xml"/>
+      </menu>
+      
+      <!-- Publicaties -->
+      <menu href="publicaties" caption="publicaties" xtlwg:lang="nl"/>
+      <menu href="publicaties"  caption="publications" xtlwg:lang="en"/>
+      
+      <!-- Contact -->
+      <menu href="contact" caption="contact"/>
+      
+      <menu xtlwg:lang="en" href="{homelink-nl}" caption="Dutch version" image="images/nl-flag.png"/>
+      <menu xtlwg:lang="nl" href="{homelink-en}" caption="English version" image="images/uk-flag.png"/>
+      
+      <!-- Manage (only on DEV): -->
+      <menu href="manage" servertype="DEV" caption="manage"/>
+    </mainmenu>
+  </section>
+  
+  <!-- ================================================================== -->
+  <!-- INFO COLUMN: -->
+  
+  <section id="info-column" dref-transformer="xsl/convert-info-column.xsl">
+    <infocolumn xmlns="">
+      
+      <section xtlwg:lang="nl" title="Meer Xatapult:">
+        <entry href="{homelink-en}">English version</entry>
+        <entry href="http://xatapult.wordpress.com" newwindow="true">Xatapult's XML Blog</entry>
+        <entry href="http://www.linkedin.com/in/esiegel" newwindow="true">LinkedIn Erik</entry>
+      </section>
+      
+      <section xtlwg:lang="en" title="More Xatapult:">
+        <entry href="{homelink-nl}">Dutch version</entry>
+        <entry href="http://xatapult.wordpress.com" newwindow="true">Xatapult's XML Blog</entry>
+        <entry href="http://www.linkedin.com/in/esiegel" newwindow="true">LinkedIn Erik</entry>
+      </section>
+      
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      
+      <section xtlwg:lang="nl" title="Publicaties:">
+        <entry href="http://www.ibm.com/developerworks/library/x-safexslt/index.html" newwindow="true">Safer XSLT Stylesheets</entry>
+        <entry href="http://www.ibm.com/developerworks/library/x-qti/index.html" newwindow="true">QTI results processing</entry>
+      </section>
+      
+      <section xtlwg:lang="en" title="On&#160;IBM&#160;developerWorks:">
+        <entry href="http://www.ibm.com/developerworks/library/x-safexslt/index.html" newwindow="true">Safer XSLT Stylesheets</entry>
+        <entry href="http://www.ibm.com/developerworks/library/x-qti/index.html" newwindow="true">QTI results processing</entry>
+      </section>
+      
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      
+      <section title="Software:">
+        <entry href="https://github.com/eriksiegel/xtpxlib" newwindow="true">xtpxlib</entry>
+      </section>
+      
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      
+      <section xtlwg:lang="nl" title="Boeken:">
+        <entry href="http://shop.oreilly.com/product/0636920026525.do" newwindow="true">eXist</entry>
+      </section>
+      
+      <section xtlwg:lang="en" title="Books:">
+        <entry href="http://shop.oreilly.com/product/0636920026525.do" newwindow="true">eXist</entry>
+      </section>
+      
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      
+      <section title="Content Engineering:">
+        <entry href="http://en.wikipedia.org/wiki/Content_Engineering" newwindow="true">Wikipedia</entry>
+      </section>
+      
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      
+      <section xtlwg:lang="nl" title="XML:">
+        <entry href="http://en.wikipedia.org/wiki/Xml" newwindow="true">Wikipedia</entry>
+        <entry href="http://www.w3schools.com/" newwindow="true">W3C Schools</entry>
+        <entry href="http://xml.coverpages.org" newwindow="true">XML Coverpages</entry>
+        <entry href="http://www.xml.org" newwindow="true">Oasis XML Website</entry>
+        <entry href="http://www.w3.org/XML/" newwindow="true">W3C XML Website</entry>
+      </section>
+      
+      <section xtlwg:lang="en" title="XML:">
+        <entry href="http://en.wikipedia.org/wiki/Xml" newwindow="true">Wikipedia</entry>
+        <entry href="http://www.w3schools.com/" newwindow="true">W3C Schools</entry>
+        <entry href="http://xml.coverpages.org" newwindow="true">XML Coverpages</entry>
+        <entry href="http://www.xml.org" newwindow="true">Oasis XML Website</entry>
+        <entry href="http://www.w3.org/XML/" newwindow="true">W3C XML Website</entry>
+      </section>
+      
+    </infocolumn>
+  </section>
+  
+</xwebgen-sections>

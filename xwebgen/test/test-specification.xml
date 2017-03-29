@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xwebgen-specification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.xtpxlib.nl/ns/xwebgen ../xsd/xwebgen-specification.xsd" xmlns="http://www.xtpxlib.nl/ns/xwebgen"
-  xmlns:xtlwg="http://www.xtpxlib.nl/ns/xwebgen">
+  xmlns:xtlwg="http://www.xtpxlib.nl/ns/xwebgen" dref-base-output-dir="../../../xtpxlib-tmp/XWEBGEN-OUT">
 
-  <base-input-dir xtlwg:lang="en" dref-source-dir="source-en"/>
-  <base-input-dir xtlwg:lang="nl" dref-source-dir="source-nl"/>
+  <template id="t1" dref-source="templates/xatapult-main-page-template.xml" />
+   
+  
 
-  <base-output-dir xtlwg:lang="en" dref-target-dir="target-en"/>
-  <base-output-dir xtlwg:lang="nl" dref-target-dir="target-nl"/>
+  <page template-idref="t1" dref-section-document="data/x1.xml" dref-target="index.html" />
 
-  <template id="t1" dref-source="templates/template1.xml"/>
-
-  <page dref-section-document="data/x1.xml" dref-target="x1.html" template-idref="t1">
-    <properties>
-      <property id="p1">TESTP1</property>
-    </properties>
-  </page>
-
-  <copy-dir dref-source-dir="images"/>
+  <copy-dir dref-source-dir="images" />
+  <copy-dir dref-source-dir="css"/>
+  <copy-dir dref-source-dir="js"/>
 
   <properties>
-    <property id="p1">TESTP1GLOBAL</property>
+    <property id="phonenumber" xtlwg:lang="nl">06&#160;-&#160;53.26.07.92</property>
+    <property id="phonenumber" xtlwg:lang="en">+31&#160;-&#160;6&#160;-&#160;53.26.07.92</property>
+    <property id="email" xtlwg:lang="nl">info@xatapult.nl</property>
+    <property id="email" xtlwg:lang="en">info@xatapult.com</property>
   </properties>
 
 </xwebgen-specification>

@@ -5,7 +5,7 @@
   xmlns:xtlwg="http://www.xtpxlib.nl/ns/xwebgen" xmlns:xtlc="http://www.xtpxlib.nl/ns/common" exclude-result-prefixes="#all" expand-text="true">
   <!-- ================================================================== -->
   <!-- 
-    Takes an xwebgen specification document, filters it and puts this into a xtpxlib container.
+    Takes an xwebgen specification document, pre-processes it and puts this into a xtpxlib container.
   -->
   <!-- ================================================================== -->
   <!-- SETUP: -->
@@ -60,41 +60,18 @@
       </xsl:for-each>
     </xsl:variable>
 
-    <!-- Filter the specification file. Do this upfront so we can immediately get the base in- and output directory. -->
-    <xsl:variable name="filtered-specification" as="element(xtlwg:xwebgen-specification)">
-      <xsl:copy>
-        <xsl:copy-of select="@*"/>
-        <xsl:call-template name="xtlwg:filter-elements">
-          <xsl:with-param name="elements" select="*"/>
-          <xsl:with-param name="filter-attributes" select="$filter-attributes"/>
-        </xsl:call-template>
-      </xsl:copy>
+    <!-- Pre-process the specification file: -->
+    <xsl:variable name="pre-processed-specification" as="element(xtlwg:xwebgen-specification)">
+      <xsl:call-template name="xtlwg:pre-process">
+        <xsl:with-param name="item" select="/*"/>
+        <xsl:with-param name="filter-attributes" select="$filter-attributes"/>
+      </xsl:call-template>
     </xsl:variable>
 
     <!-- Get the absolute names of the base in- and output directory: -->
-    <xsl:variable name="base-input-dir-raw" as="xs:string?" select="$filtered-specification/xtlwg:base-input-dir[1]/@dref-source-dir"/>
-    <xsl:if test="empty($base-input-dir-raw)">
-      <xsl:call-template name="xtlwg:raise-error">
-        <xsl:with-param name="msg-parts"
-          select="('Missing base input directory specification in ', xtlc:q($dref-specification-normalized), 
-            ' after filtering on ', xtlc:q($filterstring))"
-        />
-      </xsl:call-template>
-    </xsl:if>
-    <xsl:variable name="base-input-dir" as="xs:string"
-      select="xtlc:dref-canonical(xtlc:dref-concat(($dref-specification-basedir, $base-input-dir-raw)))"/>
-
-    <xsl:variable name="base-output-dir-raw" as="xs:string?" select="$filtered-specification/xtlwg:base-output-dir[1]/@dref-target-dir"/>
-    <xsl:if test="empty($base-output-dir-raw)">
-      <xsl:call-template name="xtlwg:raise-error">
-        <xsl:with-param name="msg-parts"
-          select="('Missing base output directory specification in ', xtlc:q($dref-specification-normalized), 
-          ' after filtering on ', xtlc:q($filterstring))"
-        />
-      </xsl:call-template>
-    </xsl:if>
+    <xsl:variable name="base-input-dir" as="xs:string" select="xtlc:dref-path($dref-specification-normalized)"/>
     <xsl:variable name="base-output-dir" as="xs:string"
-      select="xtlc:dref-canonical(xtlc:dref-concat(($dref-specification-basedir, $base-output-dir-raw)))"/>
+      select="xtlc:dref-canonical(xtlc:dref-concat(($base-input-dir, $pre-processed-specification/@dref-base-output-dir)))"/>
 
     <!-- Create the container structure: -->
     <document-container timestamp="{current-dateTime()}" filterstring="{$filterstring}">
@@ -102,19 +79,15 @@
       <!-- Record some stuff on the root of the container for easy access: -->
       <xsl:attribute name="base-input-dir" select="$base-input-dir"/>
       <xsl:attribute name="base-output-dir" select="$base-output-dir"/>
+      <xsl:attribute name="dref-specification" select="$dref-specification-normalized"/>
       <xsl:copy-of select="$filter-attributes"/>
 
       <document dref-source="{$dref-specification-normalized}" document-type="{$xtlwg:document-type-specification}">
-        <xsl:copy-of select="$filtered-specification" copy-namespaces="no"/>
+        <xsl:copy-of select="$pre-processed-specification" copy-namespaces="no"/>
       </document>
 
     </document-container>
 
   </xsl:template>
-
-  <!-- ================================================================== -->
-  <!-- SUPPORT: -->
-
-
 
 </xsl:stylesheet>

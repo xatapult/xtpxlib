@@ -3,7 +3,7 @@
   version="2.0" exclude-result-prefixes="#all">
   <!-- ================================================================== -->
   <!--	
-    Converts the menu XML in a datasection to the html used by the menu creating Javascript
+    Converts the menu XML to the html used by the menu creating Javascript
 	-->
   <!-- ================================================================== -->
   <!-- SETUP: -->
@@ -13,19 +13,19 @@
   <!-- ================================================================== -->
   <!-- MAIN TEMPLATES: -->
   
-  <xsl:template match="/">
+  <xsl:template match="/*">
     <div id="mainMenu">
       <ul id="menuList">
-        <xsl:apply-templates select="/*/xtp-data:MainMenu/xtp-data:Menu"/>
+        <xsl:apply-templates select="menu"/>
       </ul>
     </div>
   </xsl:template>
   
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   
-  <xsl:template match="xtp-data:Menu">
+  <xsl:template match="menu">
     <li>
-      <a href="{@href}" class="starter" accesskey="{count(preceding-sibling::xtp-data:Menu) + 1}">
+      <a href="{@href}" class="starter" accesskey="{count(preceding-sibling::menu) + 1}">
         <xsl:if test="string(@newwindow) eq 'yes'">
           <xsl:attribute name="target" select="'_blank'"/>
         </xsl:if>
@@ -41,14 +41,14 @@
       </a>
       
       <ul class="menu_level_1">
-        <xsl:apply-templates select="xtp-data:Submenu"/>
+        <xsl:apply-templates select="submenu"/>
       </ul>
     </li>
   </xsl:template>
   
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   
-  <xsl:template match="xtp-data:Submenu">
+  <xsl:template match="submenu">
     <li>
       <a href="{@href}">
         <xsl:if test="string(@newwindow) eq 'yes'">

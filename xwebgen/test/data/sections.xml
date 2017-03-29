@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xwebgen-sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.xtpxlib.nl/ns/xwebgen ../../xsd/xwebgen-sections.xsd" xmlns="http://www.xtpxlib.nl/ns/xwebgen" xmlns:xtlwg="http://www.xtpxlib.nl/ns/xwebgen">
+  
+  <section id="expand1" xtlwg:lang="nl">
+    <DIV xmlns="">
+      <p>SECTION ${p1}</p>
+      <section-expand dref-section-document="." section-idref="nested" xmlns="http://www.xtpxlib.nl/ns/xwebgen">
+        
+      </section-expand>
+    </DIV>
+  </section>
+  
+  <section id="nested">
+    <NESTED xmlns=""/>
+  </section>
+  
+  <section id="page-contents" dref-transformer="xsl/xyz.xsl">
+    <PAGE>${p1}</PAGE>
+  </section>
+    
+</xwebgen-sections>

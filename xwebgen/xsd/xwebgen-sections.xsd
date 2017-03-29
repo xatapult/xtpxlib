@@ -7,7 +7,7 @@
   <xs:element name="xwebgen-sections">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="section">
+        <xs:element name="section" maxOccurs="unbounded">
           <xs:complexType>
             <xs:sequence>
               <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##any" processContents="skip"/>
@@ -18,6 +18,7 @@
                 <xs:documentation>Reference toan optional XSLT stylehseet for transforming this piece of contents. Relative to this document.</xs:documentation>
               </xs:annotation>
             </xs:attribute>
+            <xs:attributeGroup ref="xtlwg:filter-attributes"/>
           </xs:complexType>
         </xs:element>
       </xs:sequence>

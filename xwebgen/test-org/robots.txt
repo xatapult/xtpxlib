@@ -1,4 +1,0 @@
-# /robots.txt file for http://www.xatapult.com
-# mail office@strikdesign.nl for constructive criticism
-
-User-agent: *
