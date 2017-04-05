@@ -103,11 +103,12 @@
       </xsl:variable>
 
       <!-- Create the document in the container: -->
-      <document document-type="{$xtlwg:document-type-page}" dref-target="{$dref-target}" template-id="{$template-idref}" dref-template="{$dref-template}"
-        dref-section-document="{$dref-section-document}" section-idref="{$section-idref}">
+      <document document-type="{$xtlwg:document-type-page}" dref-target="{$dref-target}" template-id="{$template-idref}"
+        dref-template="{$dref-template}" dref-section-document="{$dref-section-document}" section-idref="{$section-idref}">
         <!-- Create the page document by expanding the <page-contents-expand> element in the template: -->
         <xsl:apply-templates select="$template-document" mode="local:mode-page-contents-expand">
-          <xsl:with-param name="base-dir-for-section-expansion" as="xs:string" select="xtlc:dref-path($dref-template)" tunnel="yes"/>
+          <xsl:with-param name="page-specification-element" as="element(xtlwg:page)" select="$page-specification-element" tunnel="yes"/>
+          <xsl:with-param name="base-dir-for-section-expansion" as="xs:string" select="$base-input-dir" tunnel="yes"/>
           <xsl:with-param name="filter-attributes" as="attribute()*" select="$filter-attributes" tunnel="yes"/>
           <xsl:with-param name="properties" as="element(xtlwg:property)*" select="$page-properties" tunnel="yes"/>
         </xsl:apply-templates>
@@ -119,20 +120,22 @@
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-  <xsl:template match="xtlwg:page-contents-expand" mode="local:mode-page-contents-expand"> 
+  <xsl:template match="xtlwg:page-contents-expand" mode="local:mode-page-contents-expand">
+    <xsl:param name="page-specification-element" as="element(xtlwg:page)" required="yes" tunnel="yes"/>
     <xsl:param name="base-dir-for-section-expansion" as="xs:string" required="yes" tunnel="yes"/>
     <xsl:param name="filter-attributes" as="attribute()*" required="yes" tunnel="yes"/>
     <xsl:param name="properties" as="element(xtlwg:property)*" required="yes" tunnel="yes"/>
-  
-    <xsl:variable name="dref-section-document" as="xs:string" select="xtlc:dref-concat(($base-dir-for-section-expansion, @dref-section-document))"/>
+
+    <xsl:variable name="dref-section-document" as="xs:string"
+      select="xtlc:dref-concat(($base-dir-for-section-expansion, $page-specification-element/@dref-section-document))"/>
     <xsl:call-template name="xtlwg:get-section-contents">
-      <xsl:with-param name="section-document-item" select="$dref-section-document"/>
-      <xsl:with-param name="section-idref" select="@section-idref"/>
+      <xsl:with-param name="dref-section-document" select="$dref-section-document"/>
+      <xsl:with-param name="section-idref" select="$page-specification-element/@section-idref"/>
       <xsl:with-param name="filter-attributes" select="$filter-attributes"/>
       <xsl:with-param name="properties" select="(xtlwg:properties/xtlwg:property, $properties)"/>
       <xsl:with-param name="dref-base-dir" select="$base-dir-for-section-expansion"/>
     </xsl:call-template>
-    
+
   </xsl:template>
 
 

@@ -76,6 +76,12 @@
         </p:input>
       </p:identity>
     </p:viewport>
+    
+    <!-- Write the container to disk: -->
+    <xtlcon:container-to-disk>
+      <p:with-option name="dref-target" select="/*/@base-output-dir"/>
+      <p:with-option name="remove-target" select="true()"/>
+    </xtlcon:container-to-disk>
 
     <!-- Copy directories: -->
     <p:xslt>
@@ -94,12 +100,14 @@
       </p:add-attribute>
     </p:viewport>
 
-    <!-- Write the container to disk: -->
-    <xtlcon:container-to-disk>
-      <p:with-option name="dref-target" select="/*/@base-output-dir"/>
-      <p:with-option name="remove-target" select="true()"/>
-    </xtlcon:container-to-disk>
-
+    <!-- Create some output report: -->
+    <p:xslt>
+      <p:input port="stylesheet">
+        <p:document href="xsl/create-final-report.xsl"/>
+      </p:input>
+      <p:with-param name="debug" select="$debug"/>
+    </p:xslt>
+    
   </p:declare-step>
 
 </p:library>

@@ -4,10 +4,8 @@
   
   <section id="expand1" xtlwg:lang="nl">
     <DIV xmlns="">
-      <p>SECTION ${p1}</p>
-      <section-expand dref-section-document="." section-idref="nested" xmlns="http://www.xtpxlib.nl/ns/xwebgen">
-        
-      </section-expand>
+      <p>SECTION </p>
+      
     </DIV>
   </section>
   

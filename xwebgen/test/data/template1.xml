@@ -3,12 +3,12 @@
   <BODY>
     <p>bla bla bla</p>
     <section-expand dref-section-document="sections.xml" section-idref="expand1" xmlns="http://www.xtpxlib.nl/ns/xwebgen">
-      <!--<properties>
+      <properties>
         <property id="p1">SECTIONEXPANDP1</property>
-      </properties>-->
+      </properties>
     </section-expand>
 
-    <page-contents-expand dref-section-document="sections.xml" section-idref="page-contents" xmlns="http://www.xtpxlib.nl/ns/xwebgen">
+    <page-contents-expand xmlns="http://www.xtpxlib.nl/ns/xwebgen">
       <properties>
         <property id="p1">XXXX</property>
       </properties>

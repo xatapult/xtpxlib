@@ -3,13 +3,12 @@
   xsi:schemaLocation="http://www.xtpxlib.nl/ns/xwebgen ../xsd/xwebgen-specification.xsd" xmlns="http://www.xtpxlib.nl/ns/xwebgen"
   xmlns:xtlwg="http://www.xtpxlib.nl/ns/xwebgen" dref-base-output-dir="../../../xtpxlib-tmp/XWEBGEN-OUT">
 
-  <template id="t1" dref-source="templates/xatapult-main-page-template.xml" />
-   
-  
+  <!--  <template id="t1" dref-source="templates/xatapult-main-page-template.xml" />-->
+  <template id="t1" dref-source="data/template1.xml"/>
 
-  <page template-idref="t1" dref-section-document="data/x1.xml" dref-target="index.html" />
+  <page template-idref="t1" dref-section-document="data/sections.xml" dref-target="index.html"/>
 
-  <copy-dir dref-source-dir="images" />
+  <copy-dir dref-source-dir="images"/>
   <copy-dir dref-source-dir="css"/>
   <copy-dir dref-source-dir="js"/>
 

@@ -88,7 +88,7 @@
 
     <xsl:if test="$copy-through">
       <xsl:copy>
-        <xsl:copy-of select="@*"/>
+        <xsl:apply-templates select="@*" mode="#current"/>
         <xsl:apply-templates mode="#current"/>
       </xsl:copy>
     </xsl:if>
@@ -131,7 +131,6 @@
     </xsl:variable>
 
     <xsl:apply-templates select="$pre-processed-item" mode="local:mode-pre-process-and-expand-sections">
-      <xsl:with-param name="parent-document" as="element()" select="$pre-processed-item" tunnel="yes"/>
       <xsl:with-param name="filter-attributes" as="attribute()*" select="$filter-attributes" tunnel="yes"/>
       <xsl:with-param name="properties" as="element(xtlwg:property)*" select="$properties" tunnel="yes"/>
       <xsl:with-param name="base-dir-for-section-expansion" as="xs:string" select="$base-dir-for-section-expansion" tunnel="yes"/>
@@ -141,8 +140,7 @@
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-  <xsl:template match="xtlwg:section-expand" as="element()" mode="local:mode-pre-process-and-expand-sections">
-    <xsl:param name="parent-document" as="element()" required="yes" tunnel="yes"/>
+  <xsl:template match="xtlwg:section-expand" mode="local:mode-pre-process-and-expand-sections">
     <xsl:param name="base-dir-for-section-expansion" as="xs:string" required="yes" tunnel="yes"/>
     <xsl:param name="filter-attributes" as="attribute()*" required="yes" tunnel="yes"/>
     <xsl:param name="properties" as="element(xtlwg:property)*" required="yes" tunnel="yes"/>
@@ -150,36 +148,14 @@
     <xsl:variable name="dref-section-document" as="xs:string" select="@dref-section-document"/>
     <xsl:variable name="section-idref" as="xs:string?" select="@section-idref"/>
     <xsl:variable name="section-properties" as="element(xtlwg:property)*" select="(xtlwg:properties/xtlwg:property, $properties)"/>
-    
-    <xsl:choose>
-      
-      <!-- Reference to the same section document. This means we have to be *in* in a section document to begin with... -->
-      <xsl:when test="$dref-section-document eq '.'">
-        <xsl:if test="empty($parent-document/self::xtlwg:xwebgen-sections)">
-          <xsl:call-template name="xtlwg:raise-error">
-            <xsl:with-param name="msg-parts" select="'@dref-section-document=''.'' encountered in non-sections document'"/>
-          </xsl:call-template>
-        </xsl:if>
-        <xsl:call-template name="xtlwg:get-section-contents">
-          <xsl:with-param name="section-document-item" select="$parent-document"/>
-          <xsl:with-param name="section-idref" select="$section-idref"/>
-          <xsl:with-param name="filter-attributes" select="$filter-attributes"/>
-          <xsl:with-param name="properties" select="$section-properties"/>
-          <xsl:with-param name="dref-base-dir" select="$base-dir-for-section-expansion"/>
-        </xsl:call-template>
-      </xsl:when>
-      
-      <!-- Reference to a document by dref: -->
-      <xsl:otherwise>
-        <xsl:call-template name="xtlwg:get-section-contents">
-          <xsl:with-param name="section-document-item" select="xtlc:dref-concat(($base-dir-for-section-expansion, $dref-section-document))"/>
-          <xsl:with-param name="section-idref" select="$section-idref"/>
-          <xsl:with-param name="filter-attributes" select="$filter-attributes"/>
-          <xsl:with-param name="properties" select="$section-properties"/>
-          <xsl:with-param name="dref-base-dir" select="$base-dir-for-section-expansion"/>
-        </xsl:call-template>
-      </xsl:otherwise>
-    </xsl:choose>
+
+    <xsl:call-template name="xtlwg:get-section-contents">
+      <xsl:with-param name="dref-section-document" select="xtlc:dref-concat(($base-dir-for-section-expansion, $dref-section-document))"/>
+      <xsl:with-param name="section-idref" select="$section-idref"/>
+      <xsl:with-param name="filter-attributes" select="$filter-attributes"/>
+      <xsl:with-param name="properties" select="$section-properties"/>
+      <xsl:with-param name="dref-base-dir" select="$base-dir-for-section-expansion"/>
+    </xsl:call-template>
 
   </xsl:template>
 
@@ -187,38 +163,35 @@
   <!-- GET SECTION: -->
 
   <xsl:template name="xtlwg:get-section-contents" as="element()*">
-    <xsl:param name="section-document-item" as="item()" required="yes"/>
+    <xsl:param name="dref-section-document" as="xs:string" required="yes"/>
     <xsl:param name="section-idref" as="xs:string?" required="yes"/>
     <xsl:param name="filter-attributes" as="attribute()*" required="yes"/>
     <xsl:param name="properties" as="element(xtlwg:property)*" required="no" select="()"/>
     <xsl:param name="dref-base-dir" as="xs:string" required="yes"/>
 
     <!-- Get the section document in: -->
-    <xsl:variable name="section-document-raw" as="element()?" select="xtlc:item2element($section-document-item, false())"/>
-    <xsl:if test="empty($section-document-raw) or empty($section-document-raw/self::xtlwg:xwebgen-sections)">
+    <xsl:variable name="dref-section-document-canonical" as="xs:string" select="xtlc:dref-canonical($dref-section-document)"/>
+    <xsl:if test="not(doc-available($dref-section-document-canonical))">
       <xsl:call-template name="xtlwg:raise-error">
-        <!-- Remark: This is a rather unsatisfactory error message, but leave it for now. -->
-        <xsl:with-param name="msg-parts" select="('Invalid reference to section document')"/>
+        <xsl:with-param name="msg-parts" select="('Section document ', xtlc:q($dref-section-document-canonical), ' not found')"/>
       </xsl:call-template>
     </xsl:if>
-    <xsl:variable name="base-dir-section-document" as="xs:string" select="xtlc:dref-path(base-uri($section-document-raw))"/>
+    <xsl:variable name="section-document-raw" as="element()?" select="doc($dref-section-document-canonical)/*"/>
+    <xsl:if test="empty($section-document-raw) or empty($section-document-raw/self::xtlwg:xwebgen-sections)">
+      <xsl:call-template name="xtlwg:raise-error">
+        <xsl:with-param name="msg-parts" select="(xtlc:q($dref-section-document-canonical), ' is not a valid section document')"/>
+      </xsl:call-template>
+    </xsl:if>
+    <xsl:variable name="base-dir-section-document" as="xs:string" select="xtlc:dref-path($dref-section-document-canonical)"/>
 
-    <!-- When we've read this section document from disk, we have to pre-process and expand it. If not we assume it is already a 
-      preprocessed/expanded document. -->
-    <xsl:variable name="section-document" as="element(xtlwg:xwebgen-sections)">
-      <xsl:choose>
-        <xsl:when test="$section-document-item instance of element()">
-          <xsl:sequence select="$section-document-raw"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:call-template name="xtlwg:pre-process-and-expand-sections">
-            <xsl:with-param name="item" select="$section-document-raw"/>
-            <xsl:with-param name="filter-attributes" select="$filter-attributes"/>
-            <xsl:with-param name="properties" select="$properties"/>
-            <xsl:with-param name="base-dir-for-section-expansion" select="xtlc:dref-path(base-uri($section-document-raw))"/>
-          </xsl:call-template>
-        </xsl:otherwise>
-      </xsl:choose>
+    <!-- Pre-process it: -->
+    <xsl:variable name="section-document" as="element()">
+      <xsl:call-template name="xtlwg:pre-process-and-expand-sections">
+        <xsl:with-param name="item" select="$section-document-raw"/>
+        <xsl:with-param name="filter-attributes" select="$filter-attributes"/>
+        <xsl:with-param name="properties" select="$properties"/>
+        <xsl:with-param name="base-dir-for-section-expansion" select="$base-dir-section-document"/>
+      </xsl:call-template>
     </xsl:variable>
 
     <!-- Find the right section: -->
@@ -234,8 +207,7 @@
     </xsl:variable>
     <xsl:if test="empty($section-to-process)">
       <xsl:call-template name="xtlwg:raise-error">
-        <xsl:with-param name="msg-parts"
-          select="('Section id=', xtlc:q($section-idref), ' not found')"/>
+        <xsl:with-param name="msg-parts" select="('Section id=', xtlc:q($section-idref), ' in document ',xtlc:q($dref-section-document), ' not found')"/>
       </xsl:call-template>
     </xsl:if>
 
@@ -250,7 +222,7 @@
         <xtlwg:TRANSFORM dref-transformer="{xtlc:dref-canonical(xtlc:dref-concat(($base-dir-section-document, $dref-transformer)))}">
           <xsl:copy-of select="$section-to-process/*" copy-namespaces="no"/>
         </xtlwg:TRANSFORM>
-      </xsl:otherwise>  
+      </xsl:otherwise>
     </xsl:choose>
 
   </xsl:template>
