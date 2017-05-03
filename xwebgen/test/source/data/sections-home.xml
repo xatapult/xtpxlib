@@ -1,13 +1,11 @@
-<xwebgen-sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.xtpxlib.nl/ns/xwebgen ../../xsd/xwebgen-sections.xsd" xmlns="http://www.xtpxlib.nl/ns/xwebgen"
-  xmlns:xtlwg="http://www.xtpxlib.nl/ns/xwebgen">
+<xwebgen-sections xmlns:xtlwg="http://www.xtpxlib.nl/ns/xwebgen" xmlns="http://www.xtpxlib.nl/ns/xwebgen">
 
   <!-- ================================================================== -->
   <!-- HOME PAGE: -->
 
   <section id="home" xtlwg:lang="nl">
     <div xmlns="http://www.w3.org/1999/xhtml">
-      
+
       <h1>Xatapult: Content Engineering</h1>
       <br/>
 
@@ -35,12 +33,12 @@
 
       <p class="subkop">Nieuwsgierig?</p>
       <ul>
-        <li>Over <a href="content-engineering">Content Engineering</a>? </li>
-        <li>Over <a href="xml">XML</a>? </li>
-        <li>Over <a href="over">Xatapult</a>? </li>
-        <li>Over <a href="erik">Erik Siegel</a>? </li>
+        <li>Over <a href="content-engineering.html">Content Engineering</a>? </li>
+        <li>Over <a href="xml.html">XML</a>? </li>
+        <li>Over <a href="about.html">Xatapult</a>? </li>
+        <li>Over <a href="erik.html">Erik Siegel</a>? </li>
       </ul>
-      
+
     </div>
   </section>
 
@@ -83,7 +81,7 @@
         <li>About <a href="erik">Erik Siegel</a>? </li>
       </ul>
       <br/>
-      
+
     </div>
   </section>
 

@@ -1,0 +1,65 @@
+<xwebgen-sections xmlns:xtlwg="http://www.xtpxlib.nl/ns/xwebgen" xmlns="http://www.xtpxlib.nl/ns/xwebgen">
+
+  <section id="page-contact" xtlwg:lang="nl">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <h1>Contactgegevens en informatie</h1>
+
+      <p class="subkop">Xatapult</p>
+      <p>Speenkruidstraat 100</p>
+      <p>9731&#160;GX&#160;&#160;Groningen</p>
+      <br/>
+      <p>Tel: ${phonenumber}</p>
+      <br/>
+      <p>Web: <a href="http://www.xatapult.nl">www.xatapult.nl</a>
+      </p>
+      <p>Mail: <a href="mailto:${email}">${email}</a>
+      </p>
+      <br/>
+      <p>BTW Nummer: NL137788186B01</p>
+      <p>KvK Nummer: 02072375</p>
+      <br/>
+      <p>ASN Bank (IBAN): NL68 SNSB 0707 2231 21 (ten name van: R.E. Siegel, Groningen)</p>
+      <br/>
+      <p>
+        <a href="resources/Profile%20Xatapult-Erik%20Siegel.pdf" target="_blank">Bedrijfsprofiel/CV</a> (Engelstalig) </p>
+      <br/>
+      <p>
+        <a href="resources/Algemene voorwaarden 7-11-2005.pdf" target="_blank">Algemene voorwaarden</a>
+      </p>
+    </div>
+  </section>
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <section id="page-contact" xtlwg:lang="en">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <h1>Contact and information</h1>
+      
+      <p class="subkop">Xatapult: Content Engineering</p>
+      <p>Speenkruidstraat 100</p>
+      <p>9731&#160;GX&#160;&#160;Groningen</p>
+      <p>The Netherlands</p>
+      <br/>
+      <p>Phone: ${phonenumber}</p>
+      <br/>
+      <p>Web: <a href="http://www.xatapult.com">www.xatapult.com</a>
+      </p>
+      <p>Mail: <a href="mailto:${email}">${email}</a>
+      </p>
+      <br/>
+      <p>VAT code: NL137788186B01</p>
+      <p>Chamber of Commerce code: 02072375</p>
+      <br/>
+      <p>Bank account (IBAN): NL68 SNSB 0707 2231 21 (in the name of: R.E. Siegel, Groningen, The Netherlands)</p>
+      <p>BIC (ASN bank, The Netherlands): SNSBNL2A</p>
+      <br/>
+      <p>
+        <a href="resources/Profile%20Xatapult-Erik%20Siegel.pdf" target="_blank">Company profile/resume</a>
+      </p>
+      <br/>
+      <p>
+        <a href="/resources/Algemene voorwaarden 7-11-2005.pdf" target="_blank">Terms and Conditions (sorry, Dutch only)</a>
+      </p>
+    </div>
+  </section>
+
+</xwebgen-sections>

@@ -1,0 +1,424 @@
+<xwebgen-sections xmlns:xtlwg="http://www.xtpxlib.nl/ns/xwebgen" xmlns="http://www.xtpxlib.nl/ns/xwebgen">
+
+  <!-- ================================================================== -->
+  <!-- OVER (COMPANY PROFILE) -->
+
+  <section id="page-about" xtlwg:lang="nl">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <h1>Wat doet Xatapult</h1>
+
+      <p> Xatapult is een bedrijf dat zich richt op Content Engineering en XML verwerking in de breedste zin van het woord. Dit varieert van
+        advisering tot ontwerp en van bouw tot hosting van verwerkingsstraten. Een volledig overzicht van de diensten vindt u <a href="diensten"
+          >hier</a>. </p>
+      <br/>
+      <p> Xatapult is zakelijk, betrouwbaar en levert op tijd en op maat. Er wordt duidelijk gecommuniceerd en afspraken worden vastgelegd.
+        Documentatie is geen nakomertje. </p>
+      <br/>
+      <p> Gevestigd in Groningen werkt Xatapult met opdrachtgevers door heel Nederland en werkt geregeld samen met andere bedrijven. Xatapult kan
+        aanvullende diensten leveren of werkt mee aan projecten onder de naam van een ander bedrijf. </p>
+      <br/>
+      <p> Xatapult is het eenmansbedrijf van <a href="erik">Erik Siegel</a>. Erik heeft een ruime ervaring in de automatisering en is sinds 2009
+        volledig gespecialiseerd in Content Engineering, XML en aanverwante gebieden. </p>
+      <br/>
+      <p> Indien noodzakelijk wordt, altijd in overleg met de klant, samenwerking gezocht met andere partijen om de klus te klaren. </p>
+      <br/>
+
+    </div>
+  </section>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <section id="page-about" xtlwg:lang="en">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <h1>What does Xatapult do</h1>
+
+      <p>Xatapult is a company that offers support for Content Engineering and XML processing in the broadest sense of the word. This support ranges
+        from consulting to design and from developing to hosting processing applications. A full overview of Xatapult's services can be found <a
+          href="diensten">here</a>.</p>
+      <br/>
+      <p>Xatapult is professional, reliable and delivers on time. We communicate clearly and lay down agreements. Documentation is not an
+        afterthought.</p>
+      <br/>
+      <p>Located in Groningen, the Netherlands, Xatapult works with customers across the Netherlands and abroad, often in cooperation with other
+        companies. Xatapult can offer additional services or cooperate in projects under another company's name.</p>
+      <br/>
+      <p>Xatapult is a one-man company run by <a href="erik">Erik Siegel</a>. Erik has extensive experience in automation. Since 2009 he specializes
+        completely in Content Engineering, XML and related subjects.</p>
+      <br/>
+      <p>If necessary, and always in close consultation with the customer, Xatapult looks for cooperation with other parties to get the job done.</p>
+      <br/>
+    </div>
+  </section>
+
+  <!-- ================================================================== -->
+  <!-- CUSTOMER LIST -->
+
+  <section id="page-customers" dref-transformer="xsl/convert-customer-list.xsl">
+
+    <customerlist xmlns="">
+
+      <heading xtlwg:lang="nl">Voor wie werkt Xatapult</heading>
+      <heading xtlwg:lang="en">Who does Xatapult work for</heading>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+      <customer href="http://www.infinitaslearning.com" img="infinitas.png" imgwidth="60%" imgcolwidth="20%">
+        <text xtlwg:lang="nl">
+          <div xmlns="http://www.w3.org/1999/xhtml">Content en IT architect voor Infinitas Learning, vooral werkzaam binnen de Nederlandse tak
+            Noordhoff Uitgevers.</div>
+        </text>
+        <text xtlwg:lang="en">
+          <div xmlns="http://www.w3.org/1999/xhtml">Content and IT Architect for Infinitas Learning. most importantly for their Dutch subsidiary
+            Noordhoff Publishers.</div>
+        </text>
+      </customer>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+      <customer href="http://www.malmberg.nl" img="cvte.png" imgwidth="75%" imgcolwidth="30%">
+        <text xtlwg:lang="nl">
+          <div xmlns="http://www.w3.org/1999/xhtml">Maken documentatie van de Dutch Exam Profile standaard: Een IMS QTI gebaseerde standaard voor de
+            uitwisseling van digitaal af te nemen eindexamens.</div>
+        </text>
+        <text xtlwg:lang="en">
+          <div xmlns="http://www.w3.org/1999/xhtml">Documenting the Dutch Exam Profile: A IMS QTI based standard for the exchange of digital exams in
+            The Netherlands.</div>
+        </text>
+      </customer>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+      <customer href="http://www.malmberg.nl" img="malmberg-logo.gif" imgwidth="75%" imgcolwidth="30%">
+        <text xtlwg:lang="nl">
+          <div xmlns="http://www.w3.org/1999/xhtml">Content analyse en transformaties van diverse content ontwikkelstraten bij uitgeverij
+            Malmberg.</div>
+        </text>
+        <text xtlwg:lang="en">
+          <div xmlns="http://www.w3.org/1999/xhtml">Content analysis and transforms of several content production environments for the Dutch
+            educational publisher Malmberg.</div>
+        </text>
+      </customer>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+      <customer href="http://www.exist-db.org" img="existdb.png" imgwidth="75%" imgcolwidth="30%">
+        <text xtlwg:lang="nl">
+          <div xmlns="http://www.w3.org/1999/xhtml">Schrijven van een boek over het XML applicatieplatform eXist. Dit wordt uitgegeven bij <a
+              href="http://shop.oreilly.com/product/0636920026525.do" target="_blank">uitgeverij O'Reilly</a>.</div>
+        </text>
+        <text xtlwg:lang="en">
+          <div xmlns="http://www.w3.org/1999/xhtml">Writing a book about the XML application platform eXist. This is published by <a
+              href="http://shop.oreilly.com/product/0636920026525.do" target="_blank">O'Reilly</a>.</div>
+        </text>
+      </customer>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+      <customer href="http://www.assistiveware.com" img="assistiveware.png" imgwidth="80%">
+        <text xtlwg:lang="nl">
+          <div xmlns="http://www.w3.org/1999/xhtml">Bouwen van een conversiestraat die Adobe Indesign bestanden (IDML) omzet naar XML geschikt voor
+            gebruik in een iPad app.</div>
+        </text>
+        <text xtlwg:lang="en">
+          <div xmlns="http://www.w3.org/1999/xhtml">Developed a conversion application that takes Adobe Indesign files (IDML) and turns them into an
+            XML format suitable for an iPad app.</div>
+        </text>
+      </customer>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+      <customer href="http://www.pasana.nl" img="pasana.gif" imgwidth="60%">
+        <text xtlwg:lang="nl">
+          <div xmlns="http://www.w3.org/1999/xhtml">Conversie software van een Excel spreadsheet naar het XML formaat voor de aangifte van de
+            pensioenpremies</div>
+        </text>
+        <text xtlwg:lang="en">
+          <div xmlns="http://www.w3.org/1999/xhtml">Conversion software from an Excel spreadsheet to the XML format for the pension fund</div>
+        </text>
+      </customer>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+      <customer href="http://www.kenteq.nl" img="Kenteq.png" imgwidth="75%" imgcolwidth="30%">
+        <text xtlwg:lang="nl">
+          <div xmlns="http://www.w3.org/1999/xhtml">Vooronderzoek naar een andere opzet van de Kenteq publicatiestraat voor cursushandleidingen: Niet
+            alleen meer PDF, maar ook andere uitvoerformaten en koppelingen met externe systemen. Refactoring van een uitgebreide XSL-FO
+            transformatie.</div>
+        </text>
+        <text xtlwg:lang="en">
+          <div xmlns="http://www.w3.org/1999/xhtml">Preliminary investigation about how to change the current PDF application for creating the course
+            manuals into something more versatile: Not just creating PDF's but also other formats and opening up the possibility of direcr interfacing
+            with other systems.<br/>Refactoring of very large and complex XSL-FO transformation.</div>
+        </text>
+      </customer>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+      <customer href="http://www.kennisnet.nl" img="Kennisnet.png" imgwidth="70%" imgcolwidth="30%">
+        <text xtlwg:lang="nl">
+          <div xmlns="http://www.w3.org/1999/xhtml">Bij Kennisnet technisch verantwoordelijk voor de ontwikkeling van een tweetal belangrijke, XML
+            gebaseerde, standaarden: <a href="http://www.uwlr.nl" target="_blank">Uitwisseling Leerresultaten</a> en <a href="http://www.nlqti.nl"
+              target="_blank">NL QTI</a>.</div>
+        </text>
+        <text xtlwg:lang="en">
+          <div xmlns="http://www.w3.org/1999/xhtml">Main technical lead in developing two important XML based standards: <a href="http://www.uwlr.nl"
+              target="_blank">Uitwisseling Leerresultaten</a> and <a href="http://www.nlqti.nl" target="_blank">NL QTI</a>.</div>
+        </text>
+      </customer>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+      <customer href="http://www.thiememeulenhoff.nl" img="thiememeulenhoff.jpg" imgcolwidth="25%">
+        <text xtlwg:lang="nl">
+          <div xmlns="http://www.w3.org/1999/xhtml">Bouw en beheer van een grote XML verwerkingsapplicatie, gebaseerd op Cocoon. Diverse andere XML en
+            architectuur ondersteuning.</div>
+        </text>
+        <text xtlwg:lang="en">
+          <div xmlns="http://www.w3.org/1999/xhtml">Creating and maintaining a large XML processing application based on Cocoon. Various other XML and
+            architectural support.</div>
+        </text>
+      </customer>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+      <customer href="http://www.computrain.nl" img="Computrain.gif" imgwidth="80%">
+        <text xtlwg:lang="nl">
+          <div xmlns="http://www.w3.org/1999/xhtml">Trainer van de opleidingen "XML Basis" en "XSLT Programmeren". Ontwikkelen van de XSLT
+            training.</div>
+        </text>
+        <text xtlwg:lang="en">
+          <div xmlns="http://www.w3.org/1999/xhtml">Trainer for the courses "Introduction to XML" and "XSLT Programming". Development of the XSLT
+            course.</div>
+        </text>
+      </customer>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+      <customer href="http://www.svh.nl" img="SVH.gif" imgwidth="80%">
+        <text xtlwg:lang="nl">
+          <div xmlns="http://www.w3.org/1999/xhtml">Systeem architect bij het opzetten van de <a href="http://passie.horeca.nl" target="_blank">Passie
+              voor Horeca</a> applicatie. Onder ander verantwoordelijk voor de interfaces tussen de verschillende betrokken achterliggende
+            systemen.</div>
+        </text>
+        <text xtlwg:lang="en">
+          <div xmlns="http://www.w3.org/1999/xhtml">System architect for the creation of the <a href="http://passie.horeca.nl" target="_blank">Passie
+              voor Horeca</a> ("A Passion for Catering") application. Also responsible for the interfaces between the various underlying
+            systems.</div>
+        </text>
+      </customer>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+      <customer href="http://www.trifork.nl" img="Func.png" imgwidth="50%">
+        <text xtlwg:lang="nl">
+          <div xmlns="http://www.w3.org/1999/xhtml">XSLT cursus op maat (Func is nu <a href="http://www.trifork.nl" target="_blank"
+            >Trifork</a>).</div>
+        </text>
+        <text xtlwg:lang="en">
+          <div xmlns="http://www.w3.org/1999/xhtml">Tailor-made XSLT course (Func is now <a href="http://www.dutchworks.nl" target="_blank"
+              >Dutchworks</a>).</div>
+        </text>
+      </customer>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+      <customer href="http://www.wowww.nl" img="wowww.gif" imgwidth="50%">
+        <text xtlwg:lang="nl">
+          <div xmlns="http://www.w3.org/1999/xhtml">Workshop "X-Rated XSLT" voor werknemers en klanten.</div>
+        </text>
+        <text xtlwg:lang="en">
+          <div xmlns="http://www.w3.org/1999/xhtml">Workshop "X-Rated XSLT" for employees and customers.</div>
+        </text>
+      </customer>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+      <customer href="http://www.getthere.nl" img="getthere.jpg" imgwidth="75%">
+        <text xtlwg:lang="nl">
+          <div xmlns="http://www.w3.org/1999/xhtml">Diverse onderzoeken en opdrachten. Bouwen van een XML verwerkingsstraat ten behoeve van de
+            Nationale Postcodeloterij.</div>
+        </text>
+        <text xtlwg:lang="en">
+          <div xmlns="http://www.w3.org/1999/xhtml">Several research projects and assignments. Building an XML processing application for the Dutch
+            Postcode Lottery (Nationale Postcode Loterij).</div>
+        </text>
+      </customer>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+      <customer href="http://www.nrp.nl" img="nrp.gif" imgwidth="75%">
+        <text xtlwg:lang="nl">
+          <div xmlns="http://www.w3.org/1999/xhtml">Interfacing tussen verschillende systemen. Ontwerp van XML schema's rondom de administratieve
+            afhandeling van het advertentieverkeer.</div>
+        </text>
+        <text xtlwg:lang="en">
+          <div xmlns="http://www.w3.org/1999/xhtml">Interfacing between several systems. Design of XML schemas concerning the administrative
+            processing of advert traffic.</div>
+        </text>
+      </customer>
+
+
+    </customerlist>
+  </section>
+
+  <!-- ================================================================== -->
+  <!-- SERVICES -->
+
+  <section id="page-services" xtlwg:lang="nl">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <h1>Diensten</h1>
+
+      <p class="subkop">Consultancy rondom content en content verwerking</p>
+      <p>Xatapult adviseert u graag over de rol van content binnen uw bedrijfsproces. Samen wordt bijvoorbeeld bekeken hoe problemen het beste
+        opgelost kunnen worden, welke standaarden een rol spelen en welke software het meest geschikt is.</p>
+      <br/>
+
+      <p class="subkop">Ontwerp van content structuren</p>
+      <p>Eenduidige vastlegging van structuur en betekenis van content is belangrijk. Het zorgt ervoor dat alle partijen (mensen én machines) weten
+        waar ze aan toe zijn. Bij gebruik van XML vormen technieken als DTD’s en schema’s hiervoor de basis. Daarnaast is er vrijwel altijd
+        aanvullende documentatie nodig, zowel op functioneel als technisch niveau.</p>
+      <br/>
+
+      <p class="subkop">Ontwerp en bouw van content applicaties</p>
+      <p>Content uit het ene systeem is vaak niet geschikt voor het andere. Vaak zijn conversies nodig, bijvoorbeeld van auteurstools (ook Word en
+        Excel) naar complexe medium-neutrale XML structuren. Content applicaties worden meestal geschreven in XML specifieke programmeertalen (zoals
+        XSLT, XProc of XQuery) en draaien op gespecialiseerde software omgevingen (zoals Cocoon of eXist). Xatapult is hierin specialist.</p>
+      <br/>
+
+      <p class="subkop">Standaardisatie activiteiten</p>
+      <p>Standaarden spelen binnen de content wereld een belangrijke rol. Voorbeelden zijn DocBook, DITA of IMS standaarden als QTI. Xatapult
+        adviseert over het gebruik van standaarden. Belangrijke is ook het maken van <i>profielen</i>: Bedrijfs- en situatie-afhankelijke aanpassingen
+        van algemene standaarden om de content zo doelgericht mogelijk te structureren.</p>
+      <br/>
+
+      <p class="subkop">Aanvullende XML ondersteuningsactiviteiten</p>
+      <p>Xatapult help graag bedrijven die op XML gebied of de kennis of de menskracht missen, bijvoorbeeld met XML transformaties of schema’s</p>
+      <br/>
+
+      <p class="subkop">Hosting van content gerelateerde applicaties</p>
+      <p>Niet ieder bedrijf vindt het nodig de infrastructuur voor content gerelateerde applicaties zelf op te tuigen. Bijvoorbeeld omdat het om een
+        tijdelijke situatie gaat. Ook is er hiervoor vaak speciale software noodzakelijk die specifieke beheer kennis vereist. Xatapult biedt de
+        mogelijkheid aan content applicaties te hosten en de dienst als service (SaaS, Software as a Service, model) af te nemen.</p>
+      <br/>
+      <p class="subkop">XML Trainingen</p>
+      <p>Xatapult biedt op XML-gebied trainingen op maat aan. Bijvoorbeeld over XML in het algemeen, XSLT, XQuery, XProc of eXist.</p>
+
+    </div>
+  </section>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <section id="page-services" xtlwg:lang="en">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <h1>Services</h1>
+
+      <p class="subkop">Advice on the application and processing of content</p>
+      <p>Xatapult can advise you on the application of content within your business processes. Together we can assess how to solve problems, which
+        standards apply and which software is the most suitable.</p>
+      <br/>
+
+      <p class="subkop">Design of content structures</p>
+      <p>Unequivocal design of structure and meaning of content is very important. It ensures that all parties involved (man and machines) know what
+        they’re up to. In case of XML, techniques like DTDs and schemas are used. Additional documentation, both on the functional and technical
+        level, is usually necessary.</p>
+      <br/>
+
+      <p class="subkop">Design of content processing applications</p>
+      <p>XML from one system is often not suitable for another. It often requires conversions, for instance from authoring tools (also Word and Excel)
+        to complex medium-neutral XML structures. Content processing applications are often written using XML specific programming languages like
+        (like XSLT, XProc or XQuery) and run on specialized software (like eXist or Cocoon). Xatapult specializes in these languages and
+        environments.</p>
+      <br/>
+
+      <p class="subkop">Standardization related activities</p>
+      <p>Standard play an important role in the content world. Examples are DocBook, DITA or IMS related standards like QTI. Xatapult can advise you
+        on the application and use of standards. Important here is also the creation of so-called profiles: Company and situation dependent
+        adaptations of standards to purposively structure content.</p>
+      <br/>
+
+      <p class="subkop">Additional XML support activities</p>
+      <p>Xatapult supports companies that either lack the resources or the skills for general XML related activities. For instance in writing
+        transformations or schemas.</p>
+      <br/>
+
+      <p class="subkop">Hosting of XML processing</p>
+      <p>Not every company sees the need to create their own infrastructure for content processing applications. This may be because it concerns a
+        temporary situation or because of maintenance issues. Xatapult offers the possibility to host content processing applications through the SaaS
+        (Software as a Service) model.</p>
+      <br/>
+
+      <p class="subkop">Courses in XML related subjects</p>
+      <p>Xatapult offers customized training courses in the field of XML. Examples are XML in general, XSLT, XQuery, XProc or eXist.</p>
+
+    </div>
+  </section>
+
+  <!-- ================================================================== -->
+  <!-- MYSELF -->
+
+  <section id="page-erik" xtlwg:lang="nl">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <h1>Erik&#160;Siegel</h1>
+
+      <table class="noborder">
+        <tr valign="top">
+          <td class="noborder">
+            <p> Xatapult is het eenmansbedrijf van Erik Siegel. </p>
+            <br/>
+            <p>Sinds 2001 is Erik als zelfstandig systeemarchitect werkzaam onder de naam Siegel&#160;ICT. Content Engineering en XML werden een
+              steeds belangrijker onderdeel van het werk. Om deze specialisatie een duidelijker plaats te geven is in 2009 de naam van het bedrijf
+              veranderd in Xatapult:&#160;Content&#160;Engineering.</p>
+            <br/>
+            <p>Erik's CV vindt u <a href="resources/Profile%20Xatapult-Erik%20Siegel.pdf" target="_blank">hier</a> (Engelstalig). </p>
+            <br/>
+            <p>Aanvullende informatie is ook te vinden via zijn <a href="http://www.linkedin.com/in/esiegel" target="_blank">LinkedIn
+              profiel</a>.</p>
+            <br/>
+            <p>Naast zijn werk doet Erik in zijn vrije tijd graag aan amateurtoneel, houtbewerking, lezen, kamperen en wandelen.</p>
+          </td>
+          <td class="noborder" nowrap="yes">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<img src="images/erik.jpg" alt="Erik Siegel"
+              height="250px" width="250px"/>
+            <p align="right">
+              <font size="-3" color="#999">(foto: <a style="color: black" href="http://www.fotografieronaldlowijs.nl/" target="_blank">Ronald
+                  Lowijs</a>)</font>
+            </p>
+          </td>
+        </tr>
+      </table>
+
+    </div>
+  </section>
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <section id="page-erik" xtlwg:lang="en">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <h1>Erik&#160;Siegel</h1>
+
+      <table class="noborder">
+        <tr valign="top">
+          <td class="noborder">
+            <p>Xatapult is a one-man company owned and run by Erik Siegel.</p>
+            <br/>
+            <p>Since 2001, Erik has worked as an independent system architect under the name of Siegel&#160;ICT. Content Engineering and XML became an
+              important part of his job. To do justice to this specialisation, the name of the company was changed to
+              Xatapult:&#160;Content&#160;Engineering.</p>
+            <br/>
+            <p>You can find Erik's resume <a href="resources/Profile%20Xatapult-Erik%20Siegel.pdf" target="_blank">here</a>.</p>
+            <br/>
+            <p>Additional information can be found through his <a href="http://www.linkedin.com/in/esiegel" tartget="_blank">LinkedIn profile</a>.</p>
+            <br/>
+          </td>
+          <td class="noborder" nowrap="yes"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <img src="images/erik.jpg" alt="Erik Siegel"
+              height="250px" width="250px"/>
+            <p align="right">
+              <font size="-3" color="#999">(photograph: <a style="color: black" href="http://www.fotografieronaldlowijs.nl/" target="_blank">Ronald
+                  Lowijs</a>)</font>
+            </p>
+          </td>
+        </tr>
+      </table>
+
+    </div>
+  </section>
+
+</xwebgen-sections>

@@ -9,7 +9,7 @@
       <xs:sequence>
         <xs:element maxOccurs="unbounded" name="template">
           <xs:annotation>
-            <xs:documentation>Specification of a template for the generation of the web pages.</xs:documentation>
+            <xs:documentation>Specification of one or more templates for the generation of the web pages.</xs:documentation>
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
@@ -22,7 +22,7 @@
             </xs:attribute>
             <xs:attribute name="dref-source" type="xtlwg:t-dref" use="required">
               <xs:annotation>
-                <xs:documentation>Document reference to the template XML document. Relative to the location of the base input directory.</xs:documentation>
+                <xs:documentation>Document reference to the template XML document.</xs:documentation>
               </xs:annotation>
             </xs:attribute>
             <xs:attributeGroup ref="xtlwg:filter-attributes"/>

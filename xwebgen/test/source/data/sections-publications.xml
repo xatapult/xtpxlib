@@ -1,0 +1,328 @@
+<xwebgen-sections xmlns:xtlwg="http://www.xtpxlib.nl/ns/xwebgen" xmlns="http://www.xtpxlib.nl/ns/xwebgen">
+
+  <!-- ================================================================== -->
+  <!-- PUBLICATIES -->
+
+  <section id="page-publications" xtlwg:lang="nl">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <h1>Publicaties</h1>
+
+      <ul>
+        <li>
+          <a href="http://xatapult.wordpress.com/" target="_blank">Xatapult's XML blog</a>
+        </li>
+        <li>
+          <a href="#exist-book">eXist - A NoSQL Document Database and Application Platform</a>
+        </li>
+        <li>
+          <a href="#wpibm">Artikelen op IBM developerWorks</a>
+        </li>
+        <li>Whitepapers:<ul>
+            <li>
+              <a href="#wp5">Content Packaging met Cocoon</a>
+            </li>
+            <li>
+              <a href="#wp1">Medium neutrale contentproductie</a>
+            </li>
+            <li>
+              <a href="#wp2">Schema's voor een XML-standaard</a>
+            </li>
+            <li>
+              <a href="#wp3">Opslag en uitwisseling van metadata</a>
+            </li>
+            <li>
+              <a href="#wp4">Workshops en leuker vergaderen</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <br/>
+      <hr/>
+      <br/>
+      <a name="exist-book"><!-- --></a>
+      <p class="subkop">eXist - A NoSQL Document Database and Application Platform</p>
+      <table class="noborder" cellspacing="10">
+        <tr valign="top">
+          <td class="noborder">
+            <a href="http://shop.oreilly.com/product/0636920026525.do" target="_blank">
+              <!-- <img src="images/exist-book-cover.gif" width="100%"/>-->
+              <img src="http://akamaicovers.oreilly.com/images/0636920026525/cat.gif"/>
+            </a>
+          </td>
+          <td class="noborder">
+            <br/>Samen met <a href="http://www.adamretter.org.uk/" target="_blank">Adam&#160;Retter</a> heb ik een boek geschreven over het XML
+            database en applicatie platform <a href="" target="_blank">eXist</a>. Het is uitgegeven bij O'Reilly en te koop via hun <a
+              href="http://shop.oreilly.com/product/0636920026525.do" target="_blank">webshop</a>.</td>
+        </tr>
+      </table>
+      <br/>
+      <hr/>
+      <br/>
+      <a name="wpibm"><!-- --></a>
+      <p class="subkop">Artikelen op <a href="http://www.ibm.com/developerworks/" target="_blank">IBM developerWorks</a>
+      </p>
+      <p>Op de website <a href="http://www.ibm.com/developerworks/" target="_blank">IBM developerWorks</a> zijn de volgende artikelen van mijn hand
+        verschenen (Engelstalig):</p>
+      <ul>
+        <li>
+          <a href="http://www.ibm.com/developerworks/library/x-safexslt/index.html" target="_blank">Write safer XSLT stylesheets</a>
+        </li>
+        <li>
+          <a href="http://www.ibm.com/developerworks/library/x-qti/index.html" target="_blank">QTI results processing</a>
+        </li>
+      </ul>
+      <br/>
+      <hr/>
+      <br/>
+      <a name="wp5"><!-- --></a>
+      <p class="subkop">Whitepaper: Content Packaging met Cocoon</p>
+      <p> Content Packaging is het proces om bij elkaar behorende content samen te pakken in een zip file. Deze wordt voorzien van een beschrijvend
+        bestand (het manifest), zodat de ontvangende partij kan zien wat het krijgt. Vooral bij educatieve content is dit een veel gebruikt fenomeen.
+        Dit artikel geeft een overzicht van de praktijkervaringen rondom het realiseren van een Content Packaging applicatie met het Java open source
+        framework Cocoon. Dit blijkt een uitermate geschikt platform hiervoor te zijn. </p>
+      <p> Dit artikel blijft op overzichtsniveau en gaat niet de technische diepte in. Kennis van Cocoon is niet noodzakelijk. </p>
+      <ul>
+        <li>
+          <a href="resources/Content Packaging met Cocoon.pdf" target="_blank"> Content Packaging met Cocoon </a>
+        </li>
+      </ul>
+      <br/>
+      <hr/>
+      <br/>
+      <a name="wp1"><!-- --></a>
+      <p class="subkop">Whitepaper: Medium neutrale contentproductie</p>
+      <p> Het is niet eenvoudig om met behulp van XML-technologie educatieve content te produceren. We beginnen vaak met auteurs die weinig affiniteit
+        met IT hebben. Daarna moet de content gesplitst en verrijkt worden om het op eenvoudige manier te kunnen hergebruiken. Aan het einde wordt er
+        hoge kwaliteit PDF-uitvoer verwacht. Het is lastig om hiervoor een productiestraat te ontwerpen en het aan de praat krijgen ervan is nog
+        lastiger. </p>
+      <p> Waarom is dit zo ingewikkeld? Er zijn XML-editors, contentmanagementsystemen en PDF-generatoren bij de vleet. Gewoon de zaak aan elkaar
+        knopen en klaar is Kees. </p>
+      <p> Helaas leert de werkelijkheid dat het niet zo eenvoudig is. XML-technologie is op dit moment vooral gericht op relatief simpele applicaties
+        als websites of eenvoudige folioproducties. Men gaat er vrijwel standaard van uit dat de gebruikers voldoende IT-kennis hebben en weten wat
+        een XML-tag is. Deze whitepaper is geschreven vanuit de, soms onplezierige, ervaringen met het maken van educatief materiaal met behulp van
+        XML-technologie. De paper bevat een analyse van de problemen en de ideeën die hieruit voort zijn gekomen. De whitepaper is geschreven voor een
+        presentatie gehouden op de XML Europe 2004 Conferentie (Amsterdam, april 2004) en is daarom alleen beschikbaar in het Engels. </p>
+      <ul>
+        <li>
+          <a href="resources/WP Medium Neutral Content Production.pdf" target="_blank"> Medium Neutral Content Production - A Problem Analysis </a>
+        </li>
+      </ul>
+      <br/>
+      <hr/>
+      <br/>
+      <a name="wp2"><!-- --></a>
+      <p class="subkop">Whitepaper: Schema's voor een XML-standaard</p>
+      <p> Als bedrijven onderling formeel moeten communiceren, zullen ze dit proces vroeger of later willen automatiseren. In de meeste gevallen is
+        dit een gecompliceerde en langdurige kwestie. Men moet het over veel dingen eens worden: functionaliteit, formaat, inhoud van de berichten, de
+        technische details rondom het verzenden en ontvangen, de juridische kant, etc. Een B2B (Business to Business) communicatieproces opzetten is
+        over het algemeen niet eenvoudig. </p>
+      <p> Nog niet zo lang geleden werden dit soort van B2B communicatie uitgevoerd met behulp van EDI. Tegenwoordig wordt hiervoor XML gebruikt. </p>
+      <p> Deze whitepaper bevat een case-studie over een kleine maar belangrijke stap in het ontstaan van een standaard in de advertentiewereld: het
+        ontwerpen en bouwen van XML-schema's voor berichten. Vanwege de omvang van de standaard erg groot was, lag het handmatig maken van deze
+        berichten niet voor de hand. Het zou vrijwel onmogelijk zijn alle details, zoals veldtypen en -omvang, volledig correct te krijgen. Echter,
+        inconsistenties tussen standaard en berichten was niet acceptabel... </p>
+      <p> In deze whitepaper/case-studie staat beschreven hoe het proces verloopt van de standaard naar de XML-schema's. De whitepaper is Engelstalig. </p>
+      <ul>
+        <li>
+          <a href="resources/Adventure case study.pdf" target="_blank"> Schemas for an XML standard - A case study </a>
+        </li>
+      </ul>
+      <br/>
+      <hr/>
+      <br/>
+      <a name="wp3"><!-- --></a>
+      <p class="subkop">Whitepaper: Opslag en uitwisseling van metadata</p>
+      <p> Metadata is overal: iedereen die wel eens een boek in een bibliotheek aan de hand van de catalogus heeft opgezocht, heeft met metadata
+        gewerkt. Metadata zijn gegevens óver dingen. Metadata beschrijven, identificeren en/of classificeren dingen zodat ze makkelijker terug te
+        vinden zijn of eenvoudiger kunnen worden ingedeeld. </p>
+      <p> De educatieve sector is een branche waarin metadatering van materiaal erg belangrijk is. Er zijn binnen deze sector diverse initiatieven om
+        metadata te standaardiseren, waarvan IMS (zie <a href="http://www.imsproject.org" target="_blank">www.imsproject.org</a>) op dit moment de
+        belangrijkste is. </p>
+      <p> Het implementeren van metadata volgens de internationale standaarden is echter een frustrerende bezigheid. Dat het belangrijk is om
+        standaarden te gebruiken, spreekt voor zich. Er blijven alleen altijd velden over die niet in de standaarden passen en alleen met e rare trucs
+        of met behulp van oneigenlijke velden onder te brengen zijn. Aan de andere kant zijn er veel overbodige velden die wel ingevuld moeten worden.
+        Door de complexiteit kost de software eromheen ook nog eens erg veel geld en moeite. En uiteindelijk is het dan nog maar de vraag of met al
+        deze afwegingen en keuzes de gewenste compatibiliteit tussen systemen inderdaad wordt bereikt. </p>
+      <p> Deze frustraties hebben geleid tot een poging om een flexibeler systeem voor metadatering te verzinnen. Een niet monolithisch, minder log en
+        vooral makkelijker aan te passen manier om metadata uit te wisselen en te gebruiken, zonder de standaarden uit het oog te verliezen. Daarover
+        gaat deze whitepaper. </p>
+      <ul>
+        <li>
+          <a href="resources/White Paper Metadata.pdf" target="_blank"> Opslag en uitwisseling van metadata </a>
+        </li>
+      </ul>
+      <br/>
+      <hr/>
+      <br/>
+      <a name="wp4"><!-- --></a>
+      <p class="subkop">Whitepaper: Workshops en leuker vergaderen</p>
+      <p> Dit heeft niets met Content Engineering of XML te maken. Maar... workshops zijn in een adviespraktijk een belangrijk en krachtig middel om
+        informatie te vergaren en commitment te verkrijgen. </p>
+      <p> Volgens boeken en andere geschriften over workshops is een workshop een keurig geregisseerd en voorspelbaar gebeuren. Een workshop verloopt
+        netjes volgens de fasen voorbereiding, divergentie, convergentie, afronding. Iedere fase kent eigen methoden. Binnen de tijd ligt er het
+        gewenste resultaat. </p>
+      <p> Ook de zaken er om heen zijn goed geregeld: natuurlijk is er een duidelijke probleemstelling en is het doel wel omschreven. Er is een
+        betrokken probleemhouder die meedenkt en zijn rol met verve speelt. De workshop vindt plaats in een hotel, ergens zo ver weg op de hei dat
+        zelfs mobiele telefoons niet werken. En, uiteraard, is er een aparte facilitator die de groep professioneel door het proces loodst zonder zich
+        er inhoudelijk mee te bemoeien. </p>
+      <p> Helaas is de praktijk zelden of nooit zoals hierboven geschetst. Uiteraard zullen er wel workshops worden gehouden, waarbij er tijd en geld
+        genoeg is om in een duur hotel te gaan zitten en een minstens even dure facilitator te betalen, maar in werkelijkheid is dat zelden of nooit
+        het geval. </p>
+      <p> Wat moet er gebeuren om de kloof tussen droom en werkelijkheid te dichten? Wat kan een amateur facilitator maar beter wel én niet doen?
+        Welke workshoptechnieken maken vergaderingen leuker? Hierover gaat deze whitepaper. </p>
+      <ul>
+        <li>
+          <a href="resources/White Paper Workshops.pdf" target="_blank"> Workshops en leuker vergaderen </a>
+        </li>
+      </ul>
+      <br/>
+      <hr/>
+
+    </div>
+  </section>
+  
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <section id="page-publications" xtlwg:lang="en">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <h1>Publications</h1>
+      
+      <ul>
+        <li>
+          <a href="http://xatapult.wordpress.com/" target="_blank">Xatapult's XML blog</a>
+        </li>
+        <li>
+          <a href="#exist-book">eXist - A NoSQL Document Database and Application Platform</a>
+        </li>
+        <li>
+          <a href="#wpibm">Articles on IBM developerWorks</a>
+        </li>
+        <li>Whitepapers:<ul>
+            <li>
+              <a href="#wp5">Content Packaging with Cocoon</a>
+            </li>
+            <li>
+              <a href="#wp1">Medium neutral content production</a>
+            </li>
+            <li>
+              <a href="#wp2">Schemas for an XML standard</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <br/>
+
+      <hr/>
+      <br/>
+      <a name="exist-book"><!-- --></a>
+      <p class="subkop">eXist - A NoSQL Document Database and Application Platform</p>
+      <table class="noborder" cellspacing="10">
+        <tr valign="top">
+          <td class="noborder">
+            <a href="http://shop.oreilly.com/product/0636920026525.do" target="_blank">
+              <!-- <img src="images/exist-book-cover.gif" width="100%"/>-->
+              <img src="http://akamaicovers.oreilly.com/images/0636920026525/cat.gif"/>
+            </a>
+          </td>
+          <td class="noborder">
+            <br/>Together with <a href="http://www.adamretter.org.uk/" target="_blank">Adam&#160;Retter</a> I wrote a book about the XML database and
+            application platform <a href="" target="_blank">eXist</a>. It is published by O'Reilly and for sale in their <a
+              href="http://shop.oreilly.com/product/0636920026525.do" target="_blank">webshop</a>.</td>
+        </tr>
+      </table>
+      <br/>
+
+      <hr/>
+      <br/>
+      <a name="wpibm"><!-- --></a>
+      <p class="subkop">Articles on <a href="http://www.ibm.com/developerworks/" target="_blank">IBM developerWorks:</a>
+      </p>
+      <p>The website <a href="http://www.ibm.com/developerworks/" target="_blank">IBM developerWorks</a> has published the following articles I've
+        written:</p>
+      <ul>
+        <li>
+          <a href="http://www.ibm.com/developerworks/library/x-safexslt/index.html" target="_blank">Write safer XSLT stylesheets</a>
+        </li>
+        <li>
+          <a href="http://www.ibm.com/developerworks/library/x-qti/index.html" target="_blank">QTI results processing</a>
+        </li>
+      </ul>
+      <br/>
+
+      <hr/>
+      <br/>
+      <a name="wp5"><!-- --></a>
+      <p class="subkop">Whitepaper: Content Packaging with Cocoon</p>
+      <p> Content Packaging is the process in which content that belongs together is bundled into a zip file. A file describing the content (called a
+        manifest) is added so the receiving side can understand what to do with it. For transporting educational content (e.g. e-learning courses)
+        this is common practice, but it is also used elsewhere (e.g. Java <code>.jar</code> and <code>.war</code> files). This presentation derives
+        from practical experience building a Content Packaging application, for educational content, using the open source Cocoon framework. </p>
+      <p> Creating such a Content Package starts with thousands of XML source files and involves quite a lot of transforming, splitting and merging
+        before the end zip file can be assembled. Cocoon proved itself to be a very good platform for operations like this. </p>
+      <ul>
+        <li>
+          <a href="resources/Content Packaging with Cocoon.pdf" target="_blank"> Content Packaging with Cocoon </a>
+        </li>
+      </ul>
+      <br/>
+      <hr/>
+      <br/>
+      <a name="wp1"><!-- --></a>
+      <p class="subkop">Whitepaper: Medium neutral content production</p>
+      <p> It isn’t easy, producing educational content with XML technologies. At the beginning of the lifecycle are authors with hardly any IT
+        affinity. In the middle we need to split their output into smaller sections and reassemble it into meaningful combinations. At the end we need
+        high quality output for print and other media. Designing the technology for this is hard, putting it into practice even harder. </p>
+      <p> So, why is this so difficult? There are XML editors, content management systems and PDF generators by the dozen. Just put some of it
+        together and off we go. Unfortunately, reality proves otherwise. Most XML technology on the market is geared towards relatively simple
+        applications like websites or simple print publications. It all seems to assume that its users are IT proficient, know what an XML tag is and
+        how to handle it. </p>
+      <p> Another problem is rooted in the holy grail of XML publishing: Medium neutrality. High quality print output requires an enormous amount of
+        detail in the XML sources. So what to do with designers that need fine grained control over the placement of illustrations on the page? You
+        somehow have to add all this information somewhere and before you know it, your content is no longer medium neutral but very print oriented.
+        Yes, it is possible to create educational books with XML technology. No, it is definitely not yet the smooth production facility we want it to
+        be. </p>
+      <p> This whitepaper was written as a result of the, sometimes unpleasant, experiences with XML publishing of educational material. We analyzed
+        what happened and came up with some interesting thoughts and ideas that we would like to share with you. Necessary background for this
+        whitepaper is some experience with XML content production. In-depth knowledge about XML is not required. </p>
+      <p> This paper is written for a presentation for the XML Europe 2004 conference. </p>
+      <ul>
+        <li>
+          <a href="resources/WP Medium Neutral Content Production.pdf" target="_blank"> Medium Neutral Content Production - A Problem Analysis </a>
+        </li>
+      </ul>
+      <br/>
+      <hr/>
+      <br/>
+      <a name="wp2"><!-- --></a>
+      <p class="subkop">Whitepaper: Schemas for an XML standard</p>
+      <p> When companies need to communicate a lot to get work done, they will sooner or later start thinking about automating this. In most cases
+        this is a complicated and time-consuming process. You need to agree about the functionality, format and content of the messages, the technical
+        details for actually sending and receiving them, the legal side of it, and much, much more. Setting up a business-to-business (B2B)
+        communication standard isn’t easy. </p>
+      <p> However, the reward can be enormous: Increased volumes of business transactions, decreased number of errors, etc. Sometimes because of the
+        automation whole new markets open up. </p>
+      <p> Nor so long ago, this kind of B2B communication was done using the EDI standards. For several reasons, with a few notable exceptions, EDI
+        never really made it as an important standard. Nowadays, these kinds of processes are automated using XML technology. However, whatever
+        technology is used to implement things, the groundwork will stay the same: Somebody must analyze the communication processes, create a common
+        data model, design messages and message flows, etc. After this is done and agreed upon, the technical people come in and design the actual
+        messages, the infrastructure and all the other necessary technical bits and pieces to make it work. </p>
+      <p> This is a case study about a small but significant step in a XML standard creation process: The analysts were ready, we knew what we wanted
+        to do and there was a huge formal data and communication model. Now, from this, we needed to design the actual messages and create XML
+        schemas. Maintenance was an important issue, because this was only version one and things would evolve. </p>
+      <p> Since the standard was quite large, hand crafting all message schemas was definitely not a good idea: It would have been next to impossible
+        to get all the details, like field types and sizes, completely right. But inconsistencies between standard and actual messages were not
+        acceptable… </p>
+      <p> This whitepaper explains how we automated the conversion from data/communication model into the actual XML message schemas. It involves an
+        interesting mix of technologies, resulting in not only the schemas themselves but also a full set of documentation, all generated and
+        therefore easily maintained. </p>
+      <ul>
+        <li>
+          <a href="resources/Adventure case study.pdf" target="_blank">Schemas for an XML standard - A case study</a>
+        </li>
+      </ul>
+      <br/>
+      <hr/>
+
+    </div>
+  </section>
+</xwebgen-sections>

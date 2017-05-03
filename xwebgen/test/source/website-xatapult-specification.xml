@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xwebgen-specification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.xtpxlib.nl/ns/xwebgen urn:x-xtpxlib.nl://xwebgen/xsd/xwebgen-specification.xsd"
+  xmlns="http://www.xtpxlib.nl/ns/xwebgen" xmlns:xtlwg="http://www.xtpxlib.nl/ns/xwebgen"
+  dref-base-output-dir="../../websites-generated/site-${lang}-${system}">
+
+  <!-- ================================================================== -->
+  <!--
+    Main xwebgen specification file for the Xatapult website. Expects two filter parameters:
+    - lang=nl or lang=en
+    - system=PRD or system=TST
+      TST will generate some other links to cater for the fact that the whole shebang is file based (and not served by a web-server)
+  -->
+  <!-- ================================================================== -->
+  <!-- TEMPLATES: -->
+
+  <template id="main" dref-source="templates/xatapult-main-page-template.xml"/>
+
+  <!-- ================================================================== -->
+  <!-- PAGES: -->
+
+  <!-- Home page: -->
+  <page template-idref="main" dref-section-document="data/sections-home.xml" section-idref="home" dref-target="home.html"/>
+
+  <!-- Profile pages: -->
+  <page template-idref="main" dref-section-document="data/sections-profile.xml" section-idref="page-about" dref-target="about.html"/>
+  <page template-idref="main" dref-section-document="data/sections-profile.xml" section-idref="page-customers" dref-target="customers.html"/>
+  <page template-idref="main" dref-section-document="data/sections-profile.xml" section-idref="page-services" dref-target="services.html"/>
+  <page template-idref="main" dref-section-document="data/sections-profile.xml" section-idref="page-erik" dref-target="erik.html"/>
+
+  <!-- Background pages: -->
+  <page template-idref="main" dref-section-document="data/sections-background-information.xml" section-idref="page-content-engineering"
+    dref-target="content-engineering.html"/>
+  <page template-idref="main" dref-section-document="data/sections-background-information.xml" section-idref="page-xml" dref-target="xml.html"/>
+
+  <!-- Publications: -->
+  <page template-idref="main" dref-section-document="data/sections-publications.xml" section-idref="page-publications" dref-target="publications.html"/>
+
+  <!-- Contact: -->
+  <page template-idref="main" dref-section-document="data/sections-contact.xml" section-idref="page-contact" dref-target="contact.html"/>
+  
+  <!-- ================================================================== -->
+  <!-- FIXED DIRECTORIES: -->
+
+  <copy-dir dref-source-dir="images"/>
+  <copy-dir dref-source-dir="css"/>
+  <copy-dir dref-source-dir="js"/>
+  <copy-dir dref-source-dir="resources"/>
+
+  <!-- ================================================================== -->
+  <!-- GLOBAL PROPERTIES: -->
+
+  <properties>
+
+    <!-- Default page title (override this for specific pages if necessary): -->
+    <property id="page-title">Xatapult - Content Engineering</property>
+
+    <!-- Phone and e-mail basics: -->
+    <property id="phonenumber" xtlwg:lang="nl">06&#160;-&#160;53.26.07.92</property>
+    <property id="phonenumber" xtlwg:lang="en">+31&#160;-&#160;6&#160;-&#160;53.26.07.92</property>
+    <property id="email" xtlwg:lang="nl">info@xatapult.nl</property>
+    <property id="email" xtlwg:lang="en">info@xatapult.com</property>
+
+    <!-- Home links for TST: -->
+    <property id="homelink" xtlwg:system="TST">home.html</property>
+    <property id="homelink-other" xtlwg:lang="nl" xtlwg:system="TST">../site-en-TST/home.html</property>
+    <property id="homelink-other" xtlwg:lang="en" xtlwg:system="TST">../site-nl-TST/home.html</property>
+
+    <!-- Home links for PRD: -->
+    <property id="homelink" xtlwg:lang="nl" xtlwg:system="PRD">http://www.xatapult.nl</property>
+    <property id="homelink" xtlwg:lang="en" xtlwg:system="PRD">http://www.xatapult.com</property>
+    <property id="homelink-other" xtlwg:lang="nl" xtlwg:system="PRD">http://www.xatapult.com</property>
+    <property id="homelink-other" xtlwg:lang="en" xtlwg:system="PRD">http://www.xatapult.nl</property>
+
+  </properties>
+
+</xwebgen-specification>

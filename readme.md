@@ -38,6 +38,7 @@ Most subdirectories contain a `readme.md` file that details its contents.
 | `ms-office` | Sub-library for handling and working with some Microsoft Office formats (Office version > 2003) | Depends on: `common`, `container` |
 | `xmlcatalog` | Contains the XML catalog file(s) for easy access to the library  from code. | Only necessary when you use the XML catalog system
 | `xmldoc` | Sub-library with code for generating documentation. A bit like Javadoc. | Depends on: `common` |
+| `xwebgen` | Sub-library with code for generating a simple static website from templates. | Depends on: `common` and `container` |
 
 ## Main conventions used
 

@@ -1,0 +1,156 @@
+<xwebgen-sections xmlns:xtlwg="http://www.xtpxlib.nl/ns/xwebgen" xmlns="http://www.xtpxlib.nl/ns/xwebgen">
+
+  <!-- ================================================================== -->
+  <!-- CONTENT ENGINEERING: -->
+
+  <section id="page-content-engineering" xtlwg:lang="nl">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <h1>Content&#160;Engineering</h1>
+
+      <p>Ik heb geprobeerd zelf met een goede definitie en/of omschrijving van Content Engineering te komen, maar de (Engelstalige) <a
+          href="http://en.wikipedia.org/wiki/Content_Engineering" target="_blank">Wikipedia ingang voor Content Engineering</a> vertelt het verhaal
+        erg duidelijk:</p>
+      <br/>
+      <div style="margin-left: +20px; margin-right:+40px; font-style:italic;">
+        <p>Content Engineering is a term applied to an engineering speciality dealing with the issues around the use of content in
+          computer-facilitated environments. Content production, content management, content modelling, content conversion, and content use and
+          repurposing are all areas involving this speciality. It is not a speciality with wide industry recognition and is often performed on an ad
+          hoc basis by members of software development or content production staff, but is beginning to be recognized as a necessary function in any
+          complex content-centric project involving both content production as well as software system development.</p>
+        <br/>
+        <p> Content engineering tends to bridge the gap between groups involved in the production of content (Publishing and Editorial staff,
+          Marketing, Sales, HR) and more technologically-oriented departments (such as Software Development, or IT) that put this content to use in
+          web or other software-based environments, and requires an understanding of the issues and processes of both sides.</p>
+        <br/>
+        <p> Typically, Content Engineering involves extensive use of XML technologies, XML being the most widespread language for representing
+          structured content. Content Management Systems are often a key technology used in this practice though frequently Content Engineering fills
+          the gap where no formal CMS has been put into place.</p>
+        <p style="font-size:xx-small;text-align:right;">Source: <a href="http://en.wikipedia.org/wiki/Content_Engineering" target="_blank"
+            >Wikipedia</a> (January 2014)</p>
+      </div>
+      <br/>
+      <p>Aanvullende informatie over Content Engineering is te vinden in <a
+          href="http://www.slideshare.net/jgollner/introduction-to-content-engineering-cci2008" target="_blank">een presentatie door Joe&#160;Gollner
+          van Stilo e-Publishing solutions</a>. In zo'n 60+ sheets presenteert hij de belangrijkste concepten die hierbinnen een rol spelen.</p>
+
+    </div>
+  </section>
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <section id="page-content-engineering" xtlwg:lang="en">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <h1>Content&#160;Engineering</h1>
+
+      <p>I've tried to come up with of a good definition and/or description of Content Engineering, but the <a
+          href="http://en.wikipedia.org/wiki/Content_Engineering" target="_blank">Wikipedia entry for Content Engineering</a> already does a great
+        job:</p>
+      <br/>
+      <div style="margin-left: +20px; margin-right:+40px; font-style:italic;">
+        <p>Content Engineering is a term applied to an engineering speciality dealing with the issues around the use of content in
+          computer-facilitated environments. Content production, content management, content modelling, content conversion, and content use and
+          repurposing are all areas involving this speciality. It is not a speciality with wide industry recognition and is often performed on an ad
+          hoc basis by members of software development or content production staff, but is beginning to be recognized as a necessary function in any
+          complex content-centric project involving both content production as well as software system development.</p>
+        <br/>
+        <p> Content engineering tends to bridge the gap between groups involved in the production of content (Publishing and Editorial staff,
+          Marketing, Sales, HR) and more technologically-oriented departments (such as Software Development, or IT) that put this content to use in
+          web or other software-based environments, and requires an understanding of the issues and processes of both sides.</p>
+        <br/>
+        <p> Typically, Content Engineering involves extensive use of XML technologies, XML being the most widespread language for representing
+          structured content. Content Management Systems are often a key technology used in this practice though frequently Content Engineering fills
+          the gap where no formal CMS has been put into place.</p>
+        <p style="font-size:xx-small;text-align:right;">Source: <a href="http://en.wikipedia.org/wiki/Content_Engineering" target="_blank"
+            >Wikipedia</a> (January 2014)</p>
+      </div>
+      <br/>
+      <p>Another very interesting source of information is <a href="http://www.slideshare.net/jgollner/introduction-to-content-engineering-cci2008"
+          target="_blank">a presentation by Joe&#160;Gollner of Stilo e-Publishing solutions</a>. In 60+ sheets he presents the core concepts
+        underlying Content Engineering.</p>
+
+    </div>
+  </section>
+
+  <!-- ================================================================== -->
+  <!-- XML -->
+
+  <section id="page-xml" xtlwg:lang="nl">
+
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <h1>Wat is XML</h1>
+
+      <p>XML is een standaard die betekenis geeft aan data. Het wordt gebruikt voor de opslag en uitwisseling van gegevens binnen en tussen
+        geautomatiseerde systemen. XML doet dat op een manier die zowel voor machines als voor mensen leesbaar is. Neem als voorbeeld onderstaand
+        stukje XML. Wij begrijpen het, maar een computer ook:</p>
+      <br/>
+      <form method="post" action="">
+        <textarea cols="40" rows="10" class="xml" xml:space="preserve">&lt;XmlSites&gt; 
+  &lt;XmlSite&gt;
+    &lt;Description&gt;Xatapult: Content Engineering&lt;/Description&gt;
+    &lt;URL&gt;http://www.xatapult.nl&lt;/URL&gt; &lt;/XmlSite&gt; 
+  &lt;XmlSite&gt;
+    &lt;Description&gt;XML from the inside out&lt;/Description&gt;
+    &lt;URL&gt;http://www.xml.com&lt;/URL&gt; 
+  &lt;/XmlSite&gt; 
+&lt;/XmlSites&gt;</textarea>
+      </form>
+      <br/>
+      <p>Gegevens worden 'elementen' genoemd en staan standaard in een 'tag', zoals: <code>&lt;URL&gt;...&lt;/URL&gt;</code>. Deze elementen worden
+        altijd in een bepaalde structuur geplaatst, zoals in het voorbeeld te zien is. Hierdoor kan de computer het element herkennen en kan een
+        programma er iets mee doen. Bij het ontwerpen van elementnamen en structuur is het van belang erop te letten dat gewenste data er op een
+        logische en overzichtelijke manier in gezet kunnen worden.</p>
+      <br/>
+      <p>XML zelf biedt alle vrijheid om zelf structuur, elementnamen en andere eigenschappen te benoemen. Het maakt binnen de XML-standaard niet uit
+        of iets <code>&lt;URL&gt;</code> of <code>&lt;href&gt;</code> heet. Maar de software die gebruikmaakt van XML, moet wel exact weten wat er
+        staat. Daarom zijn aanvullende standaarden zoals DTD's of schema's nodig om eenduidig vast te leggen wat wordt bedoeld.</p>
+      <br/>
+      <p>De ene XML is de andere niet. Het komt vaak voor dat een bericht ontvangen in de ene XML-structuur moet worden omgezet naar een andere.
+        Hiervoor zijn gespecialiseerde transformatietalen beschikbaar, zoals XSLT en XQuery.</p>
+      <br/>
+      <p>XML is zo langzamerhand overal en wordt gebruikt voor dataopslag, websites, communicatie, rapportage en nog veel meer. Wist u bijvoorbeeld
+        dat uw digitale fototoestel de gegevens over de foto - de metadata - in XML vastlegt?</p>
+      <br/>
+      <p>Helaas is het goed toepassen van XML vaak lastiger dan verwacht. Xatapult is u hierbij graag van dienst.</p>
+    </div>
+  </section>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <section  id="page-xml" xtlwg:lang="en">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <h1>What is XML</h1>
+      
+      <p>XML is a standard that gives meaning to data. XML does this in such a way that it is legible for both machines and humans. Take the piece of
+        XML below. We understand it, but so does a computer:</p>
+      <br/>
+      <form method="post" action="">
+        <textarea cols="40" rows="10" class="xml" xml:space="preserve">&lt;XmlSites&gt; 
+  &lt;XmlSite&gt;
+    &lt;Description&gt;Xatapult: Content Engineering&lt;/Description&gt;
+    &lt;URL&gt;http://www.xatapult.com&lt;/URL&gt; &lt;/XmlSite&gt; 
+  &lt;XmlSite&gt;
+    &lt;Description&gt;XML from the inside out&lt;/Description&gt;
+    &lt;URL&gt;http://www.xml.com&lt;/URL&gt; 
+  &lt;/XmlSite&gt; 
+&lt;/XmlSites&gt;</textarea>
+      </form>
+      <br/>
+      <p>Data are called 'elements' and can be found in a 'tag', like <code>&lt;URL&gt;...&lt;/URL&gt;</code>. These elements are always placed in a
+        certain structure, as shown in the example. This way, the computer is able to recognise the element and a program can use it. When designing
+        element names and structure, it is important to make sure that selected data can be placed there logically and conveniently.</p>
+      <br/>
+      <p>XML itself allows you the freedom to name your own structure, element names and other characteristics. Within the XML standard it doesn't
+        matter whether something is called <code>&lt;URL&gt;</code> or <code>&lt;href&gt;</code>. But the software that uses XML does need to know
+        exactly what it says. That is why you need additional standards like DTDs or schemas to lay the down unambiguously what is meant.</p>
+      <br/>
+      <p>One XML isn't the other. It often occurs that a message received in one XML structure has to be transformed to another. There are specialised
+        transformation languages for this, such as XSLT and XQuery.</p>
+      <br/>
+      <p>XML can be found everywhere by now and is used for data storage, websites, communication, reporting, and much more. Did you know that even
+        your digital camera records the picture data - the metadata - in XML?</p>
+      <br/>
+      <p>Unfortunately, a good application of XML is often more difficult than expected. Xatapult is happy to assist you.</p>
+    </div>
+
+  </section>
+
+</xwebgen-sections>

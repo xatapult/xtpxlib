@@ -15,7 +15,7 @@
             <xs:attribute name="id" type="xtlwg:t-identifier" use="required"/>
             <xs:attribute name="dref-transformer" type="xtlwg:t-dref">
               <xs:annotation>
-                <xs:documentation>Reference toan optional XSLT stylehseet for transforming this piece of contents. Relative to this document.</xs:documentation>
+                <xs:documentation>Reference toan optional XSLT stylesheet for transforming this piece of contents. Relative to this document.</xs:documentation>
               </xs:annotation>
             </xs:attribute>
             <xs:attributeGroup ref="xtlwg:filter-attributes"/>

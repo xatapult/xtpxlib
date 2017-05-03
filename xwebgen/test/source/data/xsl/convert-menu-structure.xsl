@@ -41,7 +41,15 @@
       </a>
       
       <ul class="menu_level_1">
-        <xsl:apply-templates select="submenu"/>
+        <xsl:choose>
+          <xsl:when test="exists(submenu)">
+            <xsl:apply-templates select="submenu"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <!-- Something is necessary here for HTML's fuck sake: -->
+            <xsl:comment> </xsl:comment>
+          </xsl:otherwise>  
+        </xsl:choose>
       </ul>
     </li>
   </xsl:template>

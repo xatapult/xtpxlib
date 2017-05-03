@@ -4,9 +4,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <!-- TBD: ALL BELOW THIS FLEXIBLE/LANG DEPENDENT? -->
-    <title>Xatapult: Content Engineering</title>
-    <meta name="Description" content="Xatapult XML ondersteuning" />
-    <meta name="Keywords" content="Xatapult, XML, XML ondersteuning" />
+    <title>${page-title}</title>
+    <meta name="Description" content="Xatapult Cntent Engineering" />
+    <meta name="Keywords" content="Xatapult, XML" />
     <meta name="msnbot" content="NOODP" />
     <meta name="googlebot" content="NOODP" />
     <meta name="robots" content="noodp,noydir" />
@@ -35,14 +35,14 @@
     <div id="container">
       <div id="header">
         <img src="images/spacer.gif" alt="Xatapult home" width="349" height="102" border="0" usemap="#LinkHomepage" />
-        <map name="LinkHomepage" id="LinkHomepage"><area shape="rect" coords="18,48,345,83" href="http://www.xatapult.nl/home" alt="Xatapult home"
+        <map name="LinkHomepage" id="LinkHomepage"><area shape="rect" coords="18,48,345,83" href="${homelink}" alt="Xatapult home"
            /></map>
       </div>
       <div id="mainContent">
         
         <div class="contentwrapper">
           <!-- MAIN CONTENTS: -->
-          <page-contents-expand dref-section-document="../data/sections-home.xml" xmlns="http://www.xtpxlib.nl/ns/xwebgen"/>
+          <page-contents-expand xmlns="http://www.xtpxlib.nl/ns/xwebgen"/>
         </div>
 
         <!-- RIGHT INFO COLUMN: -->
