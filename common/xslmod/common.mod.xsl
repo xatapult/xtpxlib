@@ -430,7 +430,7 @@
 
   <xsl:function name="xtlc:raise-error">
     <!--* Stops any processing by raising an error. You can specify the error's name. -->
-    <xsl:param name="msg-parts" as="item()+" required="yes">
+    <xsl:param name="msg-parts" as="item()+">
       <!--* Error message to show (in parts, all parts will be concatenated by xtlc:items2str()). -->
     </xsl:param>
     <xsl:param name="error-name" as="xs:string">
@@ -448,7 +448,7 @@
 
   <xsl:function name="xtlc:raise-error">
     <!--* Stops any processing by raising an error. -->
-    <xsl:param name="msg-parts" as="item()+" required="yes">
+    <xsl:param name="msg-parts" as="item()+">
       <!--* Error message to show (in parts, all parts will be concatenated by xtlc:items2str()). -->
     </xsl:param>
 
