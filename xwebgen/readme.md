@@ -41,7 +41,7 @@ xwebgen processing starts with a specification document. The format of this docu
 - One or more (html) template files. These are files that are used as the basis for the page generation. Examples can be found in `test/source/templates/`
 - One or more page specification. A page specification results in a generated html page, based on a template.
 - Copy directory specifications for copying stuff like css and javascript and images and so on
-- Global properties (you can define specific properties for every template and page specificationm if needed)
+- Global properties (you can define specific properties for every template and page specification if needed)
 
 ### Sections
 
