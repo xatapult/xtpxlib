@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="18.1">
+<project version="19.0">
     <meta>
         <filters directoryPatterns="" filePatterns="xtpxlib.xpr" positiveFilePatterns="" showHiddenFiles="false"/>
         <options>
-            <serialized version="18.1" xml:space="preserve">
+            <serialized version="19.0" xml:space="preserve">
                 <serializableOrderedMap>
                     <entry>
                         <String>catalogs.v5</String>
@@ -241,6 +241,9 @@
                                     <null/>
                                 </field>
                                 <field name="customAttributeValueEditor">
+                                    <null/>
+                                </field>
+                                <field name="textModeExternalObjectInsertionHandler">
                                     <null/>
                                 </field>
                             </documentTypeDescriptor>
@@ -1202,6 +1205,9 @@ ancestor-or-self::*:return[namespace-uri() = "http://www.oxygenxml.com/ns/doc/xs
                                     <null/>
                                 </field>
                                 <field name="customAttributeValueEditor">
+                                    <null/>
+                                </field>
+                                <field name="textModeExternalObjectInsertionHandler">
                                     <null/>
                                 </field>
                             </documentTypeDescriptor>
@@ -3581,7 +3587,6 @@ ancestor-or-self::*:return[namespace-uri() = "http://www.oxygenxml.com/ns/doc/xs
             <folder path="../../../Xatapult/xdocument/"/>
             <folder path="../../../xtpxlib/"/>
         </folder>
-        <folder path="../../../xtpxlib-tmp/"/>
         <folder path="../../"/>
     </projectTree>
 </project>
