@@ -61,10 +61,7 @@
     
     <p:variable name="debug" select="false()"/>
     
-    <p:variable name="xpl-base-dir-raw" select="replace(static-base-uri(), '(.*)[/\\][^/\\]+$', '$1')"/>
-    <p:variable name="xpl-base-dir" select="replace($xpl-base-dir-raw, '^file:/+', 'file:///')"/>
-    
-    <p:variable name="dref-default-fop-config" select="concat($xpl-base-dir-raw, '/../../data/fop-default-config.xml')"/>
+    <p:variable name="dref-default-fop-config" select="resolve-uri('../../data/fop-default-config.xml', static-base-uri())"/>
     <p:variable name="dref-fop-config-to-use" select="if ($dref-fop-config ne '') then $dref-fop-config else $dref-default-fop-config"/>
     
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
