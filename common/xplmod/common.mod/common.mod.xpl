@@ -443,7 +443,7 @@
     <p:documentation>
       Copies a file, if necessary from inside a zip file.
 
-      IMPORTANT: For older versions of Clabash (before Janyary 2017) there is a huge bug in this step: A file inside a zip file must have a straight      
+      IMPORTANT: For older versions of Calabash (before January 2017) there is a huge bug in this step: A file inside a zip file must have a straight      
       filename without any characters that normally would have been escaped (like, the most inportant one, spaces).
     </p:documentation>
 
