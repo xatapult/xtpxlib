@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.xtpxlib.nl/ns/xdocbook"
+  xmlns:xtlxdb="http://www.xtpxlib.nl/ns/xdocbook">
+
+  <xs:element name="element-description">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="xtlxdb:g-description"/>
+        <xs:element maxOccurs="unbounded" minOccurs="0" name="attribute">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:group ref="xtlxdb:g-description"/>
+              <xs:group ref="xtlxdb:g-type"/>
+            </xs:sequence>
+            <xs:attribute name="name" type="xtlxdb:t-xmlname" use="required"/>
+            <xs:attribute default="false" name="required" type="xs:boolean"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="name" type="xtlxdb:t-xmlname" use="required"/>
+      <xs:attribute name="id" type="xtlxdb:t-identifier">
+        <xs:annotation>
+          <xs:documentation>If not given the name of the source file (without extension) is used as the identifier of this description</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:group name="g-description">
+    <xs:sequence>
+      <xs:element name="description">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:any maxOccurs="unbounded" namespace="http://docbook.org/ns/docbook" processContents="skip"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:group>
+  <xs:group name="g-type">
+    <xs:sequence>
+      <xs:element name="type">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:group minOccurs="0" ref="xtlxdb:g-description"/>
+          </xs:sequence>
+          <xs:attribute name="base" type="xtlxdb:t-typename" use="required"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:group>
+  <xs:simpleType name="t-identifier">
+    <xs:restriction base="xs:NCName"/>
+  </xs:simpleType>
+  <xs:simpleType name="t-xmlname">
+    <xs:annotation>
+      <xs:documentation>XML name with/without prefix. TBD</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="t-typename">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+</xs:schema>
