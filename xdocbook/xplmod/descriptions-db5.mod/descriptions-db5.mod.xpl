@@ -25,18 +25,14 @@
 
     <!-- ================================================================== -->
 
-    <p:viewport match="xtlxdb:insert-element-description">
-      <p:xslt>
-        <p:input port="stylesheet">
-          <p:document href="xsl/do-element-description.xsl"/>
-        </p:input>
-        <p:with-param name="debug" select="$debug"/>
-      </p:xslt>
-    </p:viewport>
+    <p:xslt>
+      <p:input port="stylesheet">
+        <p:document href="xsl/do-element-description.xsl"/>
+      </p:input>
+      <p:with-param name="debug" select="$debug"/>
+    </p:xslt>
     
-    <!-- Now unwrap the groups created (we needed to group the XSLT output elements, otherwise it wouldn't be valid XML): -->
-    <p:unwrap match="xtlxdb:group"/>
-
+ 
   </p:declare-step>
 
 </p:library>

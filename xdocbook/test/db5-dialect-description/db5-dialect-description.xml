@@ -77,10 +77,10 @@
               <tbody>
                 <row>
                   <entry>
-                    <para><literal>break</literal></para>
+                    <para><literal>break</literal>, <literal>smallbreak</literal></para>
                   </entry>
                   <entry>
-                    <para>Inserts an empty line. The contents of the <literal>&lt;para></literal> element is ignored.</para>
+                    <para>Inserts an empty line, either full or small height. The contents of the <literal>&lt;para></literal> element is ignored.</para>
                   </entry>
                 </row>
                 <row>
@@ -138,6 +138,38 @@
               </tbody>
             </tgroup>
           </informaltable>
+          <para>You can add <code>role="nonumber"</code> to a table to stop it from getting a number:</para>
+          <table xml:id="unnumbered-table" role="nonumber">
+            <title>Unnumbered table</title>
+            <tgroup cols="2">
+              <colspec colname="c1" colnum="1"/>
+              <colspec colname="c2" colnum="2"/>
+              <thead>
+                <row>
+                  <entry>Blurp</entry>
+                  <entry>Blorb</entry>
+                </row>
+              </thead>
+              <tbody>
+                <row>
+                  <entry>
+                    <para>Example</para>
+                  </entry>
+                  <entry>
+                    <para>of</para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para>an</para>
+                  </entry>
+                  <entry>
+                    <para>unnumbered table</para>
+                  </entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
           <para>Tables are notoriously difficult in that FOP cannot compute column widths automatically. To amand this (a little bit) you can add
               <code>colspec/@colwidth</code> information.</para>
           <para role="break"/>
@@ -155,15 +187,16 @@
 
         <listitem>
           <para role="keep-with-next"><emphasis role="bold">Figures</emphasis>: Both <literal>&lt;figure></literal> and
-              <literal>&lt;informalfigure></literal> are allowed (and have the same effect). Width and height can be set on the image data.</para>
+              <literal>&lt;informalfigure></literal> are allowed. Width and height can be set on the image data.</para>
           <figure xml:id="figure-example">
-            <title>An example of a figure...</title>
+            <title>An example of a figure... <code>(this in fixed width)</code></title>
             <mediaobject>
               <imageobject>
                 <imagedata fileref="figures/logo-xatapult.jpg" width="10%"/>
               </imageobject>
             </mediaobject>
           </figure>
+          <para>You can add <code>role="nonumber"</code> to a figure to stop it from getting a number.</para>
           <para role="break"/>
         </listitem>
 
@@ -246,12 +279,9 @@
             <title>Example of an example</title>
             <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus elementum diam nec nunc elementum, eget dapibus dui malesuada.
               Aenean facilisis consequat odio, vitae euismod eros tempor nec. Vestibulum cursus tortor tortor, semper euismod sapien sagittis et.
-              Donec eleifend mattis tempor. Quisque placerat, velit vel pellentesque finibus, metus lacus tincidunt tortor, eget mattis leo lacus et
-              purus. Duis finibus ligula sit amet dui ultricies faucibus vitae eu justo. Etiam tempus nisl a nunc mollis porta. Aenean porta, magna
-              quis scelerisque varius, nibh nulla congue diam, nec molestie tortor est ac lacus. Suspendisse vel malesuada lorem, at fringilla nisl.
-              Donec at lectus ligula. Donec egestas fringilla sodales. Aliquam commodo ultrices tortor quis ultricies. Duis lorem est, blandit vitae
-              justo quis, faucibus pharetra urna. Aenean suscipit metus nec urna iaculis, vel hendrerit velit pretium.</para>
+              </para>
           </example>
+          <para>You can add <code>role="nonumber"</code> to an example to stop it from getting a number.</para>
           <para role="break"/>
         </listitem>
 
@@ -379,7 +409,7 @@
                 </row>
                 <row>
                   <entry>
-                    <para>To a table (this one)</para>
+                    <para>To a table (with a number), like this one</para>
                   </entry>
                   <entry>
                     <para><xref linkend="table-xref"/></para>
@@ -387,7 +417,7 @@
                 </row>
                 <row>
                   <entry>
-                    <para>To a figure</para>
+                    <para>To a figure (with a number)</para>
                   </entry>
                   <entry>
                     <para><xref linkend="figure-example"/></para>
@@ -395,7 +425,7 @@
                 </row>
                 <row>
                   <entry>
-                    <para>To an example</para>
+                    <para>To an example (with a number)</para>
                   </entry>
                   <entry>
                     <para><xref linkend="example-example"/></para>
@@ -406,7 +436,8 @@
                     <para>To anything else</para>
                   </entry>
                   <entry>
-                    <para><xref linkend="first-para"/></para>
+                    <para>First paragraph: <xref linkend="first-para"/></para>
+                    <para>Unnumbered table: <xref linkend="unnumbered-table"/></para>
                   </entry>
                 </row>
               </tbody>

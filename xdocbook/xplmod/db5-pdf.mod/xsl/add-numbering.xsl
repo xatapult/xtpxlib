@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="3.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-  xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:local="#local" xmlns:db="http://docbook.org/ns/docbook" exclude-result-prefixes="#all">
+  xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:local="#local" xmlns:db="http://docbook.org/ns/docbook"
+  xmlns:xtlc="http://www.xtpxlib.nl/ns/common" exclude-result-prefixes="#all">
   <!-- ================================================================== -->
   <!--*	
     Adds numbers (@number) to whatever things need it
@@ -11,6 +12,8 @@
   <xsl:output method="xml" indent="no" encoding="UTF-8"/>
 
   <xsl:mode on-no-match="shallow-copy"/>
+
+  <xsl:include href="../../../../common/xslmod/common.mod.xsl"/>
 
   <!-- ================================================================== -->
 
@@ -46,7 +49,7 @@
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-  <xsl:template match="db:table | db:example | db:figure">
+  <xsl:template match="db:table[local:is-numbered(.)] | db:example[local:is-numbered(.)] | db:figure[local:is-numbered(.)]">
     <xsl:call-template name="copy-with-index-number"/>
   </xsl:template>
 
@@ -57,7 +60,7 @@
     <xsl:param name="chapter-number" as="xs:integer" required="yes" tunnel="true"/>
     <xsl:param name="chapter" as="element(db:chapter)" required="yes" tunnel="true"/>
 
-    <!-- Gather a list of all examples in the chapter and find out where it is: -->
+    <!-- Gather a list of all elements with the same name in the chapter and find out where it is: -->
     <xsl:variable name="all-like-elements" as="element()+" select="$chapter//db:*[node-name(.) eq node-name($elm)]"/>
     <xsl:variable name="elm-index" as="xs:integer"
       select="for $index in (1 to count($all-like-elements)) return if ($all-like-elements[$index] is $elm) then $index else ()"/>
@@ -69,5 +72,12 @@
       <xsl:apply-templates/>
     </xsl:copy>
   </xsl:template>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsl:function name="local:is-numbered" as="xs:boolean">
+    <xsl:param name="elm" as="element()"/>
+    <xsl:sequence select="not('nonumber' = xtlc:str2seq($elm/@role))"/>
+  </xsl:function>
 
 </xsl:stylesheet>

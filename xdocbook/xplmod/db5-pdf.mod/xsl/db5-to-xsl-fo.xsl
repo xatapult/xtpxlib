@@ -310,9 +310,13 @@
   <xsl:template match="db:para" mode="mode-block">
 
     <xsl:variable name="roles" as="xs:string*" select="xtlc:str2seq(@role)"/>
+    <xsl:variable name="is-halfbreak" as="xs:boolean" select="$roles = ('halfbreak')"/>
     <xsl:variable name="is-break" as="xs:boolean" select="$roles = ('break')"/>
 
     <block space-after="{local:dimpt($standard-paragraph-distance-pt)}" keep-together.within-page="always">
+      <xsl:if test="$is-halfbreak">
+        <xsl:attribute name="font-size" select="local:dimpt($standard-font-size div 4)"/>
+      </xsl:if>
       <xsl:if test="$roles = ('header', 'keep-with-next')">
         <xsl:attribute name="keep-with-next" select="'always'"/>
       </xsl:if>
@@ -327,7 +331,7 @@
       </xsl:if>
       <xsl:call-template name="copy-id"/>
       <xsl:choose>
-        <xsl:when test="$is-break">
+        <xsl:when test="$is-break or $is-halfbreak">
           <!-- Ignore any contents, just emit a hard-space: -->
           <xsl:text>&#160;</xsl:text>
         </xsl:when>
@@ -571,12 +575,14 @@
       <xsl:with-param name="size-pt" select="$standard-extra-paragraph-distance-pt"/>
     </xsl:call-template>
     <block-container margin-left="{local:dimcm($standard-small-indent)}">
-      <xsl:if test="exists(db:title)">
+      <xsl:if test="(normalize-space(db:title) ne '') or exists(@number)">
         <block font-style="italic" keep-with-next="always" font-size="{local:dimpt($special-titles-font-size)}">
-          <xsl:text>Example&#160;</xsl:text>
-          <xsl:value-of select="@number"/>
-          <xsl:if test="normalize-space(db:title) ne ''">
-            <xsl:text>&#160;-&#160;</xsl:text>
+          <xsl:if test="exists(@number)">
+            <xsl:text>Example&#160;</xsl:text>
+            <xsl:value-of select="@number"/>
+            <xsl:if test="normalize-space(db:title) ne ''">
+              <xsl:text>&#160;-&#160;</xsl:text>
+            </xsl:if>
           </xsl:if>
           <xsl:call-template name="handle-inline-contents">
             <xsl:with-param name="contents" select="db:title/node()"/>
@@ -597,7 +603,7 @@
     <xsl:param name="object" as="element()" required="no" select="."/>
     <xsl:param name="object-name" as="xs:string?" required="no" select="()"/>
 
-    <xsl:if test="exists($object/db:title)">
+    <xsl:if test="(normalize-space($object/db:title) ne '') or exists($object/@number)">
       <block text-align="center" font-style="italic" font-size="{local:dimpt($special-titles-font-size)}"
         space-after="{local:dimpt($standard-font-size)}" keep-with-previous="always">
         <xsl:if test="exists($object-name) and exists($object/@number)">
@@ -610,6 +616,7 @@
         </xsl:if>
         <xsl:call-template name="handle-inline-contents">
           <xsl:with-param name="contents" select="db:title/node()"/>
+          <xsl:with-param name="small-font-size" select="true()"/>
         </xsl:call-template>
       </block>
     </xsl:if>
@@ -748,7 +755,7 @@
 
     <xsl:apply-templates select="$contents" mode="mode-inline">
       <xsl:with-param name="phase-description" as="xs:string" select="'inline'" tunnel="true"/>
-      <xsl:with-param name="small-font-size" as="xs:boolean" select="$small-font-size" tunnel="true"/>
+      <xsl:with-param name="fixed-font-size-adjust" as="xs:integer" select="-2" tunnel="true"/>
     </xsl:apply-templates>
   </xsl:template>
 
@@ -770,7 +777,9 @@
             <xsl:text>" on page&#160;</xsl:text>
             <page-number-citation ref-id="{$referenced-element/@xml:id}"/>
           </xsl:when>
-          <xsl:when test="$referenced-element/self::db:figure or $referenced-element/self::db:table or $referenced-element/self::db:example">
+          <xsl:when
+            test="$referenced-element/self::db:figure[exists(@number)] or $referenced-element/self::db:table[exists(@number)] or
+              $referenced-element/self::db:example[exists(@number)]">
             <xsl:value-of select="xtlc:str-capitalize(local-name($referenced-element))"/>
             <xsl:text>&#160;</xsl:text>
             <xsl:value-of select="$referenced-element/@number"/>
@@ -809,8 +818,11 @@
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <xsl:template match="db:code | db:literal" mode="mode-inline">
+    <xsl:param name="fixed-font-size-adjust" as="xs:integer" required="no" select="0" tunnel="true" />
     <xsl:call-template name="handle-inline-text">
       <xsl:with-param name="fixed-width" select="true()"/>
+      <xsl:with-param name="fixed-font-size-adjust" as="xs:integer"
+        select="if (exists(ancestor::db:table) or exists(ancestor::db:informaltable)) then -1 else $fixed-font-size-adjust" tunnel="true"/>
     </xsl:call-template>
   </xsl:template>
 
@@ -938,7 +950,7 @@
     <xsl:param name="underline" as="xs:boolean" required="no" select="false()"/>
     <xsl:param name="fixed-width" as="xs:boolean" required="no" select="false()"/>
     <xsl:param name="color" as="xs:string?" required="no" select="()"/>
-    <xsl:param name="small-font-size" as="xs:boolean" required="no" select="false()" tunnel="true"/>
+    <xsl:param name="fixed-font-size-adjust" as="xs:integer" required="no" select="0" tunnel="true"/>
 
     <xsl:variable name="inline-attributes" as="attribute()*">
       <xsl:if test="$bold">
@@ -955,7 +967,7 @@
       </xsl:if>
       <xsl:if test="$fixed-width">
         <xsl:attribute name="font-family" select="$code-font-family"/>
-        <xsl:attribute name="font-size" select="local:dimpt(if ($small-font-size) then ($standard-font-size - 2) else $standard-font-size)"/>
+        <xsl:attribute name="font-size" select="local:dimpt($standard-font-size + $fixed-font-size-adjust)"/>
       </xsl:if>
     </xsl:variable>
     <xsl:variable name="inline-contents" as="item()*">
