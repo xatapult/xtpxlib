@@ -1,0 +1,14 @@
+<info>
+  <title> ... main title ... </title>
+  <subtitle> ... subtitle ...</subtitle>
+  <pubdate> ... publication date ... </pubdate>
+  <author>
+    <personname> ... author name ...</personname>
+  </author>
+  <orgname> ... organization ... </orgname>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="..." width="...(opt)" height="...(opt)"/>
+    </imageobject>
+  </mediaobject>
+</info>
