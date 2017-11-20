@@ -30,6 +30,15 @@ Subdirectory: `xplmod`
 |--|--|
 | `common.mod/common.mod.xpl` | Common XProc steps for things like tee, writing logs, zipping directories, etc. |
 
+## XSLT scripts
+
+Subdirectory: `xsl`
+
+
+| Script | Description |
+|--|--|
+| `get-system-properties.xsl` | Very simple XSLT script that simply outputs all system properties provided by the `system-property()` function. Very useful when you want to know what version of the XSLT engine you're actually running.. |
+
 ## Binary files
 
 Subdirectory: `bin`

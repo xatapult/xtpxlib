@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<element-description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.xatapult.nl/ns/XProc-book ../../xsd/element-description.xsd" xmlns:xtlxdb="http://www.xtpxlib.nl/ns/xdocbook"
+  xmlns="http://www.xtpxlib.nl/ns/xdocbook" name="p:declare-step" id="test-element-description">
+
+  <description>
+    <para xmlns="http://docbook.org/ns/docbook">Description of the element </para>
+    <para xmlns="http://docbook.org/ns/docbook" role="halfbreak"/>
+    <para xmlns="http://docbook.org/ns/docbook">More...</para>
+  </description>
+  
+  <attribute-table-header><para xmlns="http://docbook.org/ns/docbook">Attributes.</para></attribute-table-header>
+
+  <attribute name="name" required="false">
+    <description>
+      <para xmlns="http://docbook.org/ns/docbook">Description of the name attribute</para>
+    </description>
+    <type name="NCName">
+      <description>
+        <para xmlns="http://docbook.org/ns/docbook">The name of the thing</para>
+      </description>
+      <!-- Can also contain enums with descriptions -->
+    </type>
+  </attribute>
+
+  <attribute name="type" required="false" default="deftype">
+    <description>
+      <para xmlns="http://docbook.org/ns/docbook">Description of the type attribute</para>
+    </description>
+    <type name="enumstring" base="xs:string">
+      <enum value="v1" use-global="true">
+        <!--<description>
+          <para xmlns="http://docbook.org/ns/docbook">v1 desc </para>
+        </description>-->
+      </enum>
+      <enum value="v2">
+        <description>
+          <para xmlns="http://docbook.org/ns/docbook">v2 desc </para>
+        </description>
+      </enum>
+      <enum value="v3">
+        <description>
+          <para xmlns="http://docbook.org/ns/docbook">v3 desc </para>
+        </description>
+      </enum>
+      <enum value="v4">
+        <description>
+          <para xmlns="http://docbook.org/ns/docbook">v4 desc </para>
+        </description>
+      </enum>
+      <!-- Can also contain enums with descriptions -->
+    </type>
+  </attribute>
+  
+  <attribute name="12345678901234567890123456789012345678901234567890"/>
+
+  <element-table-header><para xmlns="http://docbook.org/ns/docbook">Elements.</para></element-table-header>
+  <element name="a">
+    <description>
+      <para xmlns="http://docbook.org/ns/docbook">blubdebloeb</para>
+    </description>
+    <type name="xs:string"/>
+  </element>
+  
+  <choice>
+    <element name="c1" occurs="*">
+      <description>
+        <para xmlns="http://docbook.org/ns/docbook">blubdebloeb</para>
+      </description>
+      <type name="xs:string"/>
+    </element>
+    <element name="c2">
+      <description>
+        <para xmlns="http://docbook.org/ns/docbook">blubdebloeb</para>
+      </description>
+      <type name="xs:string"/>
+    </element>
+    <element name="c2">
+      <description>
+        <para xmlns="http://docbook.org/ns/docbook">blubdebloeb</para>
+      </description>
+      <type name="xs:string"/>
+    </element>
+  </choice>
+
+  <element name="b" occurs="+">
+    <description>
+      <para xmlns="http://docbook.org/ns/docbook">blubdebloeb</para>
+    </description>
+    <type name="xs:string"/>
+  </element>
+  
+  <element name="a">
+    
+  </element>
+  
+  <additional-text-coded-description as-comment="true" >subpipeline...</additional-text-coded-description>
+
+</element-description>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="19.0">
+<project version="19.1">
     <meta>
         <filters directoryPatterns="" filePatterns="xtpxlib.xpr" positiveFilePatterns="" showHiddenFiles="false"/>
         <options>
-            <serialized version="19.0" xml:space="preserve">
+            <serialized version="19.1" xml:space="preserve">
                 <serializableOrderedMap>
                     <entry>
                         <String>catalogs.v5</String>
@@ -1214,6 +1214,30 @@ ancestor-or-self::*:return[namespace-uri() = "http://www.oxygenxml.com/ns/doc/xs
                         </documentTypeDescriptor-array>
                     </entry>
                     <entry>
+                        <String>editor.format.break.long.attributes</String>
+                        <Boolean>false</Boolean>
+                    </entry>
+                    <entry>
+                        <String>editor.format.preserve.spaces.elements.v11</String>
+                        <String-array>
+                            <String>xsl:text</String>
+                            <String>address</String>
+                            <String>literallayout</String>
+                            <String>screen</String>
+                            <String>synopsis</String>
+                            <String>pre</String>
+                            <String>xd:pre</String>
+                            <String>codeblock</String>
+                            <String>msgblock</String>
+                            <String>lines</String>
+                            <String>xsl:comment</String>
+                            <String>echo</String>
+                            <String>fail</String>
+                            <String>xs:documentation</String>
+                            <String>p:documentation</String>
+                        </String-array>
+                    </entry>
+                    <entry>
                         <String>enable.project.master.files.support</String>
                         <Boolean>true</Boolean>
                     </entry>
@@ -1230,12 +1254,166 @@ ancestor-or-self::*:return[namespace-uri() = "http://www.oxygenxml.com/ns/doc/xs
                         <Boolean>true</Boolean>
                     </entry>
                     <entry>
+                        <String>key.editor.format.xml.option.pane</String>
+                        <Boolean>true</Boolean>
+                    </entry>
+                    <entry>
                         <String>key.xml.catalog.option.pane</String>
                         <Boolean>true</Boolean>
                     </entry>
                     <entry>
                         <String>scenario.associations</String>
                         <scenarioAssociation-array>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../xdocbook/xplmod/db5-pdf.mod/xsl/db5-to-xsl-fo.xsl</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>test-db5-pdf</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XPROC</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../xdocbook/test/db5-dialect-description/db5-dialect-description.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>test-db5-pdf</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XPROC</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../xdocbook/xplmod/db5-pdf.mod/test/test-db5-pdf.xpl</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>test-db5-pdf</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XPROC</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../xdocbook/xplmod/db5-pdf.mod/db5-pdf.mod.xpl</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>test-db5-pdf</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XPROC</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../xdocbook/xplmod/descriptions-db5.mod/xsl/do-element-description.xsl</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>test-descriptions-db5</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XPROC</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../xdocbook/xplmod/descriptions-db5.mod/test/test-descriptions-db5.xpl</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>test-descriptions-db5</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XPROC</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../xdocbook/test/element-description/test-descriptions-db5-source.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>test-descriptions-db5</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XPROC</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../xdocbook/test/element-description/element-description-1.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>test-descriptions-db5</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XPROC</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../common/xslmod/common.mod.xsl</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>xmldoc</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XPROC</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../ms-office/xplmod/word.mod/word.mod.xpl</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>test-create-docx</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XPROC</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
                                     <String>../../xwebgen/test/data/sections.xml</String>
@@ -1433,21 +1611,6 @@ ancestor-or-self::*:return[namespace-uri() = "http://www.oxygenxml.com/ns/doc/xs
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>../../common/xslmod/common.mod.xsl</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>xmldoc</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XPROC</String>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
                                     <String>../../xwebgen/xplmod/create-site.mod/xsl/create-basic-container.xsl</String>
                                 </field>
                                 <field name="scenarioIds">
@@ -1539,21 +1702,6 @@ ancestor-or-self::*:return[namespace-uri() = "http://www.oxygenxml.com/ns/doc/xs
                             <scenarioAssociation>
                                 <field name="url">
                                     <String>../../ms-office/xplmod/word.mod/xsl/create-docx-1.xsl</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>test-create-docx</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XPROC</String>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>../../ms-office/xplmod/word.mod/word.mod.xpl</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -2621,6 +2769,334 @@ ancestor-or-self::*:return[namespace-uri() = "http://www.oxygenxml.com/ns/doc/xs
                                                 <String>result</String>
                                             </field>
                                             <field name="url">
+                                                <String>${TMP}/test-db5-pdf-result.xml</String>
+                                            </field>
+                                            <field name="showInSequenceView">
+                                                <Boolean>true</Boolean>
+                                            </field>
+                                        </xprocOutputPort>
+                                    </xprocOutputPort-array>
+                                </field>
+                                <field name="xprocOptions">
+                                    <xprocOption-array>
+                                        <xprocOption>
+                                            <field name="namespaceURI">
+                                                <String></String>
+                                            </field>
+                                            <field name="localName">
+                                                <String>dref-source</String>
+                                            </field>
+                                            <field name="value">
+                                                <null/>
+                                            </field>
+                                        </xprocOption>
+                                        <xprocOption>
+                                            <field name="namespaceURI">
+                                                <String></String>
+                                            </field>
+                                            <field name="localName">
+                                                <String>dref-pdf</String>
+                                            </field>
+                                            <field name="value">
+                                                <String>${TMP}/test-db5-pdf-result.pdf</String>
+                                            </field>
+                                        </xprocOption>
+                                        <xprocOption>
+                                            <field name="namespaceURI">
+                                                <String></String>
+                                            </field>
+                                            <field name="localName">
+                                                <String>debug</String>
+                                            </field>
+                                            <field name="value">
+                                                <null/>
+                                            </field>
+                                        </xprocOption>
+                                        <xprocOption>
+                                            <field name="namespaceURI">
+                                                <String></String>
+                                            </field>
+                                            <field name="localName">
+                                                <String>chapter-id</String>
+                                            </field>
+                                            <field name="value">
+                                                <null/>
+                                            </field>
+                                        </xprocOption>
+                                    </xprocOption-array>
+                                </field>
+                                <field name="xprocParameters">
+                                    <xprocParameterPort-array>
+                                        <xprocParameterPort>
+                                            <field name="portName">
+                                                <String>*</String>
+                                            </field>
+                                            <field name="parameters">
+                                                <xprocParameter-array/>
+                                            </field>
+                                        </xprocParameterPort>
+                                    </xprocParameterPort-array>
+                                </field>
+                                <field name="advancedOptionsMap">
+                                    <null/>
+                                </field>
+                                <field name="name">
+                                    <String>test-db5-pdf</String>
+                                </field>
+                                <field name="baseURL">
+                                    <null/>
+                                </field>
+                                <field name="footerURL">
+                                    <null/>
+                                </field>
+                                <field name="fOPMethod">
+                                    <null/>
+                                </field>
+                                <field name="fOProcessorName">
+                                    <null/>
+                                </field>
+                                <field name="headerURL">
+                                    <null/>
+                                </field>
+                                <field name="inputXSLURL">
+                                    <String>file:/C:/Data/Erik/xmldev/xtpxlib2/xdocbook/xplmod/db5-pdf.mod/test/test-db5-pdf.xpl</String>
+                                </field>
+                                <field name="inputXMLURL">
+                                    <String></String>
+                                </field>
+                                <field name="defaultScenario">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="isFOPPerforming">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="type">
+                                    <String>XPROC</String>
+                                </field>
+                                <field name="saveAs">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="openInBrowser">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="outputFile">
+                                    <null/>
+                                </field>
+                                <field name="outputResource">
+                                    <null/>
+                                </field>
+                                <field name="openOtherLocationInBrowser">
+                                    <Boolean>true</Boolean>
+                                </field>
+                                <field name="locationToOpenInBrowserURL">
+                                    <String>${TMP}/test-db5-pdf-result.pdf</String>
+                                </field>
+                                <field name="openInEditor">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showInHTMLPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showInXMLPane">
+                                    <Boolean>true</Boolean>
+                                </field>
+                                <field name="showInSVGPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showInResultSetPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="useXSLTInput">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="xsltParams">
+                                    <list/>
+                                </field>
+                                <field name="cascadingStylesheets">
+                                    <String-array/>
+                                </field>
+                                <field name="xslTransformer">
+                                    <String>Calabash XProc</String>
+                                </field>
+                                <field name="extensionURLs">
+                                    <String-array/>
+                                </field>
+                            </xprocScenario>
+                            <xprocScenario>
+                                <field name="inputPorts">
+                                    <xprocInputPort-array/>
+                                </field>
+                                <field name="outputPorts">
+                                    <xprocOutputPort-array>
+                                        <xprocOutputPort>
+                                            <field name="portName">
+                                                <String>result</String>
+                                            </field>
+                                            <field name="url">
+                                                <String>${TMP}/test-descriptions-db5-result.xml</String>
+                                            </field>
+                                            <field name="showInSequenceView">
+                                                <Boolean>false</Boolean>
+                                            </field>
+                                        </xprocOutputPort>
+                                    </xprocOutputPort-array>
+                                </field>
+                                <field name="xprocOptions">
+                                    <xprocOption-array>
+                                        <xprocOption>
+                                            <field name="namespaceURI">
+                                                <String></String>
+                                            </field>
+                                            <field name="localName">
+                                                <String>dref-source</String>
+                                            </field>
+                                            <field name="value">
+                                                <null/>
+                                            </field>
+                                        </xprocOption>
+                                        <xprocOption>
+                                            <field name="namespaceURI">
+                                                <String></String>
+                                            </field>
+                                            <field name="localName">
+                                                <String>debug</String>
+                                            </field>
+                                            <field name="value">
+                                                <String>false</String>
+                                            </field>
+                                        </xprocOption>
+                                        <xprocOption>
+                                            <field name="namespaceURI">
+                                                <String></String>
+                                            </field>
+                                            <field name="localName">
+                                                <String>chapter-id</String>
+                                            </field>
+                                            <field name="value">
+                                                <null/>
+                                            </field>
+                                        </xprocOption>
+                                        <xprocOption>
+                                            <field name="namespaceURI">
+                                                <String></String>
+                                            </field>
+                                            <field name="localName">
+                                                <String>dref-pdf</String>
+                                            </field>
+                                            <field name="value">
+                                                <String>${TMP}/test-descriptions-db5-result.pdf</String>
+                                            </field>
+                                        </xprocOption>
+                                    </xprocOption-array>
+                                </field>
+                                <field name="xprocParameters">
+                                    <xprocParameterPort-array>
+                                        <xprocParameterPort>
+                                            <field name="portName">
+                                                <String>*</String>
+                                            </field>
+                                            <field name="parameters">
+                                                <xprocParameter-array/>
+                                            </field>
+                                        </xprocParameterPort>
+                                    </xprocParameterPort-array>
+                                </field>
+                                <field name="advancedOptionsMap">
+                                    <null/>
+                                </field>
+                                <field name="name">
+                                    <String>test-descriptions-db5</String>
+                                </field>
+                                <field name="baseURL">
+                                    <null/>
+                                </field>
+                                <field name="footerURL">
+                                    <null/>
+                                </field>
+                                <field name="fOPMethod">
+                                    <null/>
+                                </field>
+                                <field name="fOProcessorName">
+                                    <null/>
+                                </field>
+                                <field name="headerURL">
+                                    <null/>
+                                </field>
+                                <field name="inputXSLURL">
+                                    <String>file:/C:/Data/Erik/xmldev/xtpxlib2/xdocbook/xplmod/descriptions-db5.mod/test/test-descriptions-db5.xpl</String>
+                                </field>
+                                <field name="inputXMLURL">
+                                    <String></String>
+                                </field>
+                                <field name="defaultScenario">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="isFOPPerforming">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="type">
+                                    <String>XPROC</String>
+                                </field>
+                                <field name="saveAs">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="openInBrowser">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="outputFile">
+                                    <null/>
+                                </field>
+                                <field name="outputResource">
+                                    <null/>
+                                </field>
+                                <field name="openOtherLocationInBrowser">
+                                    <Boolean>true</Boolean>
+                                </field>
+                                <field name="locationToOpenInBrowserURL">
+                                    <String>${TMP}/test-descriptions-db5-result.pdf</String>
+                                </field>
+                                <field name="openInEditor">
+                                    <Boolean>true</Boolean>
+                                </field>
+                                <field name="showInHTMLPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showInXMLPane">
+                                    <Boolean>true</Boolean>
+                                </field>
+                                <field name="showInSVGPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showInResultSetPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="useXSLTInput">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="xsltParams">
+                                    <list/>
+                                </field>
+                                <field name="cascadingStylesheets">
+                                    <String-array/>
+                                </field>
+                                <field name="xslTransformer">
+                                    <String>Calabash XProc</String>
+                                </field>
+                                <field name="extensionURLs">
+                                    <String-array/>
+                                </field>
+                            </xprocScenario>
+                            <xprocScenario>
+                                <field name="inputPorts">
+                                    <xprocInputPort-array/>
+                                </field>
+                                <field name="outputPorts">
+                                    <xprocOutputPort-array>
+                                        <xprocOutputPort>
+                                            <field name="portName">
+                                                <String>result</String>
+                                            </field>
+                                            <field name="url">
                                                 <String>${TMP}/test-directory-to-container-result.xml</String>
                                             </field>
                                             <field name="showInSequenceView">
@@ -3582,9 +4058,11 @@ ancestor-or-self::*:return[namespace-uri() = "http://www.oxygenxml.com/ns/doc/xs
             <file name="oxygen-project-master.xsl"/>
         </folder>
         <folder name="ref">
+            <folder path="../../../DEP-documentation/"/>
             <folder path="../../../Infinitas-Noordhoff/ICoM-assemblers/"/>
             <folder path="../../../Infinitas-Noordhoff/ICoM/"/>
             <folder path="../../../Xatapult/xdocument/"/>
+            <folder path="../../../XProc-book-dev/XProc-book/converter/"/>
             <folder path="../../../xtpxlib/"/>
         </folder>
         <folder path="../../"/>

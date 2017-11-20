@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<global-descriptions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.xatapult.nl/ns/XProc-book ../../xsd/element-description.xsd" xmlns:xtlxdb="http://www.xtpxlib.nl/ns/xdocbook"
+  xmlns="http://www.xtpxlib.nl/ns/xdocbook">
+
+  <enum value="v1">
+    <description>
+      <para xmlns="http://docbook.org/ns/docbook">v1 desc from global file</para>
+    </description>
+  </enum>
+
+</global-descriptions>

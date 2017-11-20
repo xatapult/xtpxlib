@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xtlxdb="http://www.xtpxlib.nl/ns/xdocbook" version="5.0">
+
+  <insert-global-descriptions xmlns="http://www.xtpxlib.nl/ns/xdocbook">
+    <global-descriptions>
+      <enum value="v1" top="yes">
+        <description>
+          <para xmlns="http://docbook.org/ns/docbook">v1 desc from global file</para>
+        </description>
+      </enum>
+    </global-descriptions>
+  </insert-global-descriptions>
+
+  <info>
+    <title>XProc</title>
+    <subtitle>Scrapbook</subtitle>
+    <pubdate>2017</pubdate>
+    <author>
+      <personname>Erik&#160;Siegel</personname>
+    </author>
+    <orgname>Xatapult</orgname>
+  </info>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <chapter xml:id="test-chapter-descriptions-db5.mod">
+
+    <title>Testing</title>
+
+    <sect1>
+      <title>Element descriptions:</title>
+      <xtlxdb:insert-global-descriptions href="global-descriptions-1.xml"/>
+      <variablelist>
+        <varlistentry>
+          <term>First</term>
+          <listitem>
+            <xtlxdb:insert-element-description href="element-description-1.xml">
+              <!--<xtlxdb:element-description name="xxx">
+                <xtlxdb:additional-text-coded-description as-comment="true" >subpipeline...</xtlxdb:additional-text-coded-description>
+              </xtlxdb:element-description>-->
+            </xtlxdb:insert-element-description>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </sect1>
+
+
+  </chapter>
+
+</book>
