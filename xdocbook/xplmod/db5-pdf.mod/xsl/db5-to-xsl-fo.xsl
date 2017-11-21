@@ -755,7 +755,6 @@
 
     <xsl:apply-templates select="$contents" mode="mode-inline">
       <xsl:with-param name="phase-description" as="xs:string" select="'inline'" tunnel="true"/>
-      <xsl:with-param name="fixed-font-size-adjust" as="xs:integer" select="-2" tunnel="true"/>
     </xsl:apply-templates>
   </xsl:template>
 
