@@ -29,6 +29,8 @@
   <chapter xml:id="test-chapter-descriptions-db5.mod">
 
     <title>Testing</title>
+    
+    <para>Here is a little paragraph with <code>literal code</code> stuff inside. It seems to become too <literal>small</literal>...</para>
 
     <sect1>
       <title>Element descriptions:</title>
