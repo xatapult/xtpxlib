@@ -5,7 +5,7 @@
   exclude-result-prefixes="#all">
   <!-- ================================================================== -->
   <!--*	
-    Converts an element description in to Docbook 5
+    Converts an element description to Docbook 5
 	-->
   <!-- ================================================================== -->
   <!-- SETUP: -->
@@ -58,13 +58,14 @@
   <xsl:template match="xtlxdb:insert-element-description">
 
     <!-- Get the element description, either by external document or by direct contents: -->
+<!--    <xsl:variable name="full-href" as="xs:string" select="string(resolve-uri(@href, base-uri()))"/>-->
+    <xsl:variable name="full-href" as="xs:string" select="xtlc:dref-concat((for $base in ancestor::*/@xml:base  return xtlc:dref-path($base), @href))"/>
     <xsl:variable name="element-description" as="element(xtlxdb:element-description)?">
       <xsl:choose>
         <xsl:when test="exists(xtlxdb:element-description)">
           <xsl:sequence select="xtlxdb:element-description"/>
         </xsl:when>
         <xsl:when test="exists(@href)">
-          <xsl:variable name="full-href" as="xs:string" select="string(resolve-uri(@href, base-uri()))"/>
           <xsl:if test="doc-available($full-href)">
             <xsl:variable name="description-doc-root" as="element()" select="doc($full-href)/*"/>
             <xsl:if test="exists($description-doc-root/self::xtlxdb:element-description)">
@@ -75,10 +76,21 @@
         <xsl:otherwise/>
       </xsl:choose>
     </xsl:variable>
+    
+    <!-- Error if not found: -->
     <xsl:if test="empty($element-description)">
-      <xsl:call-template name="xtlc:raise-error">
-        <xsl:with-param name="msg-parts" select="('Could not find element-description for ', xtlc:elm2str(.), ' (either direct or by @href)')"/>
-      </xsl:call-template>
+      <xsl:choose>
+        <xsl:when test="exists(@href)">
+          <xsl:call-template name="xtlc:raise-error">
+            <xsl:with-param name="msg-parts" select="('Could not find element-description for ', xtlc:elm2str(.), ' in ', xtlc:q($full-href))"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="xtlc:raise-error">
+            <xsl:with-param name="msg-parts" select="('Could not find direct element-description for ', xtlc:elm2str(.))"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:if>
 
     <!-- Find the global description that apply: -->
@@ -238,9 +250,11 @@
             </xsl:if>
 
             <!-- Closing tag: -->
-            <xsl:text>&lt;/</xsl:text>
-            <xsl:value-of select="$element-name"/>
-            <xsl:text>&gt;</xsl:text>
+            <xsl:if test="exists($contents)">
+               <xsl:text>&lt;/</xsl:text>
+               <xsl:value-of select="$element-name"/>
+               <xsl:text>&gt;</xsl:text>
+            </xsl:if>
 
           </xsl:otherwise>
         </xsl:choose>
@@ -352,6 +366,8 @@
 
     <xsl:variable name="descriptions-to-use" as="element()*" select="$descriptions[xtlc:str2bln(@describe, true())]"/>
     <xsl:variable name="is-attributes" as="xs:boolean" select="exists($descriptions[1]/self::xtlxdb:attribute)"/>
+    <xsl:variable name="has-type-info" as="xs:boolean" select="exists($descriptions-to-use/xtlxdb:type)"/>
+
 
     <!-- Output if anything left: -->
     <xsl:if test="exists($descriptions-to-use)">
@@ -362,18 +378,22 @@
           $description-table-name-column-min-width-cm, $description-table-name-column-max-width-cm)"/>
       <table role="nonumber">
         <title/>
-        <tgroup cols="4">
-          <colspec colname="name" colnum="1" colwidth="{$name-column-width}cm"/>
-          <colspec colname="occurrences" colnum="2" colwidth="{$description-table-occurs-column-width-cm}cm"/>
-          <colspec colname="type" colnum="1" colwidth="{$description-table-type-column-width-cm}cm"/>
-          <colspec colname="description" colnum="1"/>
+        <tgroup>
+          <colspec colname="name" colwidth="{$name-column-width}cm"/>
+          <colspec colname="occurrences" colwidth="{$description-table-occurs-column-width-cm}cm"/>
+          <xsl:if test="$has-type-info">
+            <colspec colname="type" colwidth="{$description-table-type-column-width-cm}cm"/>
+          </xsl:if>
+          <colspec colname="description"/>
           <thead>
             <row>
               <entry>
-                <xsl:value-of select="if ($is-attributes) then 'Attribute' else 'Element'"/>
+                <xsl:value-of select="if ($is-attributes) then 'Attribute' else 'Child elements'"/>
               </entry>
               <entry>#</entry>
-              <entry>Type</entry>
+              <xsl:if test="$has-type-info">
+                <entry>Type</entry>
+              </xsl:if>
               <entry>Description</entry>
             </row>
           </thead>
@@ -392,18 +412,25 @@
                       <xsl:when test="$is-attributes">
                         <xsl:value-of select="if (xtlc:str2bln(@required, false())) then '1' else '?'"/>
                       </xsl:when>
+                      <xsl:when test="exists(parent::xtlxdb:choice)">
+                        <!-- In case this element is in a choice we take the occurrences of the choice. That is not exactly correct but better
+                          than taking them from the element in a case like this... -->
+                        <xsl:value-of select="(../@occurs, '1')[1]"/>
+                      </xsl:when>
                       <xsl:otherwise>
                         <xsl:value-of select="(@occurs, '1')[1]"/>
                       </xsl:otherwise>
                     </xsl:choose>
                   </para>
                 </entry>
-                <entry>
-                  <xsl:call-template name="output-type-info-in-description-table">
-                    <xsl:with-param name="type" select="xtlxdb:type"/>
-                    <xsl:with-param name="column-width-cm" select="$description-table-type-column-width-cm"/>
-                  </xsl:call-template>
-                </entry>
+                <xsl:if test="$has-type-info">
+                  <entry>
+                    <xsl:call-template name="output-type-info-in-description-table">
+                      <xsl:with-param name="type" select="xtlxdb:type"/>
+                      <xsl:with-param name="column-width-cm" select="$description-table-type-column-width-cm"/>
+                    </xsl:call-template>
+                  </entry>
+                </xsl:if>
                 <entry>
                   <xsl:if test="(normalize-space(@default) ne '') and not(xtlc:str2bln(@required, false()))">
                     <para>Default: <code><xsl:value-of select="@default"/></code></para>
@@ -557,7 +584,8 @@
 
     <xsl:variable name="max-nr-of-characters" as="xs:integer" select="max(for $n in $names return string-length($n))"/>
     <xsl:variable name="width-based-on-nr-of-characters" as="xs:double" select="$max-nr-of-characters div $fixed-width-characters-per-cm-dbl"/>
-    <xsl:variable name="width" as="xs:double" select="max(($min-width, $width-based-on-nr-of-characters))"/>
+    <!-- Find the right width and add just a  tiny bit to make sure everything goes ok (otherwise sometimes words still go to the next line) -->
+    <xsl:variable name="width" as="xs:double" select="max(($min-width, $width-based-on-nr-of-characters)) + 0.1"/>
     <xsl:sequence select="if ($width gt $max-width) then $max-width else $width"/>
   </xsl:function>
 </xsl:stylesheet>

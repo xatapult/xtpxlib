@@ -159,7 +159,7 @@
         <xs:complexType>
           <xs:sequence>
             <xs:group ref="xtlxdb:g-description" minOccurs="0"/>
-            <xs:group ref="xtlxdb:g-type"/>
+            <xs:group ref="xtlxdb:g-type" minOccurs="0"/>
           </xs:sequence>
           <xs:attribute name="name" type="xtlxdb:t-xmlname" use="required">
             <xs:annotation>
