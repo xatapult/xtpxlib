@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xtlxdb="http://www.xtpxlib.nl/ns/xdocbook" version="5.0">
+
+
+  <info>
+    <title>XProc</title>
+    <subtitle>TEST</subtitle>
+    <pubdate>2017</pubdate>
+    <author>
+      <personname>Erik&#160;Siegel</personname>
+    </author>
+    <orgname>Xatapult</orgname>
+  </info>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <chapter xml:id="test-chapter-convert-db5.mod">
+
+    <title>Testing</title>
+
+    <para>Here is a little paragraph with conversion stuff inside...</para>
+
+    <sect1>
+      <title>Conversions</title>
+
+      <xtlxdb:convert xsl="xsl/test-convert.xsl" xmlns="">
+        <somexml>Some text...</somexml>
+      </xtlxdb:convert>
+
+      <para>Now, did that work?</para>
+    </sect1>
+
+
+  </chapter>
+
+</book>

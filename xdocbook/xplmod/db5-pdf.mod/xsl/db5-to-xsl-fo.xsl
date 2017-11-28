@@ -2,7 +2,7 @@
 <xsl:stylesheet version="3.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:local="#local" xmlns:db="http://docbook.org/ns/docbook"
   xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns="http://www.w3.org/1999/XSL/Format" xmlns:xtlc="http://www.xtpxlib.nl/ns/common"
-  xmlns:xlink="http://www.w3.org/1999/xlink" exclude-result-prefixes="#all" expand-text="true">
+  xmlns:xtlxdb="http://www.xtpxlib.nl/ns/xdocbook" xmlns:xlink="http://www.w3.org/1999/xlink" exclude-result-prefixes="#all" expand-text="true">
   <!-- ================================================================== -->
   <!--*	
     Turns the db5 (in XProc book dialect) into XSL-FO 	
@@ -14,6 +14,7 @@
 
   <xsl:include href="../../../../common/xslmod/common.mod.xsl"/>
   <xsl:include href="../../../../common/xslmod/dref.mod.xsl"/>
+  <xsl:include href="../../../xslmod/xdocbook-lib.xsl"/>
 
   <xsl:mode on-no-match="fail"/>
   <xsl:mode name="mode-structure" on-no-match="fail"/>
@@ -1133,10 +1134,10 @@
 
     <xsl:choose>
       <xsl:when test="exists($imagedata)">
-        <xsl:variable name="uri" as="xs:string" select="local:get-full-uri($imagedata/@fileref, .)"/>
+        <xsl:variable name="full-uri" as="xs:string" select="xtlxdb:get-full-uri($imagedata, $imagedata/@fileref)"/>
         <xsl:variable name="width" as="xs:string?" select="$imagedata/@width"/>
         <xsl:variable name="height" as="xs:string?" select="$imagedata/@height"/>
-        <external-graphic src="url({$uri})" content-width="scale-to-fit" content-height="scale-to-fit" scaling="uniform"
+        <external-graphic src="url({$full-uri})" content-width="scale-to-fit" content-height="scale-to-fit" scaling="uniform"
           inline-progression-dimension.maximum="90%">
           <xsl:if test="exists($width)">
             <xsl:attribute name="content-width" select="$width"/>
@@ -1243,28 +1244,6 @@
   <xsl:function name="local:element-is-in-table" as="xs:boolean">
     <xsl:param name="elm" as="element()"/>
     <xsl:sequence select="exists($elm/ancestor::db:table) or exists($elm/ancestor::db:informaltable)"/>
-  </xsl:function>
-
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-  <xsl:function name="local:get-full-uri" as="xs:string">
-    <xsl:param name="base" as="xs:string"/>
-    <xsl:param name="from-elm" as="element()"/>
-    <xsl:sequence select="local:get-full-uri-helper($base, $from-elm/ancestor-or-self::*/@xml:base/string())"/>
-  </xsl:function>
-
-  <xsl:function name="local:get-full-uri-helper" as="xs:string">
-    <xsl:param name="base" as="xs:string"/>
-    <xsl:param name="xml-base-values" as="xs:string*"/>
-    <xsl:choose>
-      <xsl:when test="empty($xml-base-values) or xtlc:dref-is-absolute($base)">
-        <xsl:sequence select="$base"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:variable name="new-base" as="xs:string" select="xtlc:dref-canonical(xtlc:dref-concat((xtlc:dref-path($xml-base-values[last()]), $base)))"/>
-        <xsl:sequence select="local:get-full-uri-helper($new-base, remove($xml-base-values, count($xml-base-values)))"/>
-      </xsl:otherwise>
-    </xsl:choose>
   </xsl:function>
 
 </xsl:stylesheet>
