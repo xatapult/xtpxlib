@@ -407,7 +407,7 @@
           <thead>
             <row>
               <entry>
-                <xsl:value-of select="if ($is-attributes) then 'Attribute' else 'Child elements'"/>
+                <xsl:value-of select="if ($is-attributes) then 'Attribute' else 'Child element'"/>
               </entry>
               <entry>#</entry>
               <xsl:if test="$has-type-info">
