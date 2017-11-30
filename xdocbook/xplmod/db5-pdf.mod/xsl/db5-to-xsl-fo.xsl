@@ -318,6 +318,9 @@
       <xsl:if test="$roles = ('header', 'keep-with-next')">
         <xsl:attribute name="keep-with-next" select="'always'"/>
       </xsl:if>
+      <xsl:if test="$roles = ('keep-with-previous')">
+        <xsl:attribute name="keep-with-previous" select="'always'"/>
+      </xsl:if>
       <xsl:if test="$roles = ('break-after')">
         <xsl:attribute name="space-after" select="local:dimpt($break-paragraph-distance-pt)"/>
       </xsl:if>
@@ -536,8 +539,8 @@
       <xsl:with-param name="size-pt" select="$standard-extra-paragraph-distance-pt"/>
       <xsl:with-param name="keep-with-next" select="true()"/>
     </xsl:call-template>
-    <block margin-left="{local:dimcm($standard-small-indent)}" margin-right="{local:dimcm($standard-small-indent)}"
-      padding-left="{local:dimcm($standard-small-indent)}" padding-right="{local:dimcm($standard-small-indent)}" border="thin solid {$color}">
+    <block margin-left="{local:dimcm($standard-itemized-list-indent)}" margin-right="{local:dimcm($standard-itemized-list-indent)}"
+      padding="{local:dimcm($standard-small-indent)}" border="thin solid {$color}">
       <block font-weight="bold" keep-with-next="always" color="{$color}">
         <xsl:value-of select="if ($is-note) then 'NOTE:' else 'WARNING:'"/>
       </block>
@@ -556,16 +559,17 @@
       <xsl:with-param name="size-pt" select="$standard-extra-paragraph-distance-pt"/>
       <xsl:with-param name="keep-with-next" select="true()"/>
     </xsl:call-template>
-    <block-container border="solid 0.2mm black">
-      <block font-weight="bold" keep-with-next="always" margin-top="{local:dimpt($standard-paragraph-distance-pt)}" text-align="center"
-        font-size="{local:dimpt($standard-font-size + 2)}">
+    <block border="solid 0.2mm black" margin-left="{local:dimcm($standard-itemized-list-indent)}" margin-right="{local:dimcm($standard-itemized-list-indent)}"
+      padding="{local:dimcm($standard-small-indent)}">
+      <block font-weight="bold" keep-with-next="always" margin-top="{local:dimpt($standard-paragraph-distance-pt)}" text-align="left"
+        font-size="{local:dimpt($standard-font-size + 1)}">
         <xsl:call-template name="handle-inline-text">
           <xsl:with-param name="contents" select="db:title/node()"/>
           <xsl:with-param name="bold" select="true()"/>
         </xsl:call-template>
       </block>
       <xsl:apply-templates select="db:* except db:title" mode="#current"/>
-    </block-container>
+    </block>
     <xsl:call-template name="empty-line">
       <xsl:with-param name="size-pt" select="$standard-extra-paragraph-distance-pt"/>
     </xsl:call-template>
