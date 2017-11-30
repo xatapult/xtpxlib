@@ -20,6 +20,7 @@
   <xsl:include href="../../common/xslmod/date-time.mod.xsl"/>
   
   <xsl:include href="../../ms-office/xslmod/ms-office.mod.xsl"/>
+  <xsl:include href="../../xdocbook/xslmod/xdocbook-lib.xsl"/>
   
 </xsl:stylesheet>
 

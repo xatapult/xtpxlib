@@ -99,6 +99,14 @@
                     <para>Keeps this paragraph with the next one together on a page.</para>
                   </entry>
                 </row>
+                <row>
+                  <entry>
+                    <para><literal>keep-with-previous</literal></para>
+                  </entry>
+                  <entry>
+                    <para>Keeps this paragraph with the previous one together on a page.</para>
+                  </entry>
+                </row>
               </tbody>
             </tgroup>
           </table>

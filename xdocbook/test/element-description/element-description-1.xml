@@ -8,12 +8,14 @@
     <para xmlns="http://docbook.org/ns/docbook" role="halfbreak"/>
     <para xmlns="http://docbook.org/ns/docbook">More...</para>
   </description>
-  
-  <attribute-table-header><para xmlns="http://docbook.org/ns/docbook">Attributes.</para></attribute-table-header>
+
+  <attribute-table-header>
+    <para xmlns="http://docbook.org/ns/docbook">Attributes.</para>
+  </attribute-table-header>
 
   <attribute name="name" required="false">
     <description>
-      <para xmlns="http://docbook.org/ns/docbook">Description of the name attribute</para>
+      <para>Description of the name attribute</para>
     </description>
     <type name="NCName">
       <description>
@@ -51,17 +53,19 @@
       <!-- Can also contain enums with descriptions -->
     </type>
   </attribute>
-  
+
   <attribute name="12345678901234567890123456789012345678901234567890"/>
 
-  <element-table-header><para xmlns="http://docbook.org/ns/docbook">Elements.</para></element-table-header>
+  <element-table-header>
+    <para xmlns="http://docbook.org/ns/docbook">Elements.</para>
+  </element-table-header>
   <element name="a">
     <description>
       <para xmlns="http://docbook.org/ns/docbook">blubdebloeb</para>
     </description>
     <type name="xs:string"/>
   </element>
-  
+
   <choice>
     <element name="c1" occurs="*">
       <description>
@@ -89,11 +93,9 @@
     </description>
     <type name="xs:string"/>
   </element>
-  
-  <element name="a">
-    
-  </element>
-  
-  <additional-text-coded-description as-comment="true" >subpipeline...</additional-text-coded-description>
+
+  <element name="a"> </element>
+
+  <additional-text-coded-description as-comment="true">subpipeline...</additional-text-coded-description>
 
 </element-description>
