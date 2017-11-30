@@ -159,7 +159,7 @@
         <xs:complexType>
           <xs:sequence>
             <xs:group ref="xtlxdb:g-description" minOccurs="0"/>
-            <xs:group ref="xtlxdb:g-type"/>
+            <xs:group ref="xtlxdb:g-type" minOccurs="0"/>
           </xs:sequence>
           <xs:attribute name="name" type="xtlxdb:t-xmlname" use="required">
             <xs:annotation>
@@ -207,8 +207,11 @@
     </xs:sequence>
   </xs:group>
   <xs:complexType name="ct-docbook-contents">
+    <xs:annotation>
+      <xs:documentation>Any contents here in the empty or the xtlxdb namespace is converted into docbook contents</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
-      <xs:any maxOccurs="unbounded" namespace="http://docbook.org/ns/docbook" processContents="skip"/>
+      <xs:any maxOccurs="unbounded" namespace="##any" processContents="skip"/>
     </xs:sequence>
   </xs:complexType>
   <xs:attributeGroup name="ag-occurrences">
