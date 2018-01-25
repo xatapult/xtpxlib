@@ -155,16 +155,17 @@
       <flow flow-name="xsl-region-body">
 
         <!-- Logo's at the top: -->
-        <xsl:variable name="logo-imagedata" as="element(db:imagedata)?" select="/*/db:info/db:mediaobject/db:imageobject/db:imagedata"/>
-        <xsl:if test="exists($logo-imagedata)">
+        <xsl:variable name="logo-imagedata" as="element(db:imagedata)*"
+          select="/*/db:info/db:mediaobject[(@role eq 'top-logo') or empty(@role)]/db:imageobject/db:imagedata"/>
+        <xsl:for-each select="$logo-imagedata">
           <block-container>
             <block vertical-align="middle">
               <xsl:call-template name="handle-imagedata">
-                <xsl:with-param name="imagedata" select="$logo-imagedata"/>
+                <xsl:with-param name="imagedata" select="."/>
               </xsl:call-template>
             </block>
           </block-container>
-        </xsl:if>
+        </xsl:for-each>
 
         <!-- Title information: -->
         <block-container absolute-position="fixed" top="{local:dimcm($standard-page-margin-top + 5)}" left="{local:dimcm($standard-page-margin-left)}"
@@ -176,6 +177,21 @@
             <xsl:value-of select="/*/db:info/db:subtitle"/>
           </block>
         </block-container>
+
+        <!-- Logo's center page: -->
+        <xsl:variable name="logo-imagedata" as="element(db:imagedata)*"
+          select="/*/db:info/db:mediaobject[@role eq 'center-page']/db:imageobject/db:imagedata"/>
+        <xsl:for-each select="$logo-imagedata">
+          <block-container absolute-position="fixed" top="{local:dimcm($standard-page-margin-top + 10)}"
+            left="{local:dimcm($standard-page-margin-left)}"
+            width="{local:dimcm($page-width-a4 - $standard-page-margin-right - $standard-page-margin-left)}">
+            <block vertical-align="middle" text-align="center">
+              <xsl:call-template name="handle-imagedata">
+                <xsl:with-param name="imagedata" select="."/>
+              </xsl:call-template>
+            </block>
+          </block-container>
+        </xsl:for-each>
 
         <!-- Some more information at the bottom: -->
         <block-container absolute-position="fixed" top="{local:dimcm($page-height-a4 - 3)}" left="{local:dimcm($standard-page-margin-left)}">
@@ -559,8 +575,8 @@
       <xsl:with-param name="size-pt" select="$standard-extra-paragraph-distance-pt"/>
       <xsl:with-param name="keep-with-next" select="true()"/>
     </xsl:call-template>
-    <block border="solid 0.2mm black" margin-left="{local:dimcm($standard-itemized-list-indent)}" margin-right="{local:dimcm($standard-itemized-list-indent)}"
-      padding="{local:dimcm($standard-small-indent)}">
+    <block border="solid 0.2mm black" margin-left="{local:dimcm($standard-itemized-list-indent)}"
+      margin-right="{local:dimcm($standard-itemized-list-indent)}" padding="{local:dimcm($standard-small-indent)}">
       <block font-weight="bold" keep-with-next="always" margin-top="{local:dimpt($standard-paragraph-distance-pt)}" text-align="left"
         font-size="{local:dimpt($standard-font-size + 1)}">
         <xsl:call-template name="handle-inline-text">
@@ -774,11 +790,14 @@
         <basic-link internal-destination="{$id}">
           <xsl:choose>
             <xsl:when test="$referenced-element/self::db:chapter">
-              <xsl:text>Chapter&#160;</xsl:text>
+              <xsl:text>chapter&#160;</xsl:text>
               <xsl:value-of select="$referenced-element/@number"/>
             </xsl:when>
             <xsl:when test="matches(local-name($referenced-element), '^sect[0-9]$')">
               <xsl:text>"</xsl:text>
+              <!-- <xsl:call-template name="handle-inline-contents">
+                <xsl:with-param name="contents" select="$referenced-element/db:title/node()"/>                  
+              </xsl:call-template>-->
               <xsl:value-of select="normalize-space($referenced-element/db:title)"/>
               <xsl:text>" on page&#160;</xsl:text>
               <page-number-citation ref-id="{$referenced-element/@xml:id}"/>
@@ -933,9 +952,54 @@
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
+  <xsl:template match="db:tag" mode="mode-inline">
+    <xsl:param name="fixed-font-size-adjust" as="xs:integer?" required="no" select="()" tunnel="true"/>
+    <xsl:param name="in-table" as="xs:boolean" required="no" select="false()" tunnel="true"/>
+
+    <xsl:variable name="class" as="xs:string" select="(@class, 'element')[1]"/>
+    <xsl:variable name="contents" as="xs:string">
+      <xsl:choose>
+        <xsl:when test="$class eq 'attribute'">
+          <xsl:sequence select="'@' || string(.)"/>
+        </xsl:when>
+        <xsl:when test="$class eq 'attvalue'">
+          <xsl:sequence select="'&quot;' || string(.) || '&quot;'"/>
+        </xsl:when>
+        <xsl:when test="$class eq 'emptytag'">
+          <xsl:sequence select="'&lt;' || string(.) || '/&gt;'"/>
+        </xsl:when>
+
+        <xsl:when test="$class eq 'endtag'">
+          <xsl:sequence select="'&lt;/' || string(.) || '&gt;'"/>
+        </xsl:when>
+        <xsl:when test="$class eq 'pi'">
+          <xsl:sequence select="'&lt;?' || string(.) || '?&gt;'"/>
+        </xsl:when>
+        <xsl:when test="$class eq 'comment'">
+          <xsl:sequence select="'&lt;!--' || string(.) || '--&gt;'"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <!-- Default, suppose element: -->
+          <xsl:sequence select="'&lt;' || string(.) || '&gt;'"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+
+    <xsl:call-template name="handle-inline-text">
+      <xsl:with-param name="contents" as="node()*">
+        <xsl:value-of select="$contents"/>
+      </xsl:with-param>
+      <xsl:with-param name="fixed-width" select="true()"/>
+      <xsl:with-param name="fixed-font-size-adjust" as="xs:integer?" select="if ($in-table) then -1 else $fixed-font-size-adjust" tunnel="true"/>
+    </xsl:call-template>
+  </xsl:template>
+
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
   <xsl:template match="text()" mode="mode-inline">
     <!-- Mark anything like [TBD...] -->
-    <xsl:analyze-string select="string(.)" regex="\[TBD.*\]">
+    <xsl:analyze-string select="string(.)" regex="\[TBD.*\]" flags="is">
       <xsl:matching-substring>
         <inline background-color="yellow">
           <xsl:copy/>

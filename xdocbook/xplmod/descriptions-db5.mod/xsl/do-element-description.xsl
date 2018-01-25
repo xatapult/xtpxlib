@@ -204,6 +204,7 @@
       <xsl:variable name="additional-text-elm" as="element(xtlxdb:additional-text-coded-description)?"
         select="xtlxdb:additional-text-coded-description"/>
       <xsl:variable name="additional-text" as="xs:string" select="string($additional-text-elm)"/>
+      <xsl:variable name="has-additional-text" as="xs:boolean" select="normalize-space($additional-text) ne ''"/>
 
       <!-- Create the formatted example: -->
       <programlisting xml:id="{$id}">
@@ -240,7 +241,7 @@
                     <xsl:value-of select="$newline"/>
                   </xsl:if>
                 </xsl:for-each>
-                <xsl:value-of select="if (empty($contents)) then ' /&gt;' else concat(' &gt;', $newline)"/>
+                <xsl:value-of select="if (empty($contents) and not($has-additional-text)) then ' /&gt;' else concat(' &gt;', $newline)"/>
               </xsl:otherwise>
             </xsl:choose>
 
@@ -251,7 +252,7 @@
 
             <!-- Additional text: -->
             <xsl:variable name="as-comment" as="xs:boolean" select="xtlc:str2bln($additional-text-elm/@as-comment, false())"/>
-            <xsl:if test="normalize-space($additional-text) ne ''">
+            <xsl:if test="$has-additional-text">
               <xsl:value-of select="local:spaces($standard-coded-description-indent)"/>
               <xsl:choose>
                 <xsl:when test="$as-comment">
@@ -267,7 +268,7 @@
             </xsl:if>
 
             <!-- Closing tag: -->
-            <xsl:if test="exists($contents)">
+            <xsl:if test="exists($contents) or $has-additional-text">
               <xsl:text>&lt;/</xsl:text>
               <xsl:value-of select="$element-name"/>
               <xsl:text>&gt;</xsl:text>

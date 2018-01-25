@@ -383,7 +383,93 @@
               <userinput>data entered here</userinput></para>
           <para role="break"/>
         </listitem>
-
+        
+        <listitem>
+          <para><emphasis role="bold"><literal>&lt;tag></literal></emphasis>: Indicates an object from the XML vocabulary. The <code>class</code>
+            attribute signifies what:</para>
+          <table>
+            <title/>
+            <tgroup cols="2">
+              <colspec colname="c1" colnum="1" colwidth="4cm"/>
+              <colspec colname="c2" colnum="2"/>
+              <thead>
+                <row>
+                  <entry>
+                    <para><tag class="attribute">class</tag> value</para>
+                  </entry>
+                  <entry>
+                    <para>Result example(s)</para>
+                  </entry>
+                </row>
+              </thead>
+              <tbody>
+                <row>
+                  <entry>
+                    <para><code>attribute</code></para>
+                  </entry>
+                  <entry>
+                    <para><tag class="attribute">attribute</tag></para>
+                    <para><tag class="attribute">class</tag></para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para><code>attvalue</code></para>
+                  </entry>
+                  <entry>
+                    <para><tag class="attvalue">attribute value</tag></para>
+                    <para><tag class="attvalue">some value for an attribute</tag></para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para><code>emptytag</code></para>
+                  </entry>
+                  <entry>
+                    <para><tag class="emptytag">element</tag></para>
+                    <para><tag class="emptytag">docbook</tag></para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para><code>endtag</code></para>
+                  </entry>
+                  <entry>
+                    <para><tag class="endtag">element</tag></para>
+                    <para><tag class="endtag">docbook</tag></para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para><code>pi</code></para>
+                  </entry>
+                  <entry>
+                    <para><tag class="pi">processing-instruction x="y"</tag></para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para><code>comment</code></para>
+                  </entry>
+                  <entry>
+                    <para><tag class="comment"> Some comment line... </tag></para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para>Anything else defaults to <code>element</code></para>
+                  </entry>
+                  <entry>
+                    <para><tag class="element">element</tag></para>
+                    <para><tag class="element">docbook</tag></para>
+                  </entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+          <para role="break"/>
+        </listitem>
+        
         <listitem>
           <para><emphasis role="bold"><literal>&lt;xref></literal></emphasis>: Inserts a cross-reference to the id referenced by
               <literal>@linkend</literal></para>
