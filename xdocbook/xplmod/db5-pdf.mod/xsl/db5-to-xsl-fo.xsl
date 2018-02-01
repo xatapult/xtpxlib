@@ -531,17 +531,17 @@
     <xsl:for-each select="db:varlistentry">
       <block keep-with-next="always">
         <xsl:call-template name="handle-inline-text">
-          <xsl:with-param name="text" select="db:term"/>
-          <xsl:with-param name="italic" select="true()"/>
+          <xsl:with-param name="contents" as="node()*" select="db:term/node()"/>
+          <xsl:with-param name="bold" select="true()"/>
         </xsl:call-template>
       </block>
       <block-container margin-left="{local:dimcm($standard-small-indent)}">
         <xsl:apply-templates select="db:listitem/db:*" mode="#current"/>
       </block-container>
+      <xsl:call-template name="empty-line">
+        <xsl:with-param name="size-pt" select="$standard-extra-paragraph-distance-pt"/>
+      </xsl:call-template>
     </xsl:for-each>
-    <xsl:call-template name="empty-line">
-      <xsl:with-param name="size-pt" select="$standard-extra-paragraph-distance-pt"/>
-    </xsl:call-template>
   </xsl:template>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->

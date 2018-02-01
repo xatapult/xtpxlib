@@ -46,7 +46,7 @@
     <sect1>
       <title>Chapter/Section structure</title>
 
-      <para><literal>&lt;preface></literal>, <literal>&lt;chapter></literal> and <literal>&lt;sect1></literal> to <literal>&lt;sect2></literal> are
+      <para><literal>&lt;preface></literal>, <literal>&lt;chapter></literal> and <literal>&lt;sect1></literal> to <literal>&lt;sect3></literal> are
         recognized and handled.</para>
     </sect1>
 
