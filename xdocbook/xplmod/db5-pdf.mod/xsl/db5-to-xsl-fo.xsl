@@ -100,7 +100,7 @@
   <!-- Debug info: -->
   <xsl:variable name="debug-info-block" as="element(fo:block)?">
     <xsl:if test="$do-debug">
-      <fo:block font-style="italic" font-size="{local:dimpt($standard-font-size - 1)}" font-weight="bold">Debug version (<xsl:value-of
+      <fo:block font-style="italic" font-size="{local:dimpt($standard-font-size - 1)}" font-weight="bold">Preliminary version (<xsl:value-of
           select="format-dateTime(current-dateTime(), $xtlc:default-dt-format-en)"/>)</fo:block>
     </xsl:if>
   </xsl:variable>

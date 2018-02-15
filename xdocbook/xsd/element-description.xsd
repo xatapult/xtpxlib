@@ -154,7 +154,7 @@
     </xs:sequence>
   </xs:group>
   <xs:group name="g-element">
-    <xs:sequence>
+    <xs:choice>
       <xs:element name="element">
         <xs:complexType>
           <xs:sequence>
@@ -171,7 +171,20 @@
           <xs:attributeGroup ref="xtlxdb:ag-use-global"/>
         </xs:complexType>
       </xs:element>
-    </xs:sequence>
+      <xs:element name="element-placeholder">
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute default="false" name="as-comment" type="xs:boolean">
+                <xs:annotation>
+                  <xs:documentation>Whether to display the additional text as an XML comment or not</xs:documentation>
+                </xs:annotation>
+              </xs:attribute>
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
   </xs:group>
   <xs:group name="g-attribute">
     <xs:sequence>

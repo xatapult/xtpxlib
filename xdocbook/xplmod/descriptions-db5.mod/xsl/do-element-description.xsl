@@ -200,7 +200,7 @@
       <xsl:variable name="id" as="xs:string" select="(@id, xtlc:str2id(@name, 'element-'))[1]"/>
       <xsl:variable name="element-name" as="xs:string" select="@name"/>
       <xsl:variable name="attributes" as="element(xtlxdb:attribute)*" select="xtlxdb:attribute"/>
-      <xsl:variable name="contents" as="element()*" select="xtlxdb:choice | xtlxdb:element"/>
+      <xsl:variable name="contents" as="element()*" select="xtlxdb:choice | xtlxdb:element | xtlxdb:element-placeholder"/>
       <xsl:variable name="additional-text-elm" as="element(xtlxdb:additional-text-coded-description)?"
         select="xtlxdb:additional-text-coded-description"/>
       <xsl:variable name="additional-text" as="xs:string" select="string($additional-text-elm)"/>
@@ -251,20 +251,11 @@
             </xsl:apply-templates>
 
             <!-- Additional text: -->
-            <xsl:variable name="as-comment" as="xs:boolean" select="xtlc:str2bln($additional-text-elm/@as-comment, false())"/>
             <xsl:if test="$has-additional-text">
-              <xsl:value-of select="local:spaces($standard-coded-description-indent)"/>
-              <xsl:choose>
-                <xsl:when test="$as-comment">
-                  <xsl:text>&lt;!-- </xsl:text>
-                  <xsl:value-of select="$additional-text"/>
-                  <xsl:text> --&gt;</xsl:text>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:value-of select="$additional-text"/>
-                </xsl:otherwise>
-              </xsl:choose>
-              <xsl:value-of select="$newline"/>
+              <xsl:call-template name="output-text-only-element">
+                <xsl:with-param name="indent" select="$standard-coded-description-indent"/>
+                <xsl:with-param name="elm" select="$additional-text-elm"/>
+              </xsl:call-template>
             </xsl:if>
 
             <!-- Closing tag: -->
@@ -301,12 +292,27 @@
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
+  <xsl:template match="xtlxdb:element-placeholder" mode="mode-coded-description">
+    <xsl:param name="indent" as="xs:integer" required="yes"/>
+    <xsl:param name="do-newline" as="xs:boolean" required="no" select="false()"/>
+
+    <xsl:call-template name="output-text-only-element">
+      <xsl:with-param name="indent" select="$indent"/>
+      <xsl:with-param name="elm" select="."/>
+    </xsl:call-template>
+    <xsl:if test="$do-newline">
+      <xsl:value-of select="$newline"/>
+    </xsl:if>
+  </xsl:template>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
   <xsl:template match="xtlxdb:choice" mode="mode-coded-description">
     <xsl:param name="indent" as="xs:integer" required="yes"/>
 
     <xsl:variable name="occurs" as="xs:string" select="(@occurs, '*')[1]"/>
     <xsl:variable name="opening-prefix" as="xs:string" select="'( '"/>
-    <xsl:variable name="elements" as="element(xtlxdb:element)+" select="xtlxdb:element"/>
+    <xsl:variable name="elements" as="element()+" select="xtlxdb:element | xtlxdb:element-placeholder"/>
 
     <xsl:value-of select="local:spaces($indent)"/>
     <xsl:value-of select="$opening-prefix"/>
@@ -333,6 +339,30 @@
     <xsl:text> )</xsl:text>
     <xsl:value-of select="local:occurs-indicator(.)"/>
     <xsl:value-of select="$newline"/>
+  </xsl:template>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsl:template name="output-text-only-element">
+    <xsl:param name="elm" as="element()?" required="yes"/>
+    <xsl:param name="indent" as="xs:integer" required="yes"/>
+
+    <xsl:variable name="additional-text" as="xs:string" select="normalize-space($elm)"/>
+    <xsl:if test="$additional-text ne ''">
+      <xsl:variable name="as-comment" as="xs:boolean" select="xtlc:str2bln($elm/@as-comment, false())"/>
+      <xsl:value-of select="local:spaces($indent)"/>
+      <xsl:choose>
+        <xsl:when test="$as-comment">
+          <xsl:text>&lt;!-- </xsl:text>
+          <xsl:value-of select="$additional-text"/>
+          <xsl:text> --&gt;</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$additional-text"/>
+        </xsl:otherwise>
+      </xsl:choose>
+      <xsl:value-of select="$newline"/>
+    </xsl:if>
   </xsl:template>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
