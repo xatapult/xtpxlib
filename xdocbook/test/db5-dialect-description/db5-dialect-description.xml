@@ -537,6 +537,8 @@
               </tbody>
             </tgroup>
           </table>
+          <para>Use <code>role="capitalize"</code> to force the reference string to start with an upper-case character (so you can be sure a sentence
+            that starts with an <tag>xref</tag> always starts with a capital).</para>
           <para role="break"/>
         </listitem>
 

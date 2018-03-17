@@ -48,6 +48,11 @@
           <xs:documentation>Reference to an external element-description document</xs:documentation>
         </xs:annotation>
       </xs:attribute>
+      <xs:attribute default="false" name="simple" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>When true only a simple description will be added. No attribute/element tables.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
     </xs:complexType>
   </xs:element>
   <xs:element name="element-description">

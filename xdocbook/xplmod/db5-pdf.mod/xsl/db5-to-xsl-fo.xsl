@@ -33,6 +33,9 @@
     <!-- With this parameter you can provide the identifier of a chapter (or preface) to output only. Front page and TOC will not be output.
       Use for debugging. -->
   </xsl:param>
+  
+  <xsl:variable name="default-main-font-size" as="xs:integer" select="8"/>
+  <xsl:param name="main-font-size" as="xs:string" required="no" select="string($default-main-font-size)"/>
 
   <xsl:variable name="do-debug" as="xs:boolean" select="xtlc:str2bln($debug, false())"/>
   <xsl:variable name="do-chapter-id" as="xs:string" select="normalize-space($chapter-id)"/>
@@ -67,12 +70,12 @@
   </xsl:attribute-set>
 
   <!-- Standard attribute sets and other settings: -->
-  <xsl:variable name="standard-font-size" as="xs:double" select="8"/>
+  <xsl:variable name="standard-font-size" as="xs:double" select="xtlc:str2int($main-font-size, $default-main-font-size)"/>
   <xsl:variable name="special-titles-font-size" as="xs:double" select="$standard-font-size - 2"/>
   <xsl:variable name="super-sub-font-size" as="xs:double" select="$standard-font-size - 3"/>
   <xsl:variable name="chapter-font-size-addition" as="xs:double" select="6"/>
   <xsl:variable name="standard-small-indent" as="xs:double" select="0.15"/>
-  <xsl:variable name="standard-itemized-list-indent" as="xs:double" select="0.3"/>
+  <xsl:variable name="standard-itemized-list-indent" as="xs:double" select="0.4"/>
 
   <xsl:attribute-set name="attributes-standard-font-settings">
     <xsl:attribute name="font-family" select="'Verdana, sans-serif'"/>
@@ -424,7 +427,7 @@
                 <block><xsl:value-of select="$item-number"/>.</block>
               </xsl:when>
               <xsl:otherwise>
-                <block font-weight="bold">-</block>
+                <block font-weight="bold">•</block>
               </xsl:otherwise>
             </xsl:choose>
           </list-item-label>
@@ -784,36 +787,40 @@
 
     <xsl:variable name="id" as="xs:string" select="@linkend"/>
     <xsl:variable name="referenced-element" as="element()?" select="key($id-index-name, $id)"/>
+    <xsl:variable name="roles" as="xs:string*" select="xtlc:str2seq(@role)"/>
+    <xsl:variable name="do-capitalize" as="xs:boolean" select="$roles =  ('capitalize')"/>
 
+    <!-- capitalize -->
     <xsl:choose>
       <xsl:when test="exists($referenced-element)">
         <basic-link internal-destination="{$id}">
-          <xsl:choose>
-            <xsl:when test="$referenced-element/self::db:chapter">
-              <xsl:text>chapter&#160;</xsl:text>
-              <xsl:value-of select="$referenced-element/@number"/>
-            </xsl:when>
-            <xsl:when test="matches(local-name($referenced-element), '^sect[0-9]$')">
-              <xsl:text>"</xsl:text>
-              <!-- <xsl:call-template name="handle-inline-contents">
-                <xsl:with-param name="contents" select="$referenced-element/db:title/node()"/>                  
-              </xsl:call-template>-->
-              <xsl:value-of select="normalize-space($referenced-element/db:title)"/>
-              <xsl:text>" on page&#160;</xsl:text>
-              <page-number-citation ref-id="{$referenced-element/@xml:id}"/>
-            </xsl:when>
-            <xsl:when
-              test="$referenced-element/self::db:figure[exists(@number)] or $referenced-element/self::db:table[exists(@number)] or
+          <xsl:variable name="reftext-components" as="xs:string*">
+            <xsl:choose>
+              <xsl:when test="$referenced-element/self::db:chapter">
+                <xsl:text>chapter&#160;</xsl:text>
+                <xsl:value-of select="$referenced-element/@number"/>
+              </xsl:when>
+              <xsl:when test="matches(local-name($referenced-element), '^sect[0-9]$')">
+                <xsl:text>"</xsl:text>
+                <xsl:value-of select="normalize-space($referenced-element/db:title)"/>
+                <xsl:text>" on page&#160;</xsl:text>
+                <page-number-citation ref-id="{$referenced-element/@xml:id}"/>
+              </xsl:when>
+              <xsl:when
+                test="$referenced-element/self::db:figure[exists(@number)] or $referenced-element/self::db:table[exists(@number)] or
                 $referenced-element/self::db:example[exists(@number)]">
-              <xsl:value-of select="xtlc:str-capitalize(local-name($referenced-element))"/>
-              <xsl:text>&#160;</xsl:text>
-              <xsl:value-of select="$referenced-element/@number"/>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:text>page&#160;</xsl:text>
-              <page-number-citation ref-id="{$referenced-element/@xml:id}"/>
-            </xsl:otherwise>
-          </xsl:choose>
+                <xsl:value-of select="xtlc:str-capitalize(local-name($referenced-element))"/>
+                <xsl:text>&#160;</xsl:text>
+                <xsl:value-of select="$referenced-element/@number"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:text>page&#160;</xsl:text>
+                <page-number-citation ref-id="{$referenced-element/@xml:id}"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:variable>
+          <xsl:variable name="reftext" as="xs:string" select="string-join($reftext-components)"/>
+          <xsl:value-of select="if ($do-capitalize) then xtlc:str-capitalize($reftext) else $reftext"/>
         </basic-link>
       </xsl:when>
       <xsl:otherwise>

@@ -78,6 +78,9 @@
       </xsl:choose>
     </xsl:variable>
 
+    <!-- Find if things have to be simple: -->
+    <xsl:variable name="simple-description-only" as="xs:boolean" select="xtlc:str2bln(@simple, false())"/>
+
     <!-- Error if not found: -->
     <xsl:if test="empty($element-description)">
       <xsl:choose>
@@ -99,6 +102,7 @@
     <xsl:variable name="global-descriptions" as="element()*">
       <xsl:call-template name="find-global-descriptions"/>
     </xsl:variable>
+
     <!-- Turn this on to get the full global descriptions visible: -->
     <!--<programlisting>
       <xsl:for-each select="$global-descriptions">
@@ -115,28 +119,32 @@
         <xsl:with-param name="global-descriptions" as="element()*" select="$global-descriptions" tunnel="true"/>
       </xsl:call-template>
 
-      <!-- The output the general description: -->
+      <!-- Then output the general description: -->
       <xsl:call-template name="output-docbook-contents">
         <xsl:with-param name="encompassing-element" select="xtlxdb:description"/>
       </xsl:call-template>
 
-      <!-- Attributes table: -->
-      <xsl:call-template name="output-description-table">
-        <xsl:with-param name="descriptions" select="xtlxdb:attribute"/>
-        <xsl:with-param name="header" as="element()*" select="xtlxdb:attribute-table-header/*"/>
-        <xsl:with-param name="global-descriptions" as="element()*" select="$global-descriptions" tunnel="true"/>
-      </xsl:call-template>
+      <xsl:if test="not($simple-description-only)">
+        
+        <!-- Attributes table: -->
+        <xsl:call-template name="output-description-table">
+          <xsl:with-param name="descriptions" select="xtlxdb:attribute"/>
+          <xsl:with-param name="header" as="element()*" select="xtlxdb:attribute-table-header/*"/>
+          <xsl:with-param name="global-descriptions" as="element()*" select="$global-descriptions" tunnel="true"/>
+        </xsl:call-template>
 
-      <!-- Elements table (remove doubles): -->
-      <xsl:call-template name="output-description-table">
-        <xsl:with-param name="descriptions" as="element(xtlxdb:element)*">
-          <xsl:for-each-group select=".//xtlxdb:element" group-by="@name">
-            <xsl:sequence select="current-group()[1]"/>
-          </xsl:for-each-group>
-        </xsl:with-param>
-        <xsl:with-param name="header" as="element()*" select="xtlxdb:element-table-header/*"/>
-        <xsl:with-param name="global-descriptions" as="element()*" select="$global-descriptions" tunnel="true"/>
-      </xsl:call-template>
+        <!-- Elements table (remove doubles): -->
+        <xsl:call-template name="output-description-table">
+          <xsl:with-param name="descriptions" as="element(xtlxdb:element)*">
+            <xsl:for-each-group select=".//xtlxdb:element" group-by="@name">
+              <xsl:sequence select="current-group()[1]"/>
+            </xsl:for-each-group>
+          </xsl:with-param>
+          <xsl:with-param name="header" as="element()*" select="xtlxdb:element-table-header/*"/>
+          <xsl:with-param name="global-descriptions" as="element()*" select="$global-descriptions" tunnel="true"/>
+        </xsl:call-template>
+        
+      </xsl:if>
 
     </xsl:for-each>
   </xsl:template>
