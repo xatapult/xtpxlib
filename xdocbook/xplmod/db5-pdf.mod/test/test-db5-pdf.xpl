@@ -9,7 +9,7 @@
   <!-- ================================================================== -->
   <!-- SETUP: -->
 
-  <p:option name="dref-source" required="false" select="resolve-uri('../../../test/db5-dialect-description/db5-dialect-description.xml', static-base-uri())"/>
+  <p:option name="dref-source" required="false" select="resolve-uri('../../../doc/db5-dialect-description.xml', static-base-uri())"/>
 
   <p:option name="dref-pdf" required="true"/>
   <p:option name="debug" required="false" select="true()"/>

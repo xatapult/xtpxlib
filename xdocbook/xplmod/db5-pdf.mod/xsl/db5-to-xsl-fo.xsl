@@ -538,7 +538,7 @@
           <xsl:with-param name="bold" select="true()"/>
         </xsl:call-template>
       </block>
-      <block-container margin-left="{local:dimcm($standard-small-indent)}">
+      <block-container margin-left="{local:dimcm($standard-itemized-list-indent)}">
         <xsl:apply-templates select="db:listitem/db:*" mode="#current"/>
       </block-container>
       <xsl:call-template name="empty-line">
