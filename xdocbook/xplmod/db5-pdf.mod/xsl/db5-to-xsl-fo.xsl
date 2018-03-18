@@ -790,14 +790,18 @@
     <xsl:variable name="roles" as="xs:string*" select="xtlc:str2seq(@role)"/>
     <xsl:variable name="do-capitalize" as="xs:boolean" select="$roles =  ('capitalize')"/>
 
-    <!-- capitalize -->
     <xsl:choose>
       <xsl:when test="exists($referenced-element)">
         <basic-link internal-destination="{$id}">
-          <xsl:variable name="reftext-components" as="xs:string*">
             <xsl:choose>
+              <xsl:when test="exists($referenced-element/@xreflabel)">
+                <xsl:text>&quot;</xsl:text>
+                <xsl:value-of select="$referenced-element/@xreflabel"/>
+                <xsl:text>&quot; on page&#160;</xsl:text>
+                <page-number-citation ref-id="{$referenced-element/@xml:id}"/>
+              </xsl:when>
               <xsl:when test="$referenced-element/self::db:chapter">
-                <xsl:text>chapter&#160;</xsl:text>
+                <xsl:value-of select="local:xref-capitalize('chapter&#160;', $do-capitalize)"/>
                 <xsl:value-of select="$referenced-element/@number"/>
               </xsl:when>
               <xsl:when test="matches(local-name($referenced-element), '^sect[0-9]$')">
@@ -814,13 +818,10 @@
                 <xsl:value-of select="$referenced-element/@number"/>
               </xsl:when>
               <xsl:otherwise>
-                <xsl:text>page&#160;</xsl:text>
+                <xsl:value-of select="local:xref-capitalize('page&#160;', $do-capitalize)"/>
                 <page-number-citation ref-id="{$referenced-element/@xml:id}"/>
               </xsl:otherwise>
             </xsl:choose>
-          </xsl:variable>
-          <xsl:variable name="reftext" as="xs:string" select="string-join($reftext-components)"/>
-          <xsl:value-of select="if ($do-capitalize) then xtlc:str-capitalize($reftext) else $reftext"/>
         </basic-link>
       </xsl:when>
       <xsl:otherwise>
@@ -831,7 +832,16 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-
+  
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  
+  <xsl:function name="local:xref-capitalize" as="xs:string">
+    <!-- Helper function for creating xref texts with capitalization or not. -->
+    <xsl:param name="text" as="xs:string"/>
+    <xsl:param name="capitalize" as="xs:boolean"/>
+    <xsl:sequence select="if ($capitalize) then xtlc:str-capitalize($text) else $text"/>
+  </xsl:function>
+  
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <xsl:template match="db:emphasis" mode="mode-inline">
