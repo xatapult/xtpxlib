@@ -1266,6 +1266,36 @@ ancestor-or-self::*:return[namespace-uri() = "http://www.oxygenxml.com/ns/doc/xs
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
+                                    <String>../../xdocbook/doc/db5-dialect-description.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>create-db5-dialect-description</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XPROC</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../xdocbook/xplmod/db5-pdf.mod/xsl/db5-to-xsl-fo.xsl</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>test-db5-pdf</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XPROC</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
                                     <String>../../xdocbook/doc/create-db5-dialect-description.xpl</String>
                                 </field>
                                 <field name="scenarioIds">
@@ -1376,21 +1406,6 @@ ancestor-or-self::*:return[namespace-uri() = "http://www.oxygenxml.com/ns/doc/xs
                                 <field name="scenarioIds">
                                     <list>
                                         <String>test-descriptions-db5</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XPROC</String>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>../../xdocbook/xplmod/db5-pdf.mod/xsl/db5-to-xsl-fo.xsl</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>test-db5-pdf</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
