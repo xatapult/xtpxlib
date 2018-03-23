@@ -3,14 +3,19 @@
   version="1.0" xpath-version="2.0" exclude-inline-prefixes="#all">
 
   <p:documentation>
-    Driver to create the db5 dialect description pdf
+    Driver to create a pdf from a DocBook 5 source
   </p:documentation>
 
   <!-- ================================================================== -->
   <!-- SETUP: -->
+  
+  <p:input port="source" primary="true" sequence="false">
+    <p:documentation>The DocBook5 to convert</p:documentation>
+  </p:input>
 
-  <p:option name="dref-source" required="false" select="resolve-uri('db5-dialect-description.xml', static-base-uri())"/>
-  <p:option name="dref-pdf" required="false" select="resolve-uri('db5-dialect-description.pdf', static-base-uri())"/>
+  <p:option name="dref-pdf" required="true">
+    <p:documentation>Document reference of the resulting PDF</p:documentation>
+  </p:option> 
   
   <p:option name="debug" required="false" select="false()"/>
 
@@ -22,14 +27,11 @@
   <!-- ================================================================== -->
 
   <!-- Convert the input into something suitable and add xml:base attribute at the root: -->
-  <p:load dtd-validate="false">
-    <p:with-option name="href" select="$dref-source"/> 
-  </p:load>
   <p:xinclude>
     <p:with-option name="fixup-xml-base" select="true()"/> 
   </p:xinclude>
   <p:add-attribute attribute-name="xml:base" match="/*">
-    <p:with-option name="attribute-value" select="$dref-source"/>
+    <p:with-option name="attribute-value" select="base-uri(/*)"/>
   </p:add-attribute>
   
   <!-- Go, create: -->
@@ -44,7 +46,7 @@
   <p:identity>
     <p:input port="source">
       <p:inline>
-        <create-db5-dialect-description/>
+        <create-db5-pdf/>
       </p:inline>
     </p:input>
   </p:identity>

@@ -1266,41 +1266,26 @@ ancestor-or-self::*:return[namespace-uri() = "http://www.oxygenxml.com/ns/doc/xs
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
+                                    <String>../../xdocbook/doc/db5-dialect-description-article.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>create-db5-pdf</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XPROC</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
                                     <String>../../xdocbook/doc/db5-dialect-description.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
-                                        <String>create-db5-dialect-description</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XPROC</String>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>../../xdocbook/xplmod/db5-pdf.mod/xsl/db5-to-xsl-fo.xsl</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>test-db5-pdf</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XPROC</String>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>../../xdocbook/doc/create-db5-dialect-description.xpl</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>create-db5-dialect-description</String>
+                                        <String>create-db5-pdf</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
@@ -2096,7 +2081,18 @@ ancestor-or-self::*:return[namespace-uri() = "http://www.oxygenxml.com/ns/doc/xs
                         <scenario-array>
                             <xprocScenario>
                                 <field name="inputPorts">
-                                    <xprocInputPort-array/>
+                                    <xprocInputPort-array>
+                                        <xprocInputPort>
+                                            <field name="portName">
+                                                <String>source</String>
+                                            </field>
+                                            <field name="urls">
+                                                <String-array>
+                                                    <String>${currentFileURL}</String>
+                                                </String-array>
+                                            </field>
+                                        </xprocInputPort>
+                                    </xprocInputPort-array>
                                 </field>
                                 <field name="outputPorts">
                                     <xprocOutputPort-array>
@@ -2120,21 +2116,10 @@ ancestor-or-self::*:return[namespace-uri() = "http://www.oxygenxml.com/ns/doc/xs
                                                 <String></String>
                                             </field>
                                             <field name="localName">
-                                                <String>dref-source</String>
-                                            </field>
-                                            <field name="value">
-                                                <null/>
-                                            </field>
-                                        </xprocOption>
-                                        <xprocOption>
-                                            <field name="namespaceURI">
-                                                <String></String>
-                                            </field>
-                                            <field name="localName">
                                                 <String>dref-pdf</String>
                                             </field>
                                             <field name="value">
-                                                <null/>
+                                                <String>${cfdu}/${cfn}.pdf</String>
                                             </field>
                                         </xprocOption>
                                         <xprocOption>
@@ -2166,7 +2151,7 @@ ancestor-or-self::*:return[namespace-uri() = "http://www.oxygenxml.com/ns/doc/xs
                                     <null/>
                                 </field>
                                 <field name="name">
-                                    <String>create-db5-dialect-description</String>
+                                    <String>create-db5-pdf</String>
                                 </field>
                                 <field name="baseURL">
                                     <null/>
@@ -2184,7 +2169,7 @@ ancestor-or-self::*:return[namespace-uri() = "http://www.oxygenxml.com/ns/doc/xs
                                     <null/>
                                 </field>
                                 <field name="inputXSLURL">
-                                    <String>${pdu}/../../xdocbook/doc/create-db5-dialect-description.xpl</String>
+                                    <String>${pdu}/../../xdocbook/xpl/create-db5-pdf.xpl</String>
                                 </field>
                                 <field name="inputXMLURL">
                                     <String></String>
@@ -2214,7 +2199,7 @@ ancestor-or-self::*:return[namespace-uri() = "http://www.oxygenxml.com/ns/doc/xs
                                     <Boolean>true</Boolean>
                                 </field>
                                 <field name="locationToOpenInBrowserURL">
-                                    <String>${pdu}/../../xdocbook/doc/db5-dialect-description.pdf</String>
+                                    <String>${cfdu}/${cfn}.pdf</String>
                                 </field>
                                 <field name="openInEditor">
                                     <Boolean>false</Boolean>

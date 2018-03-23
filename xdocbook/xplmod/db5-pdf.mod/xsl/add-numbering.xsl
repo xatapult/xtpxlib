@@ -12,26 +12,60 @@
   <xsl:output method="xml" indent="no" encoding="UTF-8"/>
 
   <xsl:mode on-no-match="shallow-copy"/>
+  <xsl:mode name="mode-article" on-no-match="shallow-copy"/>
+  <xsl:mode name="mode-book" on-no-match="shallow-copy"/>
 
   <xsl:include href="../../../../common/xslmod/common.mod.xsl"/>
 
+  <xsl:variable name="in-article" as="xs:boolean" select="exists(/*/self::db:article)"/>
+
   <!-- ================================================================== -->
 
-  <xsl:template match="db:chapter | db:preface">
+  <xsl:template match="/">
+    <!-- Find out what to do: -->
+    <xsl:choose>
+      <xsl:when test="$in-article">
+        <xsl:apply-templates mode="mode-article"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates mode="mode-book"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsl:template match="db:chapter | db:preface" mode="mode-book">
     <xsl:copy>
       <xsl:copy-of select="@*"/>
       <xsl:variable name="chapter-number" as="xs:integer" select="count(preceding-sibling::db:chapter) + count(preceding-sibling::db:preface) + 1"/>
       <xsl:attribute name="number" select="$chapter-number"/>
-      <xsl:apply-templates>
+      <xsl:apply-templates mode="#current">
         <xsl:with-param name="chapter-number" as="xs:integer" select="$chapter-number" tunnel="true"/>
-        <xsl:with-param name="chapter" as="element(db:chapter)" select="." tunnel="true"/>
+        <xsl:with-param name="chapter" as="element()" select="." tunnel="true"/>
       </xsl:apply-templates>
     </xsl:copy>
   </xsl:template>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-  <xsl:template match="db:sect1 | db:sect2 | db:sect3">
+  
+  <xsl:template match="db:sect1" mode="mode-article" priority="10">
+    <!-- On articles, the sect1 is handled as a chapter -->
+    <xsl:copy>
+      <xsl:copy-of select="@*"/>
+      <xsl:variable name="chapter-number" as="xs:integer" select="count(preceding-sibling::db:sect1) + 1"/>
+      <xsl:attribute name="number" select="$chapter-number"/>
+      <xsl:apply-templates mode="#current">
+        <xsl:with-param name="chapter-number" as="xs:integer" select="$chapter-number" tunnel="true"/>
+        <xsl:with-param name="chapter" as="element()" select="." tunnel="true"/>
+      </xsl:apply-templates>
+    </xsl:copy>
+    
+  </xsl:template>
+  
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  
+  <xsl:template match="db:sect1 | db:sect2 | db:sect3" mode="#all">
     <xsl:param name="chapter-number" as="xs:integer" required="yes" tunnel="true"/>
     <xsl:param name="section-number-prefix" as="xs:string?" required="no" select="()" tunnel="true"/>
 
@@ -41,7 +75,7 @@
       <xsl:variable name="section-number" as="xs:integer" select="count(preceding-sibling::db:*[local-name(.) eq $section-element-name]) + 1"/>
       <xsl:variable name="section-number-full" as="xs:string" select="string-join(($section-number-prefix, string($section-number)), '.')"/>
       <xsl:attribute name="number" select="string($chapter-number) || '.' || $section-number-full "/>
-      <xsl:apply-templates>
+      <xsl:apply-templates mode="#current">
         <xsl:with-param name="section-number-prefix" select="$section-number-full" tunnel="true"/>
       </xsl:apply-templates>
     </xsl:copy>
@@ -49,7 +83,7 @@
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-  <xsl:template match="db:table[local:is-numbered(.)] | db:example[local:is-numbered(.)] | db:figure[local:is-numbered(.)]">
+  <xsl:template match="db:table[local:is-numbered(.)] | db:example[local:is-numbered(.)] | db:figure[local:is-numbered(.)]" mode="#all">
     <xsl:call-template name="copy-with-index-number"/>
   </xsl:template>
 
@@ -58,7 +92,7 @@
   <xsl:template name="copy-with-index-number">
     <xsl:param name="elm" as="element()" required="no" select="."/>
     <xsl:param name="chapter-number" as="xs:integer" required="yes" tunnel="true"/>
-    <xsl:param name="chapter" as="element(db:chapter)" required="yes" tunnel="true"/>
+    <xsl:param name="chapter" as="element()" required="yes" tunnel="true"/>
 
     <!-- Gather a list of all elements with the same name in the chapter and find out where it is: -->
     <xsl:variable name="all-like-elements" as="element()+" select="$chapter//db:*[node-name(.) eq node-name($elm)]"/>
