@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0">
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <info>
+    <title>xtpxlib/xdocbook module</title>
+    <subtitle>Docbook 5 dialect description</subtitle>
+    <pubdate>March 2018</pubdate>
+    <author>
+      <personname>Erik&#160;Siegel</personname>
+    </author>
+    <orgname>Xatapult</orgname>
+    <mediaobject role="top-logo">
+      <imageobject>
+        <imagedata fileref="figures/logo-xatapult.jpg" width="20%"/>
+      </imageobject>
+    </mediaobject>
+    <mediaobject role="center-page">
+      <imageobject>
+        <imagedata fileref="figures/Xatapult%20X.jpg" width="200%"/>
+      </imageobject>
+    </mediaobject>
+  </info>
+
+  <!-- ================================================================== -->
+
+  <chapter>
+    <title>Introduction</title>
+
+    <warning>
+      <para>This document is only for testing the book conversion. Its content is probaly outdated! See the <code>xdocbook/doc</code> directory for an
+        up-to-date version of the documentation.</para>
+    </warning>
+
+    <para xml:id="first-para">The <code>xtpxlib/xdocbook</code> module uses DocBook&#160;5 as its target vocabulary. However, it does not implement
+      the full standard (which is huge!) but only those elements/attributes that were deemed necessary. This document will explain what is in and
+      what's not.</para>
+
+  </chapter>
+
+  <!-- ================================================================== -->
+
+  <chapter xml:id="db5-dialect">
+    <title>The xtpxlib Docbook 5 dialect</title>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <sect1 xml:id="sect-docbook5">
+      <title>Document information</title>
+
+      <para><emphasis role="bold">Document information</emphasis>: The only document information elements recognized are (any others are
+        ignored):</para>
+      <programlisting><xi:include href="includes/example-document-information.xml" parse="text"/></programlisting>
+      <para xml:id="para-with-xreflabel" xreflabel="paragraph with xreflabel attribute">All elements are optional.</para>
+
+    </sect1>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <sect1>
+      <title>Chapter/Section structure</title>
+
+      <para><literal>&lt;preface></literal>, <literal>&lt;chapter></literal> and <literal>&lt;sect1></literal> to <literal>&lt;sect3></literal> are
+        recognized and handled.</para>
+    </sect1>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <sect1>
+      <title>Block constructions</title>
+
+      <para>the following block constructions are recognized and handled:</para>
+      <para role="break"/>
+
+      <itemizedlist>
+
+        <listitem>
+          <para><emphasis role="bold">Paragraphs</emphasis>: Normal <literal>&lt;para></literal> elements recognize the following role attribute
+            values (multiple values allowed):</para>
+          <table>
+            <title/>
+            <tgroup cols="2">
+              <colspec colname="c1" colnum="1" colwidth="3cm"/>
+              <colspec colname="c2" colnum="2"/>
+              <thead>
+                <row>
+                  <entry><literal>@role</literal> value</entry>
+                  <entry>Description</entry>
+                </row>
+              </thead>
+              <tbody>
+                <row>
+                  <entry>
+                    <para><literal>break</literal>, <literal>smallbreak</literal></para>
+                  </entry>
+                  <entry>
+                    <para>Inserts an empty line, either full or small height. The contents of the <literal>&lt;para></literal> element is
+                      ignored.</para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para><literal>break-before</literal></para>
+                    <para><literal>break-after</literal></para>
+                  </entry>
+                  <entry><para>Adds extra whitespace before or after the paragraph</para></entry>
+                </row>
+                <row>
+                  <entry>
+                    <para><literal>header</literal></para>
+                    <para><literal>keep-with-next</literal></para>
+                  </entry>
+                  <entry>
+                    <para>Keeps this paragraph with the next one together on a page.</para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para><literal>keep-with-previous</literal></para>
+                  </entry>
+                  <entry>
+                    <para>Keeps this paragraph with the previous one together on a page.</para>
+                  </entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+          <para role="break"/>
+        </listitem>
+
+        <listitem>
+          <para><emphasis role="bold">Lists</emphasis>: Both <literal>&lt;itemizedlist></literal> and <literal>&lt;orderedlist></literal> are
+            allowed.</para>
+          <para role="break"/>
+        </listitem>
+
+        <listitem>
+          <para><emphasis role="bold">Tables</emphasis>: Both <literal>&lt;table></literal> and <literal>&lt;informaltable></literal> are allowed. An
+            example of a formal table above. An informal table below.</para>
+          <informaltable>
+            <tgroup cols="2">
+              <colspec colname="c1" colnum="1"/>
+              <colspec colname="c2" colnum="2"/>
+              <tbody>
+                <row>
+                  <entry>
+                    <para>Example</para>
+                  </entry>
+                  <entry>
+                    <para>of</para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para>an</para>
+                  </entry>
+                  <entry>
+                    <para>informal table</para>
+                  </entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </informaltable>
+          <para>Add <code>role="nonumber"</code> to a table to stop it from getting a number:</para>
+          <table xml:id="unnumbered-table" role="nonumber">
+            <title>Unnumbered table</title>
+            <tgroup cols="2">
+              <colspec colname="c1" colnum="1"/>
+              <colspec colname="c2" colnum="2"/>
+              <thead>
+                <row>
+                  <entry>Blurp</entry>
+                  <entry>Blorb</entry>
+                </row>
+              </thead>
+              <tbody>
+                <row>
+                  <entry>
+                    <para>Example</para>
+                  </entry>
+                  <entry>
+                    <para>of</para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para>an</para>
+                  </entry>
+                  <entry>
+                    <para>unnumbered table</para>
+                  </entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+          <para>Tables are notoriously difficult in that FOP cannot compute column widths automatically. To amand this (a little bit) add
+              <code>colspec/@colwidth</code> information.</para>
+          <para role="break"/>
+        </listitem>
+
+        <listitem>
+          <para role="keep-with-next"><emphasis role="bold">Program listings</emphasis>: For program listings use the
+              <literal>&lt;programlisting></literal> element</para>
+          <para>The easiest way to handle this turned out to put longer program listings in external files and use an <literal>&lt;xi:include
+              parse="text"></literal> construction:</para>
+          <para><literal><![CDATA[<programlisting><xi:include href="ref" parse="text"/></programlisting>]]></literal></para>
+          <para>Otherwise you have to use a <literal>&lt;![CDATA[</literal> construction around the piece of code.</para>
+          <para role="break"/>
+        </listitem>
+
+        <listitem>
+          <para role="keep-with-next"><emphasis role="bold">Figures</emphasis>: Both <literal>&lt;figure></literal> and
+              <literal>&lt;informalfigure></literal> are allowed. Width and height can be set on the image data.</para>
+          <figure xml:id="figure-example">
+            <title>An example of a figure... <code>(this in fixed width)</code></title>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/logo-xatapult.jpg" width="10%"/>
+              </imageobject>
+            </mediaobject>
+          </figure>
+          <para>Add <code>role="nonumber"</code> to a figure to stop it from getting a number.</para>
+          <para role="break"/>
+        </listitem>
+
+        <listitem>
+          <para role="keep-with-next"><emphasis role="bold">Bridgeheads</emphasis>: The <literal>&lt;bridgehead></literal> element inserts a
+            bridgehead paragraph (bold, underlined and with an empty line before):</para>
+          <bridgehead>This is a bridgehead...</bridgehead>
+          <para role="break"/>
+        </listitem>
+
+        <listitem>
+          <para role="keep-with-next"><emphasis role="bold">Simple lists</emphasis>: The <literal>&lt;simplelist></literal> element inserts a simple
+            list:</para>
+          <simplelist>
+            <member>An entry</member>
+            <member>Another entry...</member>
+          </simplelist>
+          <para role="break"/>
+        </listitem>
+
+        <listitem>
+          <para role="keep-with-next"><emphasis role="bold">Variable lists</emphasis>: The <literal>&lt;variablelist></literal> element inserts a
+            variable list list (also very useful for explaining terms, definitons, etc.):</para>
+          <variablelist>
+            <varlistentry>
+              <term>The first entry</term>
+              <listitem>
+                <para>The explanation of the first entry!</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>The second entry</term>
+              <listitem>
+                <para>The explanation of the second entry!</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+          <para role="break"/>
+        </listitem>
+
+        <listitem>
+          <para role="keep-with-next"><emphasis role="bold">Notes and warnings</emphasis>: The <literal>&lt;note></literal> element inserts a note and
+              <literal>&lt;warning></literal> a warning:</para>
+          <note>
+            <para>This is a note! Nulla ac ex urna. Ut auctor odio quis nulla porta bibendum. Proin hendrerit molestie velit sit amet tristique.
+              Vivamus laoreet ligula leo, vitae placerat ipsum porta sed. Morbi blandit ex mauris, eu volutpat tortor mattis eu. Nam et molestie mi.
+              Aliquam erat volutpat. Aenean a imperdiet lectus. Phasellus condimentum dignissim laoreet.</para>
+          </note>
+          <warning>
+            <para>This is a warning! Nulla ac ex urna. Ut auctor odio quis nulla porta bibendum. Proin hendrerit molestie velit sit amet tristique.
+              Vivamus laoreet ligula leo, vitae placerat ipsum porta sed. Morbi blandit ex mauris, eu volutpat tortor mattis eu. Nam et molestie mi.
+              Aliquam erat volutpat. Aenean a imperdiet lectus. Phasellus condimentum dignissim laoreet.</para>
+          </warning>
+          <para role="break"/>
+        </listitem>
+
+        <listitem>
+          <para role="keep-with-next"><emphasis role="bold">Sidebars</emphasis>: The <literal>&lt;sidebar></literal> element inserts sidebar
+            section:</para>
+          <sidebar>
+            <title>Title of the sidebar</title>
+            <para>Contents of the sidebar. Nulla ac ex urna. Ut auctor odio quis nulla porta bibendum. Proin hendrerit molestie velit sit amet
+              tristique. Vivamus laoreet ligula leo, vitae placerat ipsum porta sed. Morbi blandit ex mauris, eu volutpat tortor mattis eu. Nam et
+              molestie mi. Aliquam erat volutpat. Aenean a imperdiet lectus. Phasellus condimentum dignissim laoreet.</para>
+            <informalfigure>
+              <mediaobject>
+                <imageobject>
+                  <imagedata fileref="figures/logo-xatapult.jpg" width="10%"/>
+                </imageobject>
+              </mediaobject>
+            </informalfigure>
+          </sidebar>
+          <para role="break"/>
+        </listitem>
+
+        <listitem>
+          <para role="keep-with-next"><emphasis role="bold">Examples</emphasis>: The <literal>&lt;example></literal> element inserts an
+            example:</para>
+          <example xml:id="example-example">
+            <title>Example of an example</title>
+            <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus elementum diam nec nunc elementum, eget dapibus dui malesuada.
+              Aenean facilisis consequat odio, vitae euismod eros tempor nec. Vestibulum cursus tortor tortor, semper euismod sapien sagittis et.
+            </para>
+          </example>
+          <para>Add <code>role="nonumber"</code> to an example to stop it from getting a number.</para>
+          <para role="break"/>
+        </listitem>
+
+      </itemizedlist>
+
+    </sect1>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <sect1>
+      <title>Inline elements</title>
+
+      <para>the following inline elements are recognized and handled:</para>
+      <para role="break"/>
+
+      <itemizedlist>
+
+        <listitem>
+          <para><emphasis role="bold"><literal>&lt;emphasis></literal></emphasis>: Sets <emphasis>emphasis</emphasis>.</para>
+          <para>Use <emphasis role="bold"><literal>role="bold"</literal></emphasis> or <emphasis role="underline"
+              ><literal>role="underline"</literal></emphasis> to set a specific type of emphasis.</para>
+          <para role="break"/>
+        </listitem>
+
+        <listitem>
+          <para><emphasis role="bold"><literal>&lt;literal></literal></emphasis> or <emphasis role="bold"><literal>&lt;code></literal></emphasis>:
+            Creates a piece of literal, <code>mono-spaced</code> text.</para>
+          <para role="break"/>
+        </listitem>
+
+        <listitem>
+          <para><emphasis role="bold"><literal>&lt;link></literal></emphasis>: Outputs some link (e.g. a web address). This is either the contents of
+            the element or, if not available, the contents of the <literal>xlink:href</literal> attribute.</para>
+          <para>Like <link xlink:href="http://www.xatapult.nl">this</link> or like this <link xlink:href="http://www.xatapult.nl"/>.</para>
+          <para role="break"/>
+        </listitem>
+
+        <listitem>
+          <para><emphasis role="bold"><literal>&lt;inlinemediaobject></literal></emphasis>: Inserts an inline image: <inlinemediaobject>
+              <imageobject>
+                <imagedata fileref="figures/Xatapult%20X.jpg" width="12%"/>
+              </imageobject>
+            </inlinemediaobject> like this.</para>
+          <para role="break"/>
+        </listitem>
+
+        <listitem>
+          <para><emphasis role="bold"><literal>&lt;citation></literal></emphasis>: Inserts a citation between square brackets like this:
+              <citation>CITATION</citation>.</para>
+          <para role="break"/>
+        </listitem>
+
+        <listitem>
+          <para><emphasis role="bold"><literal>&lt;command></literal></emphasis>: Use to indicate an exetuble program or a user provided command, like
+            this: <command>git checkout origin</command></para>
+          <para role="break"/>
+        </listitem>
+
+        <listitem>
+          <para><emphasis role="bold"><literal>&lt;email></literal></emphasis>: Use to indicate an an email address, like this:
+              <email>info@xatapult.com</email></para>
+          <para role="break"/>
+        </listitem>
+
+        <listitem>
+          <para><emphasis role="bold"><literal>&lt;filename></literal></emphasis>: Use to indicate an a filename, like this:
+              <filename>blabla.xml</filename></para>
+          <para role="break"/>
+        </listitem>
+
+        <listitem>
+          <para><emphasis role="bold"><literal>&lt;replaceable></literal></emphasis>: Use to indicate text to be replaced with user or context
+            supplied values, like this: <replaceable>add your own stuff here</replaceable></para>
+          <para role="break"/>
+        </listitem>
+
+        <listitem>
+          <para><emphasis role="bold"><literal>&lt;keycap></literal></emphasis>: Use to indicate a keyboard physical key, like this:
+              <keycap>Return</keycap></para>
+          <para role="break"/>
+        </listitem>
+
+        <listitem>
+          <para><emphasis role="bold"><literal>&lt;superscript></literal>, <literal>&lt;subcript></literal></emphasis>: For super- and subscripts,
+            like this: XX<superscript>super</superscript> YY<subscript>sub</subscript></para>
+          <para role="break"/>
+        </listitem>
+
+        <listitem>
+          <para><emphasis role="bold"><literal>&lt;userinput></literal></emphasis>: Use to indicate data entered by the user, like this:
+              <userinput>data entered here</userinput></para>
+          <para role="break"/>
+        </listitem>
+
+        <listitem>
+          <para role="keep-with-next"><emphasis role="bold"><literal>&lt;tag></literal></emphasis>: Indicates an object from the XML vocabulary. The
+              <code>class</code> attribute signifies what:</para>
+          <table>
+            <title/>
+            <tgroup cols="2">
+              <colspec colname="c1" colnum="1" colwidth="4cm"/>
+              <colspec colname="c2" colnum="2"/>
+              <thead>
+                <row>
+                  <entry>
+                    <para><tag class="attribute">class</tag> value</para>
+                  </entry>
+                  <entry>
+                    <para>Result example(s)</para>
+                  </entry>
+                </row>
+              </thead>
+              <tbody>
+                <row>
+                  <entry>
+                    <para><code>attribute</code></para>
+                  </entry>
+                  <entry>
+                    <para><tag class="attribute">attribute</tag></para>
+                    <para><tag class="attribute">class</tag></para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para><code>attvalue</code></para>
+                  </entry>
+                  <entry>
+                    <para><tag class="attvalue">attribute value</tag></para>
+                    <para><tag class="attvalue">some value for an attribute</tag></para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para><code>emptytag</code></para>
+                  </entry>
+                  <entry>
+                    <para><tag class="emptytag">element</tag></para>
+                    <para><tag class="emptytag">docbook</tag></para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para><code>endtag</code></para>
+                  </entry>
+                  <entry>
+                    <para><tag class="endtag">element</tag></para>
+                    <para><tag class="endtag">docbook</tag></para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para><code>pi</code></para>
+                  </entry>
+                  <entry>
+                    <para><tag class="pi">processing-instruction x="y"</tag></para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para><code>comment</code></para>
+                  </entry>
+                  <entry>
+                    <para><tag class="comment"> Some comment line... </tag></para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para>Anything else defaults to <code>element</code></para>
+                  </entry>
+                  <entry>
+                    <para><tag class="element">element</tag></para>
+                    <para><tag class="element">docbook</tag></para>
+                  </entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+          <para role="break"/>
+        </listitem>
+
+        <listitem>
+          <para><emphasis role="bold"><literal>&lt;xref></literal></emphasis>: Inserts a cross-reference to the id referenced by
+              <literal>@linkend</literal></para>
+          <table xml:id="table-xref">
+            <title/>
+            <tgroup cols="2">
+              <colspec colname="c1" colnum="1" colwidth="4cm"/>
+              <colspec colname="c2" colnum="2"/>
+              <thead>
+                <row>
+                  <entry>Target</entry>
+                  <entry>Result</entry>
+                </row>
+              </thead>
+              <tbody>
+                <row>
+                  <entry>
+                    <para>To anything that holds an <code>xreflabel</code> attribute</para>
+                  </entry>
+                  <entry>
+                    <para><xref linkend="para-with-xreflabel"/></para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para>To a chapter</para>
+                  </entry>
+                  <entry>
+                    <para><xref linkend="db5-dialect"/></para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para>To a section</para>
+                  </entry>
+                  <entry>
+                    <para><xref linkend="sect-docbook5"/></para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para>To a table (with a number), like this one</para>
+                  </entry>
+                  <entry>
+                    <para><xref linkend="table-xref"/></para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para>To a figure (with a number)</para>
+                  </entry>
+                  <entry>
+                    <para><xref linkend="figure-example"/></para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para>To an example (with a number)</para>
+                  </entry>
+                  <entry>
+                    <para><xref linkend="example-example"/></para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para>To anything else</para>
+                  </entry>
+                  <entry>
+                    <para>First paragraph: <xref linkend="first-para"/></para>
+                    <para>Unnumbered table: <xref linkend="unnumbered-table"/></para>
+                  </entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+          <para>Use <code>xref/@role="capitalize"</code> to force the reference string (for chapters/pages) to start with an upper-case character (so
+            you can be sure a sentence that starts with an <tag>xref</tag> always starts with a capital). Like this: <xref linkend="db5-dialect"
+              role="capitalize"/>.</para>
+          <para role="break"/>
+        </listitem>
+
+      </itemizedlist>
+
+    </sect1>
+
+    <!-- ================================================================== -->
+
+    <sect1>
+      <title>Other constructs</title>
+
+      <itemizedlist>
+        <listitem>
+          <para><emphasis role="bold">To-be-done marker</emphasis>: Start a to-be-done marker with <keycap>[</keycap>TBD and end it with
+              <keycap>]</keycap>: [TBD this needs to be done...]</para>
+        </listitem>
+      </itemizedlist>
+    </sect1>
+
+  </chapter>
+
+</book>

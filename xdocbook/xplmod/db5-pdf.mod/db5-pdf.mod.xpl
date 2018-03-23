@@ -42,6 +42,11 @@
       <p:documentation>Reference to the FOP configuration file</p:documentation>
     </p:option>
 
+    <p:option name="main-font-size" required="false" select="'(default)'">
+      <p:documentation>Main font size as an integer. Usual values somewhere between 8 and 10. 
+        Anything not a number will result in the default value.</p:documentation>
+    </p:option>
+
     <p:output port="result" primary="true" sequence="false">
       <p:documentation>Some XML report about the conversion</p:documentation>
       <p:pipe port="result" step="final-output"/>
@@ -50,7 +55,7 @@
     <!-- ================================================================== -->
 
     <!-- Add identifiers and numbering: -->
-     <p:xslt>
+    <p:xslt>
       <p:input port="stylesheet">
         <p:document href="xsl/add-identifiers.xsl"/>
       </p:input>
@@ -62,7 +67,7 @@
       </p:input>
       <p:with-param name="debug" select="$debug"/>
     </p:xslt>
-    
+
     <!-- Create the XSL-FO: -->
     <p:xslt>
       <p:input port="stylesheet">
@@ -70,11 +75,12 @@
       </p:input>
       <p:with-param name="debug" select="$debug"/>
       <p:with-param name="chapter-id" select="$chapter-id"/>
+      <p:with-param name="main-font-size" select="$main-font-size"/>
     </p:xslt>
 
     <p:identity name="final-output"/>
 
-     <p:xsl-formatter name="step-create-pdf" content-type="application/pdf">
+    <p:xsl-formatter name="step-create-pdf" content-type="application/pdf">
       <p:with-option name="href" select="$dref-pdf"/>
       <p:with-param name="UserConfig" select="$fop-config"/>
     </p:xsl-formatter>

@@ -34,6 +34,9 @@
       Use for debugging. -->
   </xsl:param>
 
+  <xsl:variable name="default-main-font-size" as="xs:integer" select="8"/>
+  <xsl:param name="main-font-size" as="xs:string" required="no" select="string($default-main-font-size)"/>
+
   <xsl:variable name="do-debug" as="xs:boolean" select="xtlc:str2bln($debug, false())"/>
   <xsl:variable name="do-chapter-id" as="xs:string" select="normalize-space($chapter-id)"/>
   <xsl:variable name="chapter-id-provided" as="xs:boolean" select="$do-chapter-id ne ''"/>
@@ -67,12 +70,12 @@
   </xsl:attribute-set>
 
   <!-- Standard attribute sets and other settings: -->
-  <xsl:variable name="standard-font-size" as="xs:double" select="8"/>
+  <xsl:variable name="standard-font-size" as="xs:double" select="xtlc:str2int($main-font-size, $default-main-font-size)"/>
   <xsl:variable name="special-titles-font-size" as="xs:double" select="$standard-font-size - 2"/>
   <xsl:variable name="super-sub-font-size" as="xs:double" select="$standard-font-size - 3"/>
   <xsl:variable name="chapter-font-size-addition" as="xs:double" select="6"/>
   <xsl:variable name="standard-small-indent" as="xs:double" select="0.15"/>
-  <xsl:variable name="standard-itemized-list-indent" as="xs:double" select="0.3"/>
+  <xsl:variable name="standard-itemized-list-indent" as="xs:double" select="0.4"/>
 
   <xsl:attribute-set name="attributes-standard-font-settings">
     <xsl:attribute name="font-family" select="'Verdana, sans-serif'"/>
@@ -136,20 +139,86 @@
 
       <!-- Front page: -->
       <xsl:if test="not($chapter-id-provided)">
-        <xsl:call-template name="create-frontpage"/>
+        <xsl:call-template name="create-book-frontpage"/>
       </xsl:if>
 
       <!-- And the contents: -->
-      <xsl:call-template name="create-main-contents"/>
+      <xsl:call-template name="create-main-contents">
+        <xsl:with-param name="in-article" as="xs:boolean" tunnel="true" select="false()"/>
+      </xsl:call-template>
+
+    </root>
+  </xsl:template>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsl:template match="/db:article">
+    <root>
+
+      <!-- Define the pages: -->
+      <layout-master-set>
+        <!-- No front page -->
+        <!-- Content pages -->
+        <simple-page-master master-name="{$spm-contents}" xsl:use-attribute-sets="attributes-dimensions-page attributes-standard-page-margins">
+          <!-- The normal content page defines a header. -->
+          <region-body margin-top="2cm"/>
+          <region-before extent="1.5cm"/>
+        </simple-page-master>
+      </layout-master-set>
+
+      <!-- And the contents: -->
+      <xsl:call-template name="create-main-contents">
+        <xsl:with-param name="in-article" as="xs:boolean" tunnel="true" select="true()"/>
+      </xsl:call-template>
 
     </root>
   </xsl:template>
 
   <!-- ================================================================== -->
-  <!-- FRONT PAGE: -->
+  <!-- FRONT PAGE/HEADER: -->
 
-  <xsl:template name="create-frontpage">
-    <xsl:param name="book" as="element(db:book)" required="no" select="."/>
+  <xsl:template name="create-article-header">
+
+    <!-- Logo's at the top: -->
+    <xsl:variable name="logo-imagedata" as="element(db:imagedata)*"
+      select="/*/db:info/db:mediaobject[(@role eq 'top-logo') or empty(@role)]/db:imageobject/db:imagedata"/>
+    <xsl:for-each select="$logo-imagedata">
+      <block-container>
+        <block vertical-align="middle">
+          <xsl:call-template name="handle-imagedata">
+            <xsl:with-param name="imagedata" select="."/>
+          </xsl:call-template>
+        </block>
+      </block-container>
+    </xsl:for-each>
+
+    <!-- Title information: -->
+    <block-container font-variant="small-caps" letter-spacing="1pt" font-weight="bold">
+      <block space-before="{local:dimpt($break-paragraph-distance-pt div 2)}"
+        font-size="{local:dimpt($standard-font-size + $chapter-font-size-addition)}">
+        <xsl:value-of select="string-join((/*/db:info/db:title, /*/db:info/db:subtitle), ' - ')"/>
+      </block>
+    </block-container>
+
+    <!-- Author etc.: -->
+    <xsl:variable name="publication-date" as="xs:string?" select="/*/db:info/db:pubdate"/>
+    <xsl:variable name="author" as="xs:string?" select="/*/db:info/db:author/db:personname"/>
+    <xsl:variable name="organization" as="xs:string?" select="/*/db:info/db:orgname"/>
+    <xsl:if test="exists($author) or exists($organization) or exists($publication-date)">
+      <block space-before="{local:dimpt($break-paragraph-distance-pt div 2)}" font-size="{local:dimpt($standard-font-size + 1)}">
+        <xsl:value-of select="string-join(($author, $organization, $publication-date), ' - ')"/>
+      </block>
+    </xsl:if>
+    <xsl:copy-of select="$debug-info-block"/>
+
+    <!-- Line: -->
+    <block border-bottom="thick solid black">&#160;</block>
+
+  </xsl:template>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsl:template name="create-book-frontpage">
 
     <page-sequence master-reference="{$spm-frontpage}" xsl:use-attribute-sets="attributes-standard-font-settings">
       <flow flow-name="xsl-region-body">
@@ -220,7 +289,8 @@
   <!-- MAIN CONTENTS: -->
 
   <xsl:template name="create-main-contents">
-    <xsl:param name="book" as="element(db:book)" required="no" select="."/>
+    <xsl:param name="root" as="element()" required="no" select="."/>
+    <xsl:param name="in-article" as="xs:boolean" required="yes" tunnel="true"/>
 
     <page-sequence master-reference="{$spm-contents}" xsl:use-attribute-sets="attributes-standard-font-settings" initial-page-number="1">
 
@@ -236,11 +306,14 @@
 
       <!-- Do the rest: -->
       <flow flow-name="xsl-region-body">
-        <xsl:if test="not($chapter-id-provided)">
+        <xsl:if test="$in-article">
+          <xsl:call-template name="create-article-header"/>
+        </xsl:if>
+        <xsl:if test="not($in-article or $chapter-id-provided)">
           <xsl:call-template name="create-toc"/>
         </xsl:if>
         <xsl:call-template name="handle-structure">
-          <xsl:with-param name="book" select="$book"/>
+          <xsl:with-param name="root" select="$root"/>
         </xsl:call-template>
         <!-- Mark the end so we can get the final page number: -->
         <block id="{$bookmark-final-page-block}"/>
@@ -254,9 +327,9 @@
   <!-- HANDLE OVERARCHING DOCUMENT STRUCTURE: -->
 
   <xsl:template name="handle-structure">
-    <xsl:param name="book" as="element(db:book)" required="no" select="."/>
+    <xsl:param name="root" as="element()" required="no" select="."/>
 
-    <xsl:apply-templates select="$book/*" mode="mode-structure">
+    <xsl:apply-templates select="$root/*" mode="mode-structure">
       <xsl:with-param name="phase-description" as="xs:string" select="'structure'" tunnel="true"/>
     </xsl:apply-templates>
   </xsl:template>
@@ -269,15 +342,20 @@
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-  <xsl:template match="db:chapter | db:preface" mode="mode-structure">
+  <xsl:template match="db:chapter | db:preface | db:sect1" mode="mode-structure">
+    <xsl:param name="in-article" as="xs:boolean" required="yes" tunnel="true"/>
 
     <xsl:choose>
+      <xsl:when test="$in-article">
+        <xsl:call-template name="handle-block-contents">
+          <xsl:with-param name="contents" select="."/>
+        </xsl:call-template>
+      </xsl:when>
       <xsl:when test="not($chapter-id-provided) or (@xml:id eq $chapter-id)">
         <xsl:call-template name="chapter-section-header-title-out">
           <xsl:with-param name="font-size" select="$standard-font-size + $chapter-font-size-addition"/>
           <xsl:with-param name="page-break" select="true()"/>
         </xsl:call-template>
-
         <xsl:call-template name="handle-block-contents">
           <xsl:with-param name="contents" select="* except db:title"/>
         </xsl:call-template>
@@ -424,7 +502,7 @@
                 <block><xsl:value-of select="$item-number"/>.</block>
               </xsl:when>
               <xsl:otherwise>
-                <block font-weight="bold">-</block>
+                <block font-weight="bold">•</block>
               </xsl:otherwise>
             </xsl:choose>
           </list-item-label>
@@ -535,7 +613,7 @@
           <xsl:with-param name="bold" select="true()"/>
         </xsl:call-template>
       </block>
-      <block-container margin-left="{local:dimcm($standard-small-indent)}">
+      <block-container margin-left="{local:dimcm($standard-itemized-list-indent)}">
         <xsl:apply-templates select="db:listitem/db:*" mode="#current"/>
       </block-container>
       <xsl:call-template name="empty-line">
@@ -784,20 +862,25 @@
 
     <xsl:variable name="id" as="xs:string" select="@linkend"/>
     <xsl:variable name="referenced-element" as="element()?" select="key($id-index-name, $id)"/>
+    <xsl:variable name="roles" as="xs:string*" select="xtlc:str2seq(@role)"/>
+    <xsl:variable name="do-capitalize" as="xs:boolean" select="$roles =  ('capitalize')"/>
 
     <xsl:choose>
       <xsl:when test="exists($referenced-element)">
         <basic-link internal-destination="{$id}">
           <xsl:choose>
+            <xsl:when test="exists($referenced-element/@xreflabel)">
+              <xsl:text>&quot;</xsl:text>
+              <xsl:value-of select="$referenced-element/@xreflabel"/>
+              <xsl:text>&quot; on page&#160;</xsl:text>
+              <page-number-citation ref-id="{$referenced-element/@xml:id}"/>
+            </xsl:when>
             <xsl:when test="$referenced-element/self::db:chapter">
-              <xsl:text>chapter&#160;</xsl:text>
+              <xsl:value-of select="local:xref-capitalize('chapter&#160;', $do-capitalize)"/>
               <xsl:value-of select="$referenced-element/@number"/>
             </xsl:when>
             <xsl:when test="matches(local-name($referenced-element), '^sect[0-9]$')">
               <xsl:text>"</xsl:text>
-              <!-- <xsl:call-template name="handle-inline-contents">
-                <xsl:with-param name="contents" select="$referenced-element/db:title/node()"/>                  
-              </xsl:call-template>-->
               <xsl:value-of select="normalize-space($referenced-element/db:title)"/>
               <xsl:text>" on page&#160;</xsl:text>
               <page-number-citation ref-id="{$referenced-element/@xml:id}"/>
@@ -810,7 +893,7 @@
               <xsl:value-of select="$referenced-element/@number"/>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:text>page&#160;</xsl:text>
+              <xsl:value-of select="local:xref-capitalize('page&#160;', $do-capitalize)"/>
               <page-number-citation ref-id="{$referenced-element/@xml:id}"/>
             </xsl:otherwise>
           </xsl:choose>
@@ -824,6 +907,15 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsl:function name="local:xref-capitalize" as="xs:string">
+    <!-- Helper function for creating xref texts with capitalization or not. -->
+    <xsl:param name="text" as="xs:string"/>
+    <xsl:param name="capitalize" as="xs:boolean"/>
+    <xsl:sequence select="if ($capitalize) then xtlc:str-capitalize($text) else $text"/>
+  </xsl:function>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 

@@ -1,6 +1,6 @@
 # xtpxlib: Xatapult XML Library
 
-**V2.4.1 - March 14 2018** 
+**V2.4.2 - March 14 2018** 
 
 Xatapult Content Engineering - http://www.xatapult.nl
 
@@ -36,7 +36,7 @@ Most subdirectories contain a `readme.md` file that details its contents.
 | `container` | Sub-library for working with document containers. | Depends on: `common` | 
 | `devenv` | Development environment related files, like templates. xtpxlib can be used in any XML processing environment but specifically supports oXygen as its main IDE. | Only necessary when you use xtpxlib in development situations |
 | `ms-office` | Sub-library for handling and working with some Microsoft Office formats (Office version > 2003) | Depends on: `common`, `container` |
-| `xdocbook` | Sub-library with code for generating PDF from (a limited subset of) Dcobbok 5. Includes stuff for generating XML structure documentation.  | Depends on: `common` |
+| `xdocbook` | Sub-library with code for generating PDF from (a limited subset of) DocBook 5. Includes stuff for generating XML structure documentation.  | Depends on: `common` |
 | `xmlcatalog` | Contains the XML catalog file(s) for easy access to the library  from code. | Only necessary when you use the XML catalog system
 | `xmldoc` | Sub-library with code for generating documentation. A bit like Javadoc. | Depends on: `common` |
 | `xwebgen` | Sub-library with code for generating a simple static website from templates. | Depends on: `common` and `container` |

@@ -1,58 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0">
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0">
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <info>
     <title>xtpxlib/xdocbook module</title>
     <subtitle>Docbook 5 dialect description</subtitle>
-    <pubdate>November 2017</pubdate>
+    <pubdate>March 2018</pubdate>
     <author>
       <personname>Erik&#160;Siegel</personname>
     </author>
     <orgname>Xatapult</orgname>
-    <mediaobject>
+    <mediaobject role="top-logo">
       <imageobject>
-        <imagedata fileref="figures/logo-xatapult.jpg" width="20%"/>
+        <imagedata fileref="figures/logo-xatapult.jpg" width="10%"/>
       </imageobject>
     </mediaobject>
   </info>
 
   <!-- ================================================================== -->
 
-  <chapter xml:id="db5-dialect">
-    <title>The Docbook 5 dialect</title>
+  <sect1>
+    <title>Introduction</title>
 
     <para xml:id="first-para">The <code>xtpxlib/xdocbook</code> module uses DocBook&#160;5 as its target vocabulary. However, it does not implement
-      the full standard (which is huge!) but only those elements/attributes that were deemed necessary. This section will explain what is in and
+      the full standard (which is huge!) but only those elements/attributes that were deemed necessary. This document will explain what is in and
       what's not.</para>
+
+  </sect1>
+
+  <!-- ================================================================== -->
+
+  <sect1 xml:id="db5-dialect">
+    <title>The xtpxlib Docbook 5 dialect</title>
+
+    <sect2>
+      <title>Supported root elements</title>
+
+      <para>Both the <tag>book</tag> and the <tag>article</tag> root element are supported. A <tag>book</tag> root results in paged output (for, as
+        the name implies, a book. The <tag>article</tag> root results in something more memo style (like this).</para>
+    </sect2>
 
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-    <sect1 xml:id="sect-docbook5">
+    <sect2 xml:id="sect-docbook5">
       <title>Document information</title>
 
       <para><emphasis role="bold">Document information</emphasis>: The only document information elements recognized are (any others are
         ignored):</para>
       <programlisting><xi:include href="includes/example-document-information.xml" parse="text"/></programlisting>
-      <para>All elements are optional.</para>
+      <para xml:id="para-with-xreflabel" xreflabel="paragraph with xreflabel attribute">All elements are optional.</para>
 
-    </sect1>
+    </sect2>
 
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-    <sect1>
+    <sect2>
       <title>Chapter/Section structure</title>
 
       <para><literal>&lt;preface></literal>, <literal>&lt;chapter></literal> and <literal>&lt;sect1></literal> to <literal>&lt;sect3></literal> are
         recognized and handled.</para>
-    </sect1>
+    </sect2>
 
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-    <sect1>
+    <sect2>
       <title>Block constructions</title>
 
       <para>the following block constructions are recognized and handled:</para>
@@ -80,7 +94,8 @@
                     <para><literal>break</literal>, <literal>smallbreak</literal></para>
                   </entry>
                   <entry>
-                    <para>Inserts an empty line, either full or small height. The contents of the <literal>&lt;para></literal> element is ignored.</para>
+                    <para>Inserts an empty line, either full or small height. The contents of the <literal>&lt;para></literal> element is
+                      ignored.</para>
                   </entry>
                 </row>
                 <row>
@@ -146,7 +161,7 @@
               </tbody>
             </tgroup>
           </informaltable>
-          <para>You can add <code>role="nonumber"</code> to a table to stop it from getting a number:</para>
+          <para>Add <code>role="nonumber"</code> to a table to stop it from getting a number:</para>
           <table xml:id="unnumbered-table" role="nonumber">
             <title>Unnumbered table</title>
             <tgroup cols="2">
@@ -178,13 +193,13 @@
               </tbody>
             </tgroup>
           </table>
-          <para>Tables are notoriously difficult in that FOP cannot compute column widths automatically. To amand this (a little bit) you can add
+          <para>Tables are notoriously difficult in that FOP cannot compute column widths automatically. To amand this (a little bit) add
               <code>colspec/@colwidth</code> information.</para>
           <para role="break"/>
         </listitem>
 
         <listitem>
-          <para role="keep-with-next"><emphasis role="bold">Program listings</emphasis>: For program listings you can use the
+          <para role="keep-with-next"><emphasis role="bold">Program listings</emphasis>: For program listings use the
               <literal>&lt;programlisting></literal> element</para>
           <para>The easiest way to handle this turned out to put longer program listings in external files and use an <literal>&lt;xi:include
               parse="text"></literal> construction:</para>
@@ -204,7 +219,7 @@
               </imageobject>
             </mediaobject>
           </figure>
-          <para>You can add <code>role="nonumber"</code> to a figure to stop it from getting a number.</para>
+          <para>Add <code>role="nonumber"</code> to a figure to stop it from getting a number.</para>
           <para role="break"/>
         </listitem>
 
@@ -287,19 +302,19 @@
             <title>Example of an example</title>
             <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus elementum diam nec nunc elementum, eget dapibus dui malesuada.
               Aenean facilisis consequat odio, vitae euismod eros tempor nec. Vestibulum cursus tortor tortor, semper euismod sapien sagittis et.
-              </para>
+            </para>
           </example>
-          <para>You can add <code>role="nonumber"</code> to an example to stop it from getting a number.</para>
+          <para>Add <code>role="nonumber"</code> to an example to stop it from getting a number.</para>
           <para role="break"/>
         </listitem>
 
       </itemizedlist>
 
-    </sect1>
+    </sect2>
 
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-    <sect1>
+    <sect2>
       <title>Inline elements</title>
 
       <para>the following inline elements are recognized and handled:</para>
@@ -309,8 +324,8 @@
 
         <listitem>
           <para><emphasis role="bold"><literal>&lt;emphasis></literal></emphasis>: Sets <emphasis>emphasis</emphasis>.</para>
-          <para>You can use <emphasis role="bold"><literal>role="bold"</literal></emphasis> or <emphasis role="underline"
-                ><literal>role="underline"</literal></emphasis> to set a specific type of emphasis.</para>
+          <para>Use <emphasis role="bold"><literal>role="bold"</literal></emphasis> or <emphasis role="underline"
+              ><literal>role="underline"</literal></emphasis> to set a specific type of emphasis.</para>
           <para role="break"/>
         </listitem>
 
@@ -383,10 +398,10 @@
               <userinput>data entered here</userinput></para>
           <para role="break"/>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis role="bold"><literal>&lt;tag></literal></emphasis>: Indicates an object from the XML vocabulary. The <code>class</code>
-            attribute signifies what:</para>
+          <para role="keep-with-next"><emphasis role="bold"><literal>&lt;tag></literal></emphasis>: Indicates an object from the XML vocabulary. The
+              <code>class</code> attribute signifies what:</para>
           <table>
             <title/>
             <tgroup cols="2">
@@ -469,7 +484,7 @@
           </table>
           <para role="break"/>
         </listitem>
-        
+
         <listitem>
           <para><emphasis role="bold"><literal>&lt;xref></literal></emphasis>: Inserts a cross-reference to the id referenced by
               <literal>@linkend</literal></para>
@@ -485,6 +500,14 @@
                 </row>
               </thead>
               <tbody>
+                <row>
+                  <entry>
+                    <para>To anything that holds an <code>xreflabel</code> attribute</para>
+                  </entry>
+                  <entry>
+                    <para><xref linkend="para-with-xreflabel"/></para>
+                  </entry>
+                </row>
                 <row>
                   <entry>
                     <para>To a chapter</para>
@@ -537,13 +560,29 @@
               </tbody>
             </tgroup>
           </table>
+          <para>Use <code>xref/@role="capitalize"</code> to force the reference string (for chapters/pages) to start with an upper-case character (so
+            you can be sure a sentence that starts with an <tag>xref</tag> always starts with a capital). Like this: <xref linkend="db5-dialect"
+              role="capitalize"/>.</para>
           <para role="break"/>
         </listitem>
 
       </itemizedlist>
 
-    </sect1>
+    </sect2>
 
-  </chapter>
+    <!-- ================================================================== -->
 
-</book>
+    <sect2>
+      <title>Other constructs</title>
+
+      <itemizedlist>
+        <listitem>
+          <para><emphasis role="bold">To-be-done marker</emphasis>: Start a to-be-done marker with <keycap>[</keycap>TBD and end it with
+              <keycap>]</keycap>: [TBD this needs to be done...]</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+  </sect1>
+
+</article>
