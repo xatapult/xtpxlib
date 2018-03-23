@@ -30,6 +30,11 @@
   <chapter>
     <title>Introduction</title>
 
+    <warning>
+      <para>This document is only for testing the book conversion. Its content is probaly outdated! See the <code>xdocbook/doc</code> directory for an
+        up-to-date version of the documentation.</para>
+    </warning>
+
     <para xml:id="first-para">The <code>xtpxlib/xdocbook</code> module uses DocBook&#160;5 as its target vocabulary. However, it does not implement
       the full standard (which is huge!) but only those elements/attributes that were deemed necessary. This document will explain what is in and
       what's not.</para>
@@ -558,8 +563,9 @@
               </tbody>
             </tgroup>
           </table>
-          <para>Use <code>xref/@role="capitalize"</code> to force the reference string (for chapters/pages) to start with an upper-case character (so you can be sure a sentence
-            that starts with an <tag>xref</tag> always starts with a capital). Like this: <xref linkend="db5-dialect" role="capitalize"/>.</para>
+          <para>Use <code>xref/@role="capitalize"</code> to force the reference string (for chapters/pages) to start with an upper-case character (so
+            you can be sure a sentence that starts with an <tag>xref</tag> always starts with a capital). Like this: <xref linkend="db5-dialect"
+              role="capitalize"/>.</para>
           <para role="break"/>
         </listitem>
 

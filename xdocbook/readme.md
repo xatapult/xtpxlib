@@ -1,8 +1,12 @@
 # xtpxlib xdocbook
 
-The `xdocbook` part of the xtpxplib library contains code to work with and convert Docbook 5 (partial) into PDF. This was written to describe and document XML structures.
+The `xdocbook` part of the xtpxplib library contains code to work with and convert Docbook 5 (partial) into PDF. This was written mainly to describe and document XML structures.
 
 Namespace used: `xmlns:xtlxdb="http://www.xtpxlib.nl/ns/xdocbook"`
+
+## DocBook support
+
+The DocBook is limited. See the `doc` directory for more i nformaion. This directory holds both the DocBook source XML file and the resulting PDF.
 
 ## XProc libraries
 

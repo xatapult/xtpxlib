@@ -36,6 +36,13 @@
   <sect1 xml:id="db5-dialect">
     <title>The xtpxlib Docbook 5 dialect</title>
 
+    <sect2>
+      <title>Supported root elements</title>
+
+      <para>Both the <tag>book</tag> and the <tag>article</tag> root element are supported. A <tag>book</tag> root results in paged output (for, as
+        the name implies, a book. The <tag>article</tag> root results in something more memo style (like this).</para>
+    </sect2>
+
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
     <sect2 xml:id="sect-docbook5">
