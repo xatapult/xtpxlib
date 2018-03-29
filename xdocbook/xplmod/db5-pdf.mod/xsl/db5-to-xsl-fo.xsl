@@ -677,14 +677,14 @@
       <xsl:with-param name="size-pt" select="$standard-extra-paragraph-distance-pt"/>
       <xsl:with-param name="keep-with-next" select="true()"/>
     </xsl:call-template>
-    <block-container margin-left="{local:dimcm($standard-small-indent)}" margin-right="{local:dimcm($standard-small-indent)}">
+    <block margin-left="{local:dimcm($standard-small-indent)}" margin-right="{local:dimcm($standard-small-indent)}">
       <xsl:apply-templates select="db:* except db:title" mode="#current">
         <xsl:with-param name="in-example" as="xs:boolean" select="true()" tunnel="true"/>
       </xsl:apply-templates>
       <xsl:call-template name="add-object-title">
         <xsl:with-param name="object-name" select="'Example'"/>
       </xsl:call-template>
-    </block-container>
+    </block>
     <xsl:call-template name="empty-line">
       <xsl:with-param name="size-pt" select="$standard-extra-paragraph-distance-pt"/>
     </xsl:call-template>
