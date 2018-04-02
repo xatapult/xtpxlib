@@ -14,6 +14,10 @@
     <p:input port="source" primary="true" sequence="false">
       <p:documentation>The db5 source document</p:documentation>
     </p:input>
+    
+    <p:option name="main-font-size" required="false" select="'(default)'">
+      <p:documentation>Main font size as an integer. Usual values somewhere between 8 and 10.</p:documentation>
+    </p:option>
 
     <p:option name="debug" required="false" select="false()">
       <p:documentation>Add debug output</p:documentation>
@@ -29,6 +33,7 @@
       <p:input port="stylesheet">
         <p:document href="xsl/do-element-description.xsl"/>
       </p:input>
+      <p:with-param name="main-font-size" select="$main-font-size"/>
       <p:with-param name="debug" select="$debug"/>
     </p:xslt>
     
