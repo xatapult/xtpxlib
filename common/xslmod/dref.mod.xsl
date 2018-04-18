@@ -252,12 +252,6 @@
         <xsl:sequence select="local:dref-canonical-process-components($remainder-components, 0)"/>
       </xsl:when>
 
-      <!-- Any empty parts (caused by subsequent slashes like a///b) must be treated as a '.', except when it is the first. An empty first 
-        entry means there as a slash in front: -->
-      <xsl:when test="(string($component-to-process) eq '') and exists($remainder-components)">
-        <xsl:sequence select="local:dref-canonical-process-components($remainder-components, 0)"/>
-      </xsl:when>
-
       <!-- Normal directory name and no $parent-directory-marker-count. This must be part of the output: -->
       <xsl:otherwise>
         <xsl:sequence select="(local:dref-canonical-process-components($remainder-components, 0), $component-to-process)"/>
@@ -396,11 +390,8 @@
       </xsl:choose>
     </xsl:variable>
 
-    <!-- Now remove multiple slashes: -->
-    <xsl:variable name="ref-2" as="xs:string" select="replace($ref-1, '^/+', '/')"/>
-
     <!-- Check for a Windows absolute path with a slash in front. That must be removed: -->
-    <xsl:sequence select="if (matches($ref-2, '^/[a-zA-Z]:')) then substring($ref-2, 2) else $ref-2"/>
+    <xsl:sequence select="if (matches($ref-1, '^/[a-zA-Z]:')) then substring($ref-1, 2) else $ref-1"/>
 
   </xsl:function>
 
