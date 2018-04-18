@@ -321,12 +321,23 @@
 
       <!-- Setup a header: -->
       <static-content flow-name="xsl-region-before" font-size="{local:dimpt($special-titles-font-size)}"
-        font-family="{$title-font-family}" >
+        font-family="{$title-font-family}">
         <block border-bottom="thin solid black">
           <xsl:value-of select="string-join((/*/db:info/db:title, /*/db:info/db:subtitle), ' - ')"/>
         </block>
-        <block text-align="right" space-before="{local:dimpt(-$standard-font-size)}"
-            ><page-number/>&#160;/&#160;<page-number-citation ref-id="{$bookmark-final-page-block}"/></block>
+        <xsl:choose>
+          <xsl:when test="$is-a4 or $in-article">
+            <block text-align="right" space-before="{local:dimpt(-$standard-font-size)}">
+              <page-number/>&#160;/&#160;<page-number-citation ref-id="{$bookmark-final-page-block}"/>
+            </block>
+          </xsl:when>
+          <xsl:otherwise>
+            <block text-align="right" space-before="{local:dimpt(-$standard-font-size)}">
+              <page-number/>
+            </block>
+          </xsl:otherwise>
+        </xsl:choose>
+
         <xsl:copy-of select="$debug-info-block"/>
       </static-content>
 
@@ -654,8 +665,10 @@
 
   <xsl:template match="db:note | db:warning" mode="mode-block">
 
+    <xsl:variable name="roles" as="xs:string*" select="xtlc:str2seq(@role)"/>
     <xsl:variable name="is-note" as="xs:boolean" select="exists(self::db:note)"/>
-    <xsl:variable name="color" as="xs:string" select="if ($is-note) then 'navy' else 'purple'"/>
+    <xsl:variable name="is-special" as="xs:boolean" select="'special' = $roles"/>
+    <xsl:variable name="title-color" as="xs:string" select="if ($is-note) then 'navy' else 'purple'"/>
 
     <xsl:call-template name="empty-line">
       <xsl:with-param name="size-pt" select="$standard-extra-paragraph-distance-pt"/>
@@ -663,10 +676,16 @@
     </xsl:call-template>
     <block margin-left="{local:dimcm($standard-itemized-list-indent)}"
       margin-right="{local:dimcm($standard-itemized-list-indent)}" padding="{local:dimcm($standard-small-indent)}"
-      border="thin solid {$color}">
-      <block font-weight="bold" keep-with-next="always" color="{$color}">
-        <xsl:value-of select="if ($is-note) then 'NOTE:' else 'WARNING:'"/>
-      </block>
+      border="thin solid {$title-color}">
+      <xsl:if test="$is-special">
+        <xsl:attribute name="background-color" select="'#C0C0C0'"/>
+      </xsl:if>
+      <xsl:if test="not($is-special)">
+        <block font-weight="bold" keep-with-next="always" color="{$title-color}">
+          <xsl:value-of select="if ($is-note) then 'NOTE:' else 'WARNING:'"/>
+        </block>
+      </xsl:if>
+
       <xsl:apply-templates mode="#current"/>
     </block>
     <xsl:call-template name="empty-line">
@@ -1165,7 +1184,8 @@
       </xsl:if>
       <xsl:if test="$fixed-width">
         <xsl:attribute name="font-family" select="$code-font-family"/>
-        <xsl:attribute name="font-size" select="local:dimpt($standard-fixed-font-size + ($fixed-font-size-adjust, 0)[1])"/>
+        <xsl:attribute name="font-size"
+          select="local:dimpt($standard-fixed-font-size + ($fixed-font-size-adjust, 0)[1])"/>
       </xsl:if>
     </xsl:variable>
     <xsl:variable name="inline-contents" as="item()*">
