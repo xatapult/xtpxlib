@@ -145,6 +145,15 @@
     </xsl:choose>
   </xsl:function>
 
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsl:function name="xtlc:unix-epoch" as="xs:decimal">
+    <xsl:param name="datetime" as="xs:dateTime"/>
+    <!--* Computes the UNIX "epoch" code (number of seconds since 1-1-1970) for the given date/time.  -->
+    <xsl:sequence select="round((current-dateTime() - xs:dateTime('1970-01-01T00:00:00')) 
+        div xs:dayTimeDuration('PT1S'))"/>
+  </xsl:function>
+
   <!-- ================================================================== -->
   <!-- STRING CONVERSIONS: -->
 
@@ -271,8 +280,8 @@
       Turns a string sequence with tuples of strings into a sequence of attributes.
       
       Examples:
-      - xtlcstrseq2attseq(('a', 'b', 'c', 'd')) ==> Attributes a="b", c="d"
-      - xtlcstrseq2attseq(('a', 'b', 'c')) ==> Attributes a="b", c=""      
+      - xtlc:strseq2attseq(('a', 'b', 'c', 'd')) ==> Attributes a="b", c="d"
+      - xtlc:strseq2attseq(('a', 'b', 'c')) ==> Attributes a="b", c=""      
     -->
     <xsl:param name="strseq" as="xs:string*">
       <!--* String sequence to turn into attributes. -->

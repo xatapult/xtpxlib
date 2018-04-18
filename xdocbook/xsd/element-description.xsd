@@ -84,7 +84,7 @@
         </xs:choice>
         <xs:element minOccurs="0" name="additional-text-coded-description">
           <xs:annotation>
-            <xs:documentation>Some additional text to display as the element's content in the coded description part</xs:documentation>
+            <xs:documentation>Some additional text to display as the element's content in the coded description part. Use pipe characters (|) to break lines.</xs:documentation>
           </xs:annotation>
           <xs:complexType>
             <xs:simpleContent>

@@ -25,8 +25,8 @@
   <xsl:param name="debug" as="xs:string" required="no" select="string(false())"/>
   <xsl:variable name="do-debug" as="xs:boolean" select="xtlc:str2bln($debug, false())"/>
 
-  <xsl:param name="fixed-width-characters-per-cm" as="xs:string" required="no" select="'6.5'"/>
-  <xsl:variable name="fixed-width-characters-per-cm-dbl" as="xs:double" select="xs:double($fixed-width-characters-per-cm)"/>
+  <xsl:param name="main-font-size" as="xs:string" required="yes"/>
+  <xsl:variable name="main-font-size-dbl" as="xs:double" select="xs:double($main-font-size)"/>
 
   <!-- ================================================================== -->
   <!-- GLOBALS: -->
@@ -48,6 +48,9 @@
 
   <xsl:variable name="enums-table-value-column-min-width-cm" as="xs:double" select="0.8"/>
   <xsl:variable name="enums-table-value-column-max-width-cm" as="xs:double" select="2"/>
+
+  <!-- An educated guess about the number of fixed width characters per cm.  -->
+  <xsl:variable name="fixed-width-characters-per-cm-dbl" as="xs:double" select="5.55 + ((10 - $main-font-size-dbl) * 0.45) "/>
 
   <!-- ================================================================== -->
 
@@ -125,7 +128,7 @@
       </xsl:call-template>
 
       <xsl:if test="not($simple-description-only)">
-        
+
         <!-- Attributes table: -->
         <xsl:call-template name="output-description-table">
           <xsl:with-param name="descriptions" select="xtlxdb:attribute"/>
@@ -143,7 +146,7 @@
           <xsl:with-param name="header" as="element()*" select="xtlxdb:element-table-header/*"/>
           <xsl:with-param name="global-descriptions" as="element()*" select="$global-descriptions" tunnel="true"/>
         </xsl:call-template>
-        
+
       </xsl:if>
 
     </xsl:for-each>
@@ -355,18 +358,31 @@
     <xsl:param name="elm" as="element()?" required="yes"/>
     <xsl:param name="indent" as="xs:integer" required="yes"/>
 
+    <xsl:variable name="comment-start" as="xs:string" select="'&lt;!-- '"/>
+    <xsl:variable name="comment-end" as="xs:string" select="' --&gt;'"/>
     <xsl:variable name="additional-text" as="xs:string" select="normalize-space($elm)"/>
     <xsl:if test="$additional-text ne ''">
+      <xsl:variable name="additional-text-parts" as="xs:string*" select="tokenize($additional-text, '\|')"/>
       <xsl:variable name="as-comment" as="xs:boolean" select="xtlc:str2bln($elm/@as-comment, false())"/>
       <xsl:value-of select="local:spaces($indent)"/>
       <xsl:choose>
         <xsl:when test="$as-comment">
-          <xsl:text>&lt;!-- </xsl:text>
-          <xsl:value-of select="$additional-text"/>
-          <xsl:text> --&gt;</xsl:text>
+          <xsl:value-of select="$comment-start"/>
+          <xsl:value-of select="$additional-text-parts[1]"/>
+          <xsl:for-each select="$additional-text-parts[position() ge 2]">
+            <xsl:value-of select="$newline"/>
+            <xsl:value-of select="local:spaces($indent + string-length($comment-start))"/>
+            <xsl:value-of select="."/>
+          </xsl:for-each>
+          <xsl:value-of select="$comment-end"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:value-of select="$additional-text"/>
+          <xsl:value-of select="$additional-text-parts[1]"/>
+          <xsl:for-each select="$additional-text-parts[position() ge 2]">
+            <xsl:value-of select="$newline"/>
+            <xsl:value-of select="local:spaces($indent)"/>
+            <xsl:value-of select="."/>
+          </xsl:for-each>
         </xsl:otherwise>
       </xsl:choose>
       <xsl:value-of select="$newline"/>
@@ -641,16 +657,35 @@
     <xsl:param name="text" as="xs:string" required="true"/>
     <xsl:param name="width-cm" as="xs:double" required="true"/>
 
-    <xsl:variable name="characters-per-line" as="xs:integer" select="xs:integer(floor($width-cm * $fixed-width-characters-per-cm-dbl))"/>
-    <xsl:variable name="nr-of-lines" as="xs:integer" select="xs:integer(ceiling(string-length($text) div $characters-per-line))"/>
-    <xsl:for-each select="1 to $nr-of-lines">
-      <xsl:variable name="line-nr" as="xs:integer" select="."/>
-      <para>
-        <code>
-          <xsl:value-of select="substring($text, 1 + (($line-nr - 1) * $characters-per-line), $characters-per-line)"/>
-        </code>
-      </para>
-    </xsl:for-each>
+    <xsl:choose>
+      <xsl:when test="contains($text, ' ') or contains($text, '-')">
+        <!-- Assume the text will break "naturally"... -->
+        <para>
+          <code>
+            <xsl:value-of select="$text"/>
+          </code>
+        </para>
+      </xsl:when>
+      <xsl:otherwise>
+        <!-- Perform nifty calculations and break the line: -->
+        <xsl:variable name="characters-per-line" as="xs:integer" select="xs:integer(floor( ($width-cm - 0.3) * $fixed-width-characters-per-cm-dbl))"/>
+        <xsl:variable name="nr-of-lines" as="xs:integer" select="xs:integer(ceiling(string-length($text) div $characters-per-line))"/>
+        <!--<para>
+          <code><xsl:value-of select="$width-cm"/> / <xsl:value-of select="$fixed-width-characters-per-cm-dbl"/> / <xsl:value-of
+              select="$characters-per-line"/> / <xsl:value-of select="$nr-of-lines"/></code>
+        </para>-->
+        <xsl:for-each select="1 to $nr-of-lines">
+          <xsl:variable name="line-nr" as="xs:integer" select="."/>
+          <para>
+            <code>
+              <xsl:value-of select="substring($text, 1 + (($line-nr - 1) * $characters-per-line), $characters-per-line)"/>
+            </code>
+          </para>
+        </xsl:for-each>
+      </xsl:otherwise>
+    </xsl:choose>
+
+
   </xsl:template>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -663,7 +698,7 @@
     <xsl:variable name="max-nr-of-characters" as="xs:integer" select="max(for $n in $names return string-length($n))"/>
     <xsl:variable name="width-based-on-nr-of-characters" as="xs:double" select="$max-nr-of-characters div $fixed-width-characters-per-cm-dbl"/>
     <!-- Find the right width and add just a  tiny bit to make sure everything goes ok (otherwise sometimes words still go to the next line) -->
-    <xsl:variable name="width" as="xs:double" select="max(($min-width, $width-based-on-nr-of-characters)) + 0.1"/>
+    <xsl:variable name="width" as="xs:double" select="max(($min-width, $width-based-on-nr-of-characters)) + 0.3"/>
     <xsl:sequence select="if ($width gt $max-width) then $max-width else $width"/>
   </xsl:function>
 

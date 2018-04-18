@@ -41,10 +41,13 @@
     <p:option name="fop-config" required="false" select="resolve-uri('data/fop-config.xml', static-base-uri())">
       <p:documentation>Reference to the FOP configuration file</p:documentation>
     </p:option>
+    
+    <p:option name="output-type" required="false" select="'a4'">
+      <p:documentation>Output type. Use either a4 or sb (= standard book)</p:documentation>
+    </p:option>
 
-    <p:option name="main-font-size" required="false" select="'(default)'">
-      <p:documentation>Main font size as an integer. Usual values somewhere between 8 and 10. 
-        Anything not a number will result in the default value.</p:documentation>
+    <p:option name="main-font-size" required="false" select="10">
+      <p:documentation>Main font size as an integer. Usual values somewhere between 8 and 10.</p:documentation>
     </p:option>
 
     <p:output port="result" primary="true" sequence="false">
@@ -76,6 +79,7 @@
       <p:with-param name="debug" select="$debug"/>
       <p:with-param name="chapter-id" select="$chapter-id"/>
       <p:with-param name="main-font-size" select="$main-font-size"/>
+      <p:with-param name="output-type" select="$output-type"/>
     </p:xslt>
 
     <p:identity name="final-output"/>
