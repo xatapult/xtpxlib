@@ -1378,7 +1378,7 @@
     <!-- This is a simple layout here, but we might later move the number to the left of the left margin? -->
     <xsl:param name="id" as="xs:string" required="no" select="@xml:id"/>
     <xsl:param name="number" as="xs:string" required="no" select="@number"/>
-    <xsl:param name="title" as="element(db:title)" required="no" select="db:title"/>
+    <xsl:param name="title" as="element(db:title)?" required="no" select="db:title"/>
     <xsl:param name="font-size" as="xs:double" required="yes"/>
     <xsl:param name="page-break" as="xs:boolean" required="no" select="false()"/>
 
@@ -1403,7 +1403,7 @@
         </list-item-label>
         <list-item-body start-indent="body-start()">
           <block>
-            <xsl:value-of select="$title"/>
+            <xsl:value-of select="($title, '*** NO TITLE ***')[1]"/>
           </block>
         </list-item-body>
       </list-item>
