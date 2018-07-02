@@ -914,11 +914,19 @@
     <xsl:variable name="referenced-element" as="element()?" select="key($id-index-name, $id)"/>
     <xsl:variable name="roles" as="xs:string*" select="xtlc:str2seq(@role)"/>
     <xsl:variable name="do-capitalize" as="xs:boolean" select="$roles =  ('capitalize')"/>
+    <xsl:variable name="roles" as="xs:string*" select="xtlc:str2seq(@role)"/>
 
     <xsl:choose>
       <xsl:when test="exists($referenced-element)">
         <basic-link internal-destination="{$id}">
           <xsl:choose>
+            <xsl:when test="'page-number-only' = $roles">
+              <page-number-citation ref-id="{$referenced-element/@xml:id}"/>
+            </xsl:when>
+            <xsl:when test="'simple' = $roles">
+              <xsl:text>Page&#160;</xsl:text>
+              <page-number-citation ref-id="{$referenced-element/@xml:id}"/>
+            </xsl:when>
             <xsl:when test="exists($referenced-element/@xreflabel)">
               <xsl:text>&quot;</xsl:text>
               <xsl:value-of select="$referenced-element/@xreflabel"/>
