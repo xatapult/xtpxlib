@@ -488,6 +488,15 @@
         <listitem>
           <para><emphasis role="bold"><literal>&lt;xref></literal></emphasis>: Inserts a cross-reference to the id referenced by
               <literal>@linkend</literal></para>
+          <itemizedlist>
+            <listitem>
+              <para>Use <code>role="page-number-only"</code> to get just a page number.</para>
+            </listitem>
+            <listitem>
+              <para>Use <code>role="simple"</code> to always get: Page #</para>
+            </listitem>
+          </itemizedlist>
+          <para>Otherwise it depends on what is pointed to:</para>
           <table xml:id="table-xref">
             <title/>
             <tgroup cols="2">
