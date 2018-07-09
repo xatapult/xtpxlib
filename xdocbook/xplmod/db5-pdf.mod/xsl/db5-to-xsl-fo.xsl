@@ -369,10 +369,15 @@
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-  <xsl:template match="db:chapter | db:preface | db:sect1" mode="mode-structure">
+  <xsl:template match="db:chapter | db:preface | db:sect1 | db:appendix" mode="mode-structure">
     <xsl:param name="in-article" as="xs:boolean" required="yes" tunnel="true"/>
 
     <xsl:choose>
+      <xsl:when test="$in-article and not(self::db:sect1)">
+        <xsl:call-template name="insert-error">
+          <xsl:with-param name="msg-parts" select="('Element ', local-name(.) || ' not allowed in article')"/>
+        </xsl:call-template>
+      </xsl:when>
       <xsl:when test="$in-article">
         <xsl:call-template name="handle-block-contents">
           <xsl:with-param name="contents" select="."/>
@@ -898,7 +903,6 @@
     <xsl:variable name="referenced-element" as="element()?" select="key($id-index-name, $id)"/>
     <xsl:variable name="roles" as="xs:string*" select="xtlc:str2seq(@role)"/>
     <xsl:variable name="do-capitalize" as="xs:boolean" select="$roles =  ('capitalize')"/>
-    <xsl:variable name="roles" as="xs:string*" select="xtlc:str2seq(@role)"/>
 
     <xsl:choose>
       <xsl:when test="exists($referenced-element)">
@@ -908,7 +912,7 @@
               <page-number-citation ref-id="{$referenced-element/@xml:id}"/>
             </xsl:when>
             <xsl:when test="'simple' = $roles">
-              <xsl:text>Page&#160;</xsl:text>
+              <xsl:value-of select="local:xref-capitalize('page&#160;', $do-capitalize)"/>
               <page-number-citation ref-id="{$referenced-element/@xml:id}"/>
             </xsl:when>
             <xsl:when test="exists($referenced-element/@xreflabel)">
@@ -919,6 +923,10 @@
             </xsl:when>
             <xsl:when test="$referenced-element/self::db:chapter">
               <xsl:value-of select="local:xref-capitalize('chapter&#160;', $do-capitalize)"/>
+              <xsl:value-of select="$referenced-element/@number"/>
+            </xsl:when>
+            <xsl:when test="$referenced-element/self::db:appendix">
+              <xsl:value-of select="local:xref-capitalize('appendix&#160;', $do-capitalize)"/>
               <xsl:value-of select="$referenced-element/@number"/>
             </xsl:when>
             <xsl:when test="matches(local-name($referenced-element), '^sect[0-9]$')">
@@ -1215,7 +1223,7 @@
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-  <xsl:template match="db:chapter | db:preface" mode="mode-create-toc">
+  <xsl:template match="db:chapter | db:preface | db:appendix" mode="mode-create-toc">
 
     <xsl:call-template name="toc-entry-out">
       <xsl:with-param name="level" select="0"/>

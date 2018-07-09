@@ -60,8 +60,15 @@
     <sect2>
       <title>Chapter/Section structure</title>
 
-      <para><literal>&lt;preface></literal>, <literal>&lt;chapter></literal> and <literal>&lt;sect1></literal> to <literal>&lt;sect3></literal> are
-        recognized and handled.</para>
+      <itemizedlist>
+        <listitem>
+          <para>For books, <literal>&lt;preface></literal>, <literal>&lt;chapter></literal>, <tag>appendix</tag> and <literal>&lt;sect1></literal> to
+              <literal>&lt;sect3></literal> are recognized and handled.</para>
+        </listitem>
+        <listitem>
+          <para>In articles only <tag>sect1</tag> to <tag>sect3</tag> are allowed.</para>
+        </listitem>
+      </itemizedlist>
     </sect2>
 
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -493,7 +500,7 @@
               <para>Use <code>role="page-number-only"</code> to get just a page number.</para>
             </listitem>
             <listitem>
-              <para>Use <code>role="simple"</code> to always get: Page #</para>
+              <para>Use <code>role="simple"</code> to always get: page #</para>
             </listitem>
           </itemizedlist>
           <para>Otherwise it depends on what is pointed to:</para>
@@ -519,10 +526,10 @@
                 </row>
                 <row>
                   <entry>
-                    <para>To a chapter</para>
+                    <para>To a chapter or appendix</para>
                   </entry>
                   <entry>
-                    <para><xref linkend="db5-dialect"/></para>
+                    <para>chapter # or appendix #</para>
                   </entry>
                 </row>
                 <row>
@@ -569,9 +576,8 @@
               </tbody>
             </tgroup>
           </table>
-          <para>Use <code>xref/@role="capitalize"</code> to force the reference string (for chapters/pages) to start with an upper-case character (so
-            you can be sure a sentence that starts with an <tag>xref</tag> always starts with a capital). Like this: <xref linkend="db5-dialect"
-              role="capitalize"/>.</para>
+          <para>Use <code>xref/@role="capitalize"</code> to force the reference string (for chapters/appendices/pages) to start with an upper-case
+            character (so you can be sure a sentence that starts with an <tag>xref</tag> always starts with a capital).</para>
           <para role="break"/>
         </listitem>
 
