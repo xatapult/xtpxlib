@@ -21,6 +21,9 @@
       Watch out: The XSLT gets the *full* xtlxdb:convert element as its input. This allows for adding additional attributes to this element as
       stylesheet parameters.
       
+      Use a <xtlxdb:GROUP>...</xtlxdb:GROUP> construction if you want to output multiple elements. 
+      Any such GROUP element is unwrapped.
+      
     </p:documentation>
 
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -73,7 +76,8 @@
       <p:namespace-rename apply-to="elements" from="" to="http://docbook.org/ns/docbook"/>
 
     </p:viewport>
-
+    <p:unwrap match="xtlxdb:GROUP"/>
+    
   </p:declare-step>
 
   <!-- ================================================================== -->
@@ -93,6 +97,9 @@
           <somemore/>
         </somexml> 
       </xtlxdb:convert-xproc>
+      
+      Use a <xtlxdb:GROUP>...</xtlxdb:GROUP> construction if you want to output multiple elements. 
+      Any such GROUP element is unwrapped.
       
     </p:documentation>
 
@@ -153,6 +160,7 @@
       <p:namespace-rename apply-to="elements" from="" to="http://docbook.org/ns/docbook"/>
       
     </p:viewport>
+    <p:unwrap match="xtlxdb:GROUP"/>
     
   </p:declare-step>
   
