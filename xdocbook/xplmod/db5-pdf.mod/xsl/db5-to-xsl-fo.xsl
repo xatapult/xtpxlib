@@ -573,9 +573,10 @@
   <xsl:template match="db:programlisting" mode="mode-block">
     <xsl:param name="in-example" as="xs:boolean" required="no" select="false()" tunnel="true"/>
 
-    <!-- Break the contents down in lines (before that, remove any CR characters): -->
-    <xsl:variable name="contents-no-cr" as="xs:string" select="replace(string(.), '&#x0d;', '')"/>
-    <xsl:variable name="lines" as="xs:string*" select="tokenize($contents-no-cr, '&#x0a;')"/>
+    <!-- Remove trailing and leading whitespace and CR characters: -->
+    <xsl:variable name="contents-prepared" as="xs:string" select="string(.) => replace('^\s+', '') => replace('\s+$', '') => replace('&#x0d;', '')"/>
+    <!-- Break the contents down in lines: -->
+    <xsl:variable name="lines" as="xs:string*" select="tokenize($contents-prepared, '&#x0a;')"/>
 
     <xsl:variable name="space-before-after" as="xs:double" select="$standard-font-size div 2.0"/>
     <block keep-together.within-column="always" space-before="{local:dimpt($space-before-after)}" space-after="{local:dimpt($space-before-after)}">
