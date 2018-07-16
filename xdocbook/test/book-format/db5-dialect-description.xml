@@ -587,5 +587,53 @@
     </sect1>
 
   </chapter>
+  
+  <!-- ================================================================== -->
 
+  <appendix>
+    <title>Appendix 1</title>
+    
+    <para>This is an appendix. See also <xref linkend="app2"/></para>
+    
+    <para>Table numbering test</para>
+    <table>
+      <title/>
+      <tgroup cols="2">
+        <colspec colname="c1" colnum="1" colwidth="4cm"/>
+        <colspec colname="c2" colnum="2"/>
+        <thead>
+          <row>
+            <entry>
+              <para><tag class="attribute">class</tag> value</para>
+            </entry>
+            <entry>
+              <para>Result example(s)</para>
+            </entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry>
+              <para><code>attribute</code></para>
+            </entry>
+            <entry>
+              <para><tag class="attribute">attribute</tag></para>
+              <para><tag class="attribute">class</tag></para>
+            </entry>
+          </row>
+         
+        </tbody>
+      </tgroup>
+    </table>
+  </appendix>
+  
+  <!-- ================================================================== -->
+  
+  <appendix xml:id="app2">
+    <title>Appendix 2</title>
+    
+    <para>This is another appendix</para>
+  </appendix>
+  
+  
 </book>

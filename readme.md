@@ -1,6 +1,6 @@
 # xtpxlib: Xatapult XML Library
 
-**V2.4.3 - April 18, 2018** 
+**V2.4.5 - July 16, 2018** 
 
 Xatapult Content Engineering - http://www.xatapult.nl
 
@@ -54,6 +54,7 @@ Most subdirectories contain a `readme.md` file that details its contents.
 | `doc` | Documentation |
 | `xpl` | XProc scripts |
 | `xplmod` | XProc modules/libraries |
+| `xqmod` | XQuery modules |
 | `xsl` | XSLT scripts |
 | `xslmod` | XSLT modules/libraries |
 

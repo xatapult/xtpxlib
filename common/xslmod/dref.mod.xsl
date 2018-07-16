@@ -34,7 +34,7 @@
     </xsl:param>
 
     <xsl:choose>
-      <xsl:when test="count($dref-path-components) = 0">
+      <xsl:when test="empty($dref-path-components)">
         <xsl:sequence select="''"/>
       </xsl:when>
       <xsl:otherwise>
@@ -223,11 +223,14 @@
     <!-- Helper function for xtlc:dref-canonical -->
     <xsl:param name="dref-components-unprocessed" as="xs:string*"/>
     <xsl:param name="parent-directory-marker-count" as="xs:integer"/>
-
+  
     <!-- Get the last component to process here and get the remainder of the components: -->
     <xsl:variable name="component-to-process" as="xs:string?" select="$dref-components-unprocessed[last()]"/>
     <xsl:variable name="remainder-components" as="xs:string*"
       select="subsequence($dref-components-unprocessed, 1, count($dref-components-unprocessed) - 1)"/>
+
+    <xsl:message><xsl:value-of select="string-join($dref-components-unprocessed, '|')"/> [<xsl:value-of select="$parent-directory-marker-count"/>] <xsl:value-of select="$component-to-process"/></xsl:message>
+    
 
     <xsl:choose>
 
@@ -242,14 +245,14 @@
         <xsl:sequence select="local:dref-canonical-process-components($remainder-components, $parent-directory-marker-count + 1)"/>
       </xsl:when>
 
+      <!-- Ignore any current directory (.) markers: -->
+      <xsl:when test="$component-to-process eq '.'">
+        <xsl:sequence select="local:dref-canonical-process-components($remainder-components, $parent-directory-marker-count)"/>
+      </xsl:when>
+      
       <!-- Check if $parent-directory-marker-count is >= 0. If so, do not take the current component into account: -->
       <xsl:when test="$parent-directory-marker-count gt 0">
         <xsl:sequence select="local:dref-canonical-process-components($remainder-components, $parent-directory-marker-count - 1)"/>
-      </xsl:when>
-
-      <!-- Ignore any current directory (.) markers: -->
-      <xsl:when test="$component-to-process eq '.'">
-        <xsl:sequence select="local:dref-canonical-process-components($remainder-components, 0)"/>
       </xsl:when>
 
       <!-- Normal directory name and no $parent-directory-marker-count. This must be part of the output: -->
@@ -378,14 +381,14 @@
     <xsl:variable name="ref-0" as="xs:string" select="translate($ref, '\', '/')"/>
     <xsl:variable name="ref-1" as="xs:string">
       <xsl:choose>
-        <xsl:when test="matches($ref, $local:protocol-match-regexp)">
+        <xsl:when test="matches($ref-0, $local:protocol-match-regexp)">
           <xsl:sequence select="replace($ref, $local:protocol-match-regexp, '')"/>
         </xsl:when>
-        <xsl:when test="starts-with($ref, $local:protocol-file-special)">
-          <xsl:sequence select="substring-after($ref, $local:protocol-file-special)"/>
+        <xsl:when test="starts-with($ref-0, $local:protocol-file-special)">
+          <xsl:sequence select="substring-after($ref-0, $local:protocol-file-special)"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:sequence select="$ref"/>
+          <xsl:sequence select="$ref-0"/>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>

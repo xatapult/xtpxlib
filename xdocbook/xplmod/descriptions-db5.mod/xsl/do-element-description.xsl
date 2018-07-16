@@ -452,7 +452,7 @@
           $description-table-name-column-min-width-cm, $description-table-name-column-max-width-cm)"/>
       <table role="nonumber">
         <title/>
-        <tgroup>
+        <tgroup cols="{if ($has-type-info) then 4 else 3}">
           <colspec colname="name" colwidth="{$name-column-width}cm"/>
           <colspec colname="occurrences" colwidth="{$description-table-occurs-column-width-cm}cm"/>
           <xsl:if test="$has-type-info">
@@ -559,7 +559,7 @@
           <title/>
           <tgroup cols="2">
             <colspec colname="value" colnum="1" colwidth="{$value-column-width}cm"/>
-            <colspec colname="description" colnum="1"/>
+            <colspec colname="description" colnum="2"/>
             <thead>
               <row>
                 <entry>Value</entry>
