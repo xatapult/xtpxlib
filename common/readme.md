@@ -38,6 +38,11 @@ Subdirectory: `xsl`
 | Script | Description |
 |--|--|
 | `get-system-properties.xsl` | Very simple XSLT script that simply outputs all system properties provided by the `system-property()` function. Very useful when you want to know what version of the XSLT engine you're actually running.. |
+| `xslmod2xqmod-stub.xsl` | Takes an XSLT module and turns this into an (unfinished!) start of an XQuery module. |
+
+## XQuery modules
+
+Some of the XSLT modules have been translated into XQuery modules.
 
 ## Binary files
 
