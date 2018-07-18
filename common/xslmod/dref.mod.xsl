@@ -229,9 +229,6 @@
     <xsl:variable name="remainder-components" as="xs:string*"
       select="subsequence($dref-components-unprocessed, 1, count($dref-components-unprocessed) - 1)"/>
 
-    <xsl:message><xsl:value-of select="string-join($dref-components-unprocessed, '|')"/> [<xsl:value-of select="$parent-directory-marker-count"/>] <xsl:value-of select="$component-to-process"/></xsl:message>
-    
-
     <xsl:choose>
 
       <!-- No input, no output: -->
