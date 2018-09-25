@@ -223,7 +223,7 @@
     <!-- Helper function for xtlc:dref-canonical -->
     <xsl:param name="dref-components-unprocessed" as="xs:string*"/>
     <xsl:param name="parent-directory-marker-count" as="xs:integer"/>
-  
+
     <!-- Get the last component to process here and get the remainder of the components: -->
     <xsl:variable name="component-to-process" as="xs:string?" select="$dref-components-unprocessed[last()]"/>
     <xsl:variable name="remainder-components" as="xs:string*"
@@ -246,7 +246,7 @@
       <xsl:when test="$component-to-process eq '.'">
         <xsl:sequence select="local:dref-canonical-process-components($remainder-components, $parent-directory-marker-count)"/>
       </xsl:when>
-      
+
       <!-- Check if $parent-directory-marker-count is >= 0. If so, do not take the current component into account: -->
       <xsl:when test="$parent-directory-marker-count gt 0">
         <xsl:sequence select="local:dref-canonical-process-components($remainder-components, $parent-directory-marker-count - 1)"/>
@@ -367,22 +367,33 @@
     <!--* 
       Removes the protocol part from a document reference.  
     
-      Examples:
+      Examples (it is tricky and inconsistent!)
       - xtlc:protocol-remove('file:///a/b/c') ==> /a/b/c
+      Weird exceptions:
+      - xtlc:protocol-remove('file:/a/b/c') ==> /a/b/c
+      - xtlc:protocol-remove('file:/C:/a/b/c') ==> C:/a/b/c
     -->
     <xsl:param name="ref" as="xs:string">
       <!--* Reference to work on. -->
     </xsl:param>
 
+    <xsl:variable name="protocol-windows-special" as="xs:string" select="concat('^', $local:protocol-file-special, '[a-zA-Z]:/')"/>
+
     <!-- First remove any protocol specifier: -->
     <xsl:variable name="ref-0" as="xs:string" select="translate($ref, '\', '/')"/>
     <xsl:variable name="ref-1" as="xs:string">
       <xsl:choose>
+        <!-- Normal case, anything starting with protocol:// -->
         <xsl:when test="matches($ref-0, $local:protocol-match-regexp)">
           <xsl:sequence select="replace($ref, $local:protocol-match-regexp, '')"/>
         </xsl:when>
-        <xsl:when test="starts-with($ref-0, $local:protocol-file-special)">
+        <!-- Windows file:/ exception, single slash, drive letter (file:/C:/bla/bleh):  -->
+        <xsl:when test="matches($ref-0, $protocol-windows-special)">
           <xsl:sequence select="substring-after($ref-0, $local:protocol-file-special)"/>
+        </xsl:when>
+        <!-- Unix file:/ exception, single slash but absolute path (file:/home/beheer): -->
+        <xsl:when test="starts-with($ref-0, $local:protocol-file-special)">
+          <xsl:sequence select="concat('/', substring-after($ref-0, $local:protocol-file-special))"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:sequence select="$ref-0"/>
@@ -391,7 +402,7 @@
     </xsl:variable>
 
     <!-- Check for a Windows absolute path with a slash in front. That must be removed: -->
-    <xsl:sequence select="if (matches($ref-1, '^/[a-zA-Z]:')) then substring($ref-1, 2) else $ref-1"/>
+    <xsl:sequence select="if (matches($ref-1, '^/[a-zA-Z]:/')) then substring($ref-1, 2) else $ref-1"/>
 
   </xsl:function>
 
@@ -467,7 +478,7 @@
   </xsl:function>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  
+
   <xsl:function name="xtlc:dref-to-uri" as="xs:string">
     <!--* 
       Turns a dref into a uri. It will replace all "strange" characters with %xx.
@@ -476,11 +487,11 @@
     <xsl:param name="dref" as="xs:string">
       <!--* Document reference to work on. -->
     </xsl:param>
-    
+
     <xsl:variable name="protocol" as="xs:string" select="xtlc:protocol($dref)"/>
     <xsl:variable name="dref-no-protocol" as="xs:string" select="xtlc:protocol-remove($dref)"/>
     <xsl:variable name="dref-parts" as="xs:string*" select="tokenize($dref-no-protocol, '/')"/>
-    
+
     <xsl:variable name="dref-parts-uri" as="xs:string*">
       <xsl:for-each select="$dref-parts">
         <xsl:choose>
@@ -494,16 +505,16 @@
         </xsl:choose>
       </xsl:for-each>
     </xsl:variable>
-    
+
     <xsl:sequence select="xtlc:protocol-add(string-join($dref-parts-uri, '/'), $protocol, false())"/>
   </xsl:function>
-  
+
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  
+
   <xsl:function name="local:dref-part-to-uri" as="xs:string">
     <!-- Support function for xtlc:dref-to-uri() -->
     <xsl:param name="dref-part" as="xs:string"/>
-    
+
     <xsl:variable name="dref-part-parts" as="xs:string*">
       <xsl:analyze-string select="$dref-part" regex="%[0-9][0-9]">
         <xsl:matching-substring>
@@ -516,5 +527,5 @@
     </xsl:variable>
     <xsl:sequence select="string-join($dref-part-parts, '')"/>
   </xsl:function>
-  
+
 </xsl:stylesheet>
