@@ -1142,7 +1142,7 @@
 
   <xsl:template match="text()" mode="mode-inline">
     <!-- Mark anything like [TBD...] -->
-    <xsl:analyze-string select="string(.)" regex="\[TBD.*\]" flags="is">
+    <xsl:analyze-string select="string(.)" regex="\[TBD.*?\]" flags="is">
       <xsl:matching-substring>
         <inline background-color="yellow">
           <xsl:copy/>
