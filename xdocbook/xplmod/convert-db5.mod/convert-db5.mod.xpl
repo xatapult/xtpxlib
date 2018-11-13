@@ -92,11 +92,11 @@
       into the docbook namespace.
       Example:
       
-      <xtlxdb:convert-xproc pipeline="some/path/to/an/xproc-pipeline">
+      <xtlxdb:convert-xproc-db5 pipeline="some/path/to/an/xproc-pipeline">
         <somexml>
           <somemore/>
         </somexml> 
-      </xtlxdb:convert-xproc>
+      </xtlxdb:convert-xproc-db5>
       
       Use a <xtlxdb:GROUP>...</xtlxdb:GROUP> construction if you want to output multiple elements. 
       Any such GROUP element is unwrapped.
