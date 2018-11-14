@@ -45,17 +45,45 @@ declare function xtldr:dref-concat(
   if (empty($dref-path-components)) then
     ''
   else
-    let $current-dref as xs:string := translate($dref-path-components[last()], '\', '/')
+    let $current-dref-1 as xs:string := translate($dref-path-components[last()], '\', '/')
+    let $current-dref as xs:string := replace($current-dref-1, '/+$', '')
     return
       if (xtldr:dref-is-absolute($current-dref)) then
         $current-dref
       else
         let $prefix as xs:string := xtldr:dref-concat(remove($dref-path-components, count($dref-path-components)))
         return
-          if ($prefix eq '' or ends-with($prefix, '/')) then 
-            concat($prefix, $current-dref) 
-          else 
-            concat($prefix, '/', $current-dref)
+          concat($prefix, if ($prefix eq '') then () else '/', $current-dref)
+};
+
+(:----------------------------------------------------------------------------:)
+
+(:~
+  Performs a safe concatenation of document reference path components:
+  - Translates all backslashes into slashes
+  - Makes sure that all components are separated with a single slash
+  - This version does not stop at an absolute path. Leading slashes are removed on all but the first component
+  Examples:
+  - xtldr:dref-concat-noabs(('a', 'b', 'c')) ==> a/b/c
+  - xtldr:dref-concat-noabs(('a', '/b', 'c')) ==> a/b/c
+  - xtldr:dref-concat-nabs(('/a', '/b', 'c')) ==> /a/b/c
+  
+  @param $dref-path-components The path components that will be concatenated into a document reference.
+:)
+declare function xtldr:dref-concat-noabs(
+  $dref-path-components as xs:string*
+) as xs:string
+{
+  if (empty($dref-path-components)) then
+    ''
+  else
+    let $is-first-component as xs:boolean := count($dref-path-components) eq 1
+    let $current-dref-1 as xs:string := translate($dref-path-components[last()], '\', '/')
+    let $current-dref-2 as xs:string := if ($is-first-component) then $current-dref-1 else replace($current-dref-1, '^/+', '')
+    let $current-dref as xs:string := replace($current-dref-2, '/+$', '')
+    let $prefix as xs:string := xtldr:dref-concat-noabs(remove($dref-path-components, count($dref-path-components)))
+    return
+      concat($prefix, if ($prefix eq '') then () else '/', $current-dref)
 };
 
 (:----------------------------------------------------------------------------:)
