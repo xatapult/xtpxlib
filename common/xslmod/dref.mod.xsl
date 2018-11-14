@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-  xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:xtlc="http://www.xtpxlib.nl/ns/common" xmlns:local="#local.dref.mod.xsl"
-  exclude-result-prefixes="#all">
+  xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:xtlc="http://www.xtpxlib.nl/ns/common"
+  xmlns:local="#local.dref.mod.xsl" exclude-result-prefixes="#all">
   <!-- ================================================================== -->
   <!--*
     Generic handling of document references.
@@ -14,6 +14,12 @@
   <xsl:variable name="xtlc:protocol-file" as="xs:string" select="'file'">
     <!--* File protocol specifier.  -->
   </xsl:variable>
+
+  <!-- ================================================================== -->
+  <!-- LOCAL DECLARATIONS: -->
+
+  <xsl:variable name="local:protocol-match-regexp" as="xs:string" select="'^[a-zA-Z]+://'"/>
+  <xsl:variable name="local:protocol-file-special" as="xs:string" select="concat($xtlc:protocol-file, ':/')"/>
 
   <!-- ================================================================== -->
   <!-- BASIC DREF FUNCTIONS:  -->
@@ -39,17 +45,59 @@
       </xsl:when>
       <xsl:otherwise>
         <!-- Take the last path in the list and translate all backslashes to slashes: -->
-        <xsl:variable name="current-dref" as="xs:string" select="translate($dref-path-components[last()], '\', '/')"/>
+        <xsl:variable name="current-dref-1" as="xs:string" select="translate($dref-path-components[last()], '\', '/')"/>
+        <!-- Remove any trailing slashes: -->
+        <xsl:variable name="current-dref" as="xs:string" select="replace($current-dref-1, '/+$', '')"/>
         <xsl:choose>
           <xsl:when test="xtlc:dref-is-absolute($current-dref)">
             <xsl:sequence select="$current-dref"/>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:variable name="prefix" as="xs:string" select="xtlc:dref-concat(remove($dref-path-components, count($dref-path-components)))"/>
-            <xsl:sequence
-              select="if ($prefix eq '' or ends-with($prefix, '/')) then concat($prefix, $current-dref) else concat($prefix, '/', $current-dref)"/>
+            <xsl:variable name="prefix" as="xs:string"
+              select="xtlc:dref-concat(remove($dref-path-components, count($dref-path-components)))"/>
+            <xsl:sequence select="concat($prefix, if ($prefix eq '') then () else '/', $current-dref)"/>
           </xsl:otherwise>
         </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+
+  </xsl:function>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsl:function name="xtlc:dref-concat-noabs" as="xs:string">
+    <!--* 
+      Performs a safe concatenation of document reference path components: 
+      - Translates all backslashes into slashes
+			- Makes sure that all components are separated with a single slash
+      - This version does not stop at an absolute path. Leading slashes are removed
+      
+      Examples:
+      - xtlc:dref-concat-noabs(('a', 'b/', 'c')) ==> a/b/c
+      - xtlc:dref-concat-noabs(('a', '/b', 'c')) ==> a/b/c
+		-->
+    <xsl:param name="dref-path-components" as="xs:string*">
+      <!--* The path components that will be concatenated into a document reference. -->
+    </xsl:param>
+
+    <xsl:choose>
+      <xsl:when test="empty($dref-path-components)">
+        <xsl:sequence select="''"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="is-first-component" as="xs:boolean" select="count($dref-path-components) eq 1"/>
+        <!-- Take the last path in the list and translate all backslashes to slashes: -->
+        <xsl:variable name="current-dref-1" as="xs:string" select="translate($dref-path-components[last()], '\', '/')"/>
+        <!-- The first part of a list can have leading slashes (signifying an absolute path or UNC), so leave them there. 
+          Otherwise remove: -->
+        <xsl:variable name="current-dref-2" as="xs:string"
+          select="if ($is-first-component) then $current-dref-1 else replace($current-dref-1, '^/+', '')"/>
+        <!-- Remove any trailing slashes: -->
+        <xsl:variable name="current-dref" as="xs:string" select="replace($current-dref-2, '/+$', '')"/>
+        <!-- Get the part before this (by a recursive call): -->
+        <xsl:variable name="prefix" as="xs:string"
+          select="xtlc:dref-concat-noabs(remove($dref-path-components, count($dref-path-components)))"/>
+        <xsl:sequence select="concat($prefix, if ($prefix eq '') then () else '/', $current-dref)"/>
       </xsl:otherwise>
     </xsl:choose>
 
@@ -68,7 +116,8 @@
       <!--* Document reference to work on. -->
     </xsl:param>
 
-    <xsl:sequence select="starts-with($dref, '/') or starts-with($dref, '\') or contains($dref, ':/') or matches($dref, '^[a-zA-Z]:')"/>
+    <xsl:sequence
+      select="starts-with($dref, '/') or starts-with($dref, '\') or contains($dref, ':/') or matches($dref, '^[a-zA-Z]:')"/>
 
   </xsl:function>
 
@@ -239,7 +288,8 @@
       <!-- On a parent directory marker (..) we output the remainder and increase the $parent-directory-marker-count. This will cause the
         next name-component of the remainders to be removed:-->
       <xsl:when test="$component-to-process eq '..'">
-        <xsl:sequence select="local:dref-canonical-process-components($remainder-components, $parent-directory-marker-count + 1)"/>
+        <xsl:sequence
+          select="local:dref-canonical-process-components($remainder-components, $parent-directory-marker-count + 1)"/>
       </xsl:when>
 
       <!-- Ignore any current directory (.) markers: -->
@@ -249,7 +299,8 @@
 
       <!-- Check if $parent-directory-marker-count is >= 0. If so, do not take the current component into account: -->
       <xsl:when test="$parent-directory-marker-count gt 0">
-        <xsl:sequence select="local:dref-canonical-process-components($remainder-components, $parent-directory-marker-count - 1)"/>
+        <xsl:sequence
+          select="local:dref-canonical-process-components($remainder-components, $parent-directory-marker-count - 1)"/>
       </xsl:when>
 
       <!-- Normal directory name and no $parent-directory-marker-count. This must be part of the output: -->
@@ -308,7 +359,8 @@
     <xsl:variable name="to-protocol" as="xs:string" select="xtlc:protocol($to-dref-canonical, $xtlc:protocol-file)"/>
     <xsl:variable name="to-no-protocol" as="xs:string" select="xtlc:protocol-remove($to-dref-canonical)"/>
     <xsl:variable name="to-components" as="xs:string*" select="tokenize($to-no-protocol, '/')[. ne '']"/>
-    <xsl:variable name="to-components-no-filename" as="xs:string*" select="subsequence($to-components, 1, count($to-components) - 1)"/>
+    <xsl:variable name="to-components-no-filename" as="xs:string*"
+      select="subsequence($to-components, 1, count($to-components) - 1)"/>
     <xsl:variable name="to-filename" as="xs:string" select="$to-components[last()]"/>
 
     <!-- Now find it out: -->
@@ -335,7 +387,8 @@
 
     <xsl:choose>
       <xsl:when test="$from-components[1] eq $to-components[1]">
-        <xsl:sequence select="local:relative-dref-components-compare(subsequence($from-components, 2), subsequence($to-components, 2))"/>
+        <xsl:sequence
+          select="local:relative-dref-components-compare(subsequence($from-components, 2), subsequence($to-components, 2))"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:sequence select="(for $p in (1 to count($from-components)) return '..', $to-components)"/>
@@ -345,9 +398,6 @@
 
   <!-- ================================================================== -->
   <!-- DREF/URI PROTOCOL RELATED FUNCTIONS: -->
-
-  <xsl:variable name="local:protocol-match-regexp" as="xs:string" select="'^[a-z]+://'"/>
-  <xsl:variable name="local:protocol-file-special" as="xs:string" select="concat($xtlc:protocol-file, ':/')"/>
 
   <xsl:function name="xtlc:protocol-present" as="xs:boolean">
     <!--* Returns true when a reference has a protocol specifier (e.g. file:// or http://). -->
@@ -377,7 +427,8 @@
       <!--* Reference to work on. -->
     </xsl:param>
 
-    <xsl:variable name="protocol-windows-special" as="xs:string" select="concat('^', $local:protocol-file-special, '[a-zA-Z]:/')"/>
+    <xsl:variable name="protocol-windows-special" as="xs:string"
+      select="concat('^', $local:protocol-file-special, '[a-zA-Z]:/')"/>
 
     <!-- First remove any protocol specifier: -->
     <xsl:variable name="ref-0" as="xs:string" select="translate($ref, '\', '/')"/>
@@ -420,7 +471,8 @@
       <!--* When true an existing protocol is removed first. When false, a reference with an existing protocol is left unchanged.  -->
     </xsl:param>
 
-    <xsl:variable name="ref-1" as="xs:string" select="if ($force) then xtlc:protocol-remove($ref) else translate($ref, '\', '/')"/>
+    <xsl:variable name="ref-1" as="xs:string"
+      select="if ($force) then xtlc:protocol-remove($ref) else translate($ref, '\', '/')"/>
     <xsl:choose>
 
       <!-- When $force is false, do not add a protocol when one is present already: -->
