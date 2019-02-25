@@ -429,16 +429,11 @@
 
     <xsl:variable name="protocol-windows-special" as="xs:string"
       select="concat('^', $local:protocol-file-special, '[a-zA-Z]:/')"/>
-    <xsl:variable name="protocol-file-shared-drive" as="xs:string" select="concat('^', $local:protocol-file-special, '//')"/>
 
     <!-- First remove any protocol specifier: -->
     <xsl:variable name="ref-0" as="xs:string" select="translate($ref, '\', '/')"/>
     <xsl:variable name="ref-1" as="xs:string">
       <xsl:choose>
-        <!-- Reference to a shared drive (starts with //): -->
-        <xsl:when test="matches($ref-0, $protocol-file-shared-drive)">
-          <xsl:sequence select="substring-after($ref-0, $local:protocol-file-special)"/>
-        </xsl:when>
         <!-- Normal case, anything starting with protocol:// -->
         <xsl:when test="matches($ref-0, $local:protocol-match-regexp)">
           <xsl:sequence select="replace($ref, $local:protocol-match-regexp, '')"/>
