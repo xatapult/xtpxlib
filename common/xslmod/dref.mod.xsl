@@ -480,11 +480,16 @@
         <xsl:sequence select="$ref-1"/>
       </xsl:when>
 
-      <!-- When this is a Windows file dref, make sure to add an extra / : -->
+      <!-- When this is a Windows dref with drive letter, make sure to add an extra / : -->
       <xsl:when test="($protocol eq $xtlc:protocol-file) and matches($ref-1, '^[a-zA-Z]:/')">
         <xsl:sequence select="concat($protocol, ':///', $ref-1)"/>
       </xsl:when>
-
+      
+      <!-- When this is a file thing and the reference starts with multiple slashes already, don't add any extra: -->
+      <xsl:when test="($protocol eq $xtlc:protocol-file) and matches($ref-1, '^//+')">
+        <xsl:sequence select="concat($protocol, ':', $ref-1)"/>
+      </xsl:when>
+      
       <xsl:when test="($protocol ne '')">
         <xsl:sequence select="concat($protocol, '://', $ref-1)"/>
       </xsl:when>
