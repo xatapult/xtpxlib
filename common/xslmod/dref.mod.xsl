@@ -490,11 +490,6 @@
         <xsl:sequence select="concat($protocol, ':///', $ref-1)"/>
       </xsl:when>
       
-      <!-- When this is a file thing and the reference starts with // (share reference), make sure we end up with 2 slashes, not 4: -->
-      <xsl:when test="($protocol eq $xtlc:protocol-file) and matches($ref-1, '^//')">
-        <xsl:sequence select="concat($protocol, ':', $ref-1)"/>
-      </xsl:when>
-      
       <xsl:when test="($protocol ne '')">
         <xsl:sequence select="concat($protocol, '://', $ref-1)"/>
       </xsl:when>
