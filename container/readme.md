@@ -13,7 +13,7 @@ Files that are not XML are not copied into the container but passed as a *refere
 The container `<document>` element has a `@mime-type` attribute. You can use this to trigger some implicit conversions when writing a container to disk or zip:
 
 | `@mime-type` | Result |
-|--|--|
+| ----------- | ------ |
 | `text/plain` | The result will be that the root element of the document will be turned into a string and written as a *text* file. You can use this to, for instance, create a JSON file: just wrap the JSON in some root element and set `mime-type="text/plain"` on the surrounding container `<document>` element.  |
-| `application/pdf` | When the document root element is `<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">` and `mime-type="application/pdf"` the result will be run through the FOP XSL-FO processor and , on no errors, will result in a PDF. You can pass a FOP initialization file in one of the step's options (if you don't, a default will be used). | 
+| `application/pdf` | When the document root element is `<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">` and `mime-type="application/pdf"` the result will be run through the FOP XSL-FO processor and, on no errors, will result in a PDF. You can pass a FOP initialization file in one of the step's options (if you don't, a default will be used). | 
 
