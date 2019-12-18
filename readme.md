@@ -1,3 +1,6 @@
+**This library is no longer maintained and must be considered deprecated! A new and fully documented version can be found [here](https://www.xtpxlib.org)**
+
+
 # xtpxlib: Xatapult XML Library
 
 **V2.4.6 - November 14, 2018** 
