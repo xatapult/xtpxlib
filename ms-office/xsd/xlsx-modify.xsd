@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.xtpxlib.nl/ns/ms-office"
+  xmlns:xtlxo="http://www.xtpxlib.nl/ns/ms-office">
+  <xs:annotation>
+    <xs:documentation>Schema for the modification spefication of Excel (`.xlsx`) files. Format used by the `[xtlxo:modify-xlsx](%excel.mod.xpl-xtlxo_modify-xlsx)` pipeline.</xs:documentation>
+  </xs:annotation>
+  <xs:element name="xlsx-modifications">
+    <xs:annotation>
+      <xs:documentation>Root element of the Excel modifications specification.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="0" name="worksheet">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="row">
+                <xs:annotation>
+                  <xs:documentation>Definition of the row for the value insertion. Either @name or @index must defined.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="column">
+                      <xs:annotation>
+                        <xs:documentation>Definition of the column for the value insertion. Either @name or @index must defined.</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:choice>
+                          <xs:element name="string" type="xs:string"/>
+                          <xs:element name="number" type="xs:double"/>
+                          <xs:element name="date" type="xs:date"/>
+                        </xs:choice>
+                        <xs:attributeGroup ref="xtlxo:ag-sheet-coordinate"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attributeGroup ref="xtlxo:ag-sheet-coordinate"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="name" type="xs:string" use="required">
+              <xs:annotation>
+                <xs:documentation>Name of the worksheet (as displayed on the Excel tab).
+</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:anyAttribute namespace="##any" processContents="skip">
+        <xs:annotation>
+          <xs:documentation>Additional information may be present.</xs:documentation>
+        </xs:annotation>
+      </xs:anyAttribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="ag-sheet-coordinate">
+    <xs:annotation>
+      <xs:documentation>A row or column coordinate on a worksheet.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="index" type="xs:positiveInteger">
+      <xs:annotation>
+        <xs:documentation>The row or column index (starting with 1). Has precedence over @name.
+</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="name" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>An Excel name defined on this worksheet. The row or column of the left-upper cell is used. </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="offset" type="xs:integer">
+      <xs:annotation>
+        <xs:documentation>The offset when @name is used. Ignored otherwise.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:attributeGroup>
+</xs:schema>
