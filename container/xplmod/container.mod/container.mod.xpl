@@ -300,10 +300,13 @@
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
     
     <!-- Get the contents of the directory: -->
-    <xtlc:recursive-directory-list>
+    <xtlc:recursive-directory-list exclude-filter="^\.git/.+$">
       <p:with-option name="path" select="$dref-source-directory"/>
       <p:with-option name="flatten" select="true()"/>
     </xtlc:recursive-directory-list>
+    
+    <!-- Remove .git stuff: -->
+    <p:delete match="c:file[starts-with(@dref-rel, '.git')]"/>
     
     <p:group>
       <p:variable name="base-dir" select="/*/@xml:base"/>
