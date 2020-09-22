@@ -9,9 +9,9 @@
   <!-- ================================================================== -->
   <!-- SETUP: -->
 
-  <p:option name="specification-href" required="false" select="resolve-uri('test-modify-xlsx-input.xml', static-base-uri())"/>
-  <p:option name="xlsx-href-in" required="false" select="resolve-uri('test-modify.xlsx', static-base-uri())"/>
-  <p:option name="xlsx-href-out" required="false" select="resolve-uri('../../../tmp/modify-xlsx-result.xlsx', static-base-uri())"/>
+  <p:option name="specification-href" required="false" select="resolve-uri('test-modify-xlsx-input-2.xml', static-base-uri())"/>
+  <p:option name="xlsx-href-in" required="false" select="resolve-uri('test-modify-2.xlsx', static-base-uri())"/>
+  <p:option name="xlsx-href-out" required="false" select="resolve-uri('tmp/modify-xlsx-result.xlsx', static-base-uri())"/>
 
   <p:output port="result"/>
   <p:serialization port="result" method="xml" encoding="UTF-8" indent="true"/>

@@ -3,7 +3,7 @@
    xmlns:xtpxplib="http://www.xatapult.nl/namespaces/common/xproc/library"
   xmlns:mso-wb="http://schemas.openxmlformats.org/spreadsheetml/2006/main"
   xmlns:mso-rels="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"
-  xmlns:xtlxo="http://www.xtpxlib.nl/ns/xoffice" xmlns:local="#local-998hy5" exclude-result-prefixes="#all">
+  xmlns:xtlmso="http://www.xtpxlib.nl/ns/ms-office" xmlns:local="#local-998hy5" exclude-result-prefixes="#all">
   <!-- ================================================================== -->
   <!--*	
     Sorts the worksheet data and removes doubles.	
@@ -17,12 +17,12 @@
   
   <!-- ================================================================== -->
 
-  <xsl:template match="xtlcon:document/mso-wb:worksheet/mso-wb:sheetData[xs:boolean(@xtlxo:MODIFIED)]"
+  <xsl:template match="xtlcon:document/mso-wb:worksheet/mso-wb:sheetData[xs:boolean(@xtlmso:MODIFIED)]"
     xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
     <!-- We only need to handle modified sections (identified with @xtlxo:MODIFIED="true"). We take this attribute off again. -->
 
     <xsl:copy>
-      <xsl:copy-of select="@* except @xtlxo:MODIFIED"/>
+      <xsl:copy-of select="@* except @xtlmso:MODIFIED"/>
 
       <!-- Take all rows with the same row number together: -->
       <xsl:for-each-group select="mso-wb:row" group-by="xs:integer(@r)">
@@ -54,6 +54,6 @@
   <!-- ================================================================== -->
   <!-- SUPPORT: -->
 
-  <xsl:template match="xtlcon:warning-prevention-dummy-template | xtlxo:warning-prevention-dummy-template"/>
+  <xsl:template match="xtlcon:warning-prevention-dummy-template | xtlmso:warning-prevention-dummy-template"/>
 
 </xsl:stylesheet>

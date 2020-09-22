@@ -39,7 +39,7 @@
     </xtlcon:zip-to-container>
     
     <!-- Transform it into extract format: -->
-    <local:transfer-xlsx-xip-container/>
+    <local:transfer-xlsx-zip-container/>
     
   </p:declare-step>
   
@@ -92,7 +92,7 @@
     
     <!-- Get the .xlsx information in extract format so we can more easily lookup names. Out in an appropriate <xtlcon:document> element 
       so we can insert it in the container: -->
-    <local:transfer-xlsx-xip-container/>
+    <local:transfer-xlsx-zip-container/>
     <p:wrap match="/*" wrapper="xtlcon:document"/>
     <p:add-attribute match="/*" attribute-name="type" attribute-value="xlsx-in-extract-format"/>
     <p:identity name="xlsx-in-extract-format-xtlcon-document"/>
@@ -162,7 +162,7 @@
   
   <!-- ================================================================== -->
   
-  <p:declare-step type="local:transfer-xlsx-xip-container">
+  <p:declare-step type="local:transfer-xlsx-zip-container">
     <p:documentation>
       Local step that turns a (direct) zip container made from an .xlsx file into the extract format (see ../../xsd/xlsx-extract.xsd).
     </p:documentation>
