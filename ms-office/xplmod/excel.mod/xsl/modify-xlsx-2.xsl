@@ -35,7 +35,7 @@
 
           <!-- Within these rows, sort the cells and remove doubles: -->
           <xsl:for-each-group select="current-group()/mso-wb:c" group-by="@r">
-            <xsl:sort select="@r"/>
+            <xsl:sort select="local:row-order(xs:string(@r))"/>
             <c>
               <!-- Copy again all attributes of the cells for this coordinate but retain the @t value (type of the cell) of 
                 the one we're actually going to use: -->
@@ -50,6 +50,32 @@
     </xsl:copy>
 
   </xsl:template>
+  
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  
+  <xsl:function name="local:row-order" as="xs:integer">
+    <xsl:param name="row-name" as="xs:string">
+      <!-- This is an Excel row name, like A3 or AA3. -->
+    </xsl:param>
+    <xsl:sequence select="local:_row-order(0, string-to-codepoints($row-name))"/>
+  </xsl:function>
+  
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  
+  <xsl:function name="local:_row-order" as="xs:integer">
+    <xsl:param name="value-sofar" as="xs:integer"/>
+    <xsl:param name="row-name-codepoints" as="xs:integer*"/>
+    
+    <xsl:choose>
+      <xsl:when test="empty($row-name-codepoints)">
+        <xsl:sequence select="$value-sofar"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="current-value" as="xs:integer" select="$row-name-codepoints[1]"/>
+        <xsl:sequence select="local:_row-order(($value-sofar * 256) + $current-value, subsequence($row-name-codepoints, 2))"/>
+      </xsl:otherwise>  
+    </xsl:choose>
+  </xsl:function>
 
   <!-- ================================================================== -->
   <!-- SUPPORT: -->
